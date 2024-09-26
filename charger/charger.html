@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="generator" content="">
+        <title>충전기 관리</title>
+    
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="../kendo/kendo.all.min.js"></script>
+        <script src="../kendo/jszip.min.js"></script>
+        <script src="../kendo/cultures/kendo.culture.ko-KR.min.js"></script>
+        <!-- Bootstrap core CSS -->
+        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../dashboard.css" rel="stylesheet">
+        <style>
+          
+        </style>
+      </head>
+
+      <body style="background-color: rgb(255, 255, 255)">
+    
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+          <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Egtronics</a>
+          <div class="navbar-nav col-md-1">
+            <a class="nav-link px-3" href="../home/login.html">Sign out</a>
+          </div>
+        </header>
+        
+        <div class="container-fluid">
+          <nav id="navMenu" class="col-md-2 d-md-block sidebar collapse">
+            <p>   
+          </nav>
+        
+          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 class="h2">충전기 화면</h1>
+            </div>
+            <div id="gridDiv"></div>
+            <p></p><a></a>
+            <p></p><a></a>
+            <div id="connectorgrid"></div>
+          </main>
+        </div>
+      </body>
+</html>
+
+<script src="../practice.js"></script>
+<script >
+var connector_contentData = [];
+var contentData = [];
+var station_Id = null;
+var charger_Id = null;
+
+$(document).ready(function () {
+  var t = sessionStorage.getItem('accessToken');
+  sessionStorage.setItem('chargerId', "");
+//  console.log("[accessToken] : " + JSON.stringify(t));
+let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
+  var navItems  = [];
+  for(var i = 0; i < retrievedArray.length; i ++) {
+    if(retrievedArray[i].permit_r == true && retrievedArray[i].useYn =="Y" )
+    {
+      navItems.push(retrievedArray[i].menuName);
+    }
+  }
+      
+  navItems.forEach(item => {
+      const navLink = document.createElement('a'); // <a> 태그 생성
+      navLink.textContent = item; // 링크 텍스트 설정
+      navLink.href = href_link(item); // href 속성 설정
+      navMenu.appendChild(navLink); 
+    });
+    
+       $.ajax({    			
+        url: reqURL+"/charger/info/page/list?page=1&size=1000",
+        type: "GET",
+        dataType: "json", 
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","14");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+          console.log("data"+JSON.stringify(data));
+            var content =  data.payload.content;
+            for(var i = 0; i < content.length; i ++) {
+                var test = 
+                {
+                  stationId : content[i].stationId,
+                  stationName : content[i].stationName,
+                  chargerId : content[i].chargerId,
+                  chargerName : content[i].chargerName,
+                  heartbeatStatus : content[i].heartbeatStatus,
+                  chargerModelCode : content[i].chargerModelCode,
+                  chargerModelName : content[i].chargerModelName,
+                  chargerSerialNumber : content[i].chargerSerialNumber,
+                  vendorId : content[i].vendorId,
+                  registrationStatus : content[i].registrationStatus,
+                  availableStatus : content[i].availableStatus,
+                  heartbeatDate : content[i].heartbeatDate,
+                  firmwareVersion : content[i].firmwareVersion,
+                  localListVersion : content[i].localListVersion,
+                  ocppId : content[i].ocppId,
+                  ocppPw : content[i].ocppPw,
+                  kecoRoamingYn : content[i].kecoRoamingYn,
+                  kepcoRoamingYn : content[i].kepcoRoamingYn,
+                  chargerGpsX : content[i].chargerGpsX,
+                  chargerGpsY : content[i].chargerGpsY,
+                  useYn : content[i].useYn,
+                  deleteYn : content[i].deleteYn,
+                }
+                contentData.push(test);
+            }
+            Maingrid();
+        },
+        error: function(error) {
+            alert('실패: ' + error.responseText);
+        }
+    });
+
+    $("#connectorgrid").kendoGrid({
+      dataBound: dataBound2,
+      toolbar: [
+      { template:'<a>커넥터 정보</a>'},
+      ],
+      columns: [
+          { field: 'stationId', title: '충전소 ID', attributes: { "class": "table-cell", style: "text-align: center;" },width: 120  },
+          { field: 'chargerId', title: '충전기 ID', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 110 },
+          { field: "connectorId", title: "커넥터 ID",width: 110  },
+          { field: "status", title: "상태정보",width: 130  },
+          { field: "statusNotificationDate", title: "상태정보 날짜", width: 190 },
+          { field: "errorCode", title: "에러코드", width: 130 },
+          { field: "vendorErrorCode", title: "제조사 에러코드",  },
+      ],
+      noRecords: true,
+      scrollable: true,
+      sortable: true,
+      batch: true,
+      selectable: true,
+      pageable:true,
+      dataSource: {
+        data:connector_contentData,
+        pageSize: 10,
+      filterable: true,
+      editable: true,
+  },
+});});
+
+function Maingrid(){
+  $("#gridDiv").kendoGrid({
+      dataBound: dataBound,
+      columnMenu: {
+                    filterable: false
+                },
+              dataSource: {
+                data:contentData,
+                pageSize: 10,
+                pageable: {
+                  input: true,
+                },
+              filterable: true,
+              editable: true,
+              },
+              noRecords: true,
+              scrollable: true,
+              sortable: true,
+              batch: true,
+              selectable: true,
+              pageable:true,
+      toolbar: [
+          { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnChargerInsert()"></span>&nbsp충전기 추가</a>' }, //&nbsp;
+          { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnChargerUpdate()"></span>&nbsp충전기 수정</a>' },
+      ],
+      columns: [
+          { field: 'stationName', title: '충전소 이름', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 190},
+          { field: 'chargerName', title: '충전기 이름', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 220},
+          { field: 'stationId', title: '충전소 ID', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120},
+          { field: 'chargerId', title: '충전기 ID', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 110},
+          { field: "ocppId", title: "OCPP ID", attributes: { "class": "table-cell", style: "text-align: center;" },width: 110 },
+          { field: "heartbeatStatus", title: "충전기 상태", attributes: { "class": "table-cell", style: "text-align: center;" },width: 120 },
+          //{ field: "ocppPw", title: "OCPP PW" },
+          { field: "chargerModelName", title: "충전기 모델 이름", attributes: { "class": "table-cell", style: "text-align: center;" }, width: 190},
+          { field: "chargerModelCode", title: "충전기 모델 코드",  width: 160},
+          { field: "chargerSerialNumber", title: "충전기 시리얼", width: 200 },
+          { field: "vendorId", title: "충전기 제조사", width: 140 },
+          { field: "firmwareVersion", title: "프로그램 버전", width: 150 },
+          { field: "localListVersion", title: "로컬 회원 버전", width: 150 },
+          //{ field: "kecoRoamingYn", title: "환경부 로밍 여부", width: 140  },
+          //{ field: "kepcoRoamingYn", title: "한전 로밍 여부", width: 140  },
+          { field: "registrationStatus", title: "충전기 부팅", width: 150 },
+          { field: "availableStatus", title: "충전기 가용여부", width: 150 },
+          { field: "heartbeatDate", title: "충전기 정보 전송 일시", width: 190 },
+          { field: "chargerGpsX", title: "GPS X", width: 140 },
+          { field: "chargerGpsY", title: "GPS Y", width: 140 },
+          { field: "useYn", title: "사용여부", width: 100 },
+          //{ field: "deleteYn", title: "삭제여부" },
+
+      ],
+      
+  change: function (e) {
+    var grid = $("#gridDiv").data("kendoGrid");
+    var DataItem = grid.dataItem(grid.select());
+    station_Id = DataItem.stationId;
+    charger_Id = DataItem.chargerId;
+    callconnector(station_Id, charger_Id);
+  }
+});
+}
+
+function dataBound(e) {
+    var _width = 2000;
+    var grid_data = $("#gridDiv").data("kendoGrid");
+
+    grid_data.thead.closest('table').width(_width);
+    grid_data.tbody.closest('table').width(_width);
+}
+function dataBound2(e) {
+    var _width = 1000;
+    var grid_data = $("#connectorgrid").data("kendoGrid");
+
+    grid_data.thead.closest('table').width(_width);
+    grid_data.tbody.closest('table').width(_width);
+}
+
+function callconnector(station_Id, charger_Id){
+ var t = sessionStorage.getItem('accessToken');
+       $.ajax({    			
+        url: reqURL+"/connector/info/list?stationId=" + station_Id + "&chargerId=" + charger_Id,
+        type: "GET",
+        dataType: "json", 
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","14");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+            var content =  data.payload;
+            for(var i = 0; i < content.length; i ++) {
+                var test = 
+                {
+                  stationId : content[i].stationId,
+                  chargerId : content[i].chargerId,
+                  connectorId : content[i].connectorId,
+                  status : content[i].status,
+                  statusNotificationDate : content[i].statusNotificationDate,
+                  errorCode : content[i].errorCode,
+                  vendorErrorCode : content[i].vendorErrorCode,
+                }
+                connector_contentData.push(test);
+            }
+            var grid = $("#connectorgrid").data('kendoGrid');           
+            grid.dataSource.data([]); 
+            grid.setDataSource([]);
+            connectorData();
+        },
+        error: function(error) {
+            alert('실패: ' + error.responseText);
+        }
+    });
+ }
+
+function connectorData(){
+  
+  var dataSource = new kendo.data.DataSource({
+        data:connector_contentData,
+  });
+var grid = $("#connectorgrid").data("kendoGrid");
+
+grid.setDataSource(dataSource);
+connector_contentData = [];
+}
+
+function btnChargerInsert(){
+  window.open("chargerInsert.html", "충전기 등록", "width=600, height=650, top=150, left=200");
+}
+
+function btnChargerUpdate(){
+  Charger_Check();
+  var data = sessionStorage.getItem('chargerId');
+  if(data == "" ||data == null){
+    alert('수정할 곳을 선택하여 주세요');
+  }
+  else{
+    window.open("chargerUpdate.html", "충전기 수정", "width=600, height=650, top=150, left=200");
+  }
+}
+
+function Charger_Check(){
+  var grid = $("#gridDiv").data("kendoGrid");
+  var rows = grid.select();
+  var selectedIds = [];
+
+  $(rows).each(function(){
+    var dataItem = grid.dataItem(this);
+    selectedIds.push(dataItem);
+    for(var i in selectedIds) {
+      sessionStorage.setItem('chargerId', selectedIds[i].chargerId);
+    }
+  });
+}
+  
+</script>

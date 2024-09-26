@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="generator" content="">
+        <title>충전 정보</title>
+    
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="../kendo/kendo.all.min.js"></script>
+        <script src="../kendo/jszip.min.js"></script>
+        <script src="../kendo/cultures/kendo.culture.ko-KR.min.js"></script>
+        <!-- Bootstrap core CSS -->
+        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../dashboard.css" rel="stylesheet">
+        <style>
+         nav {
+        background-color: #000000;
+        overflow: hidden;
+        }
+        nav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 1px 38px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        nav li {
+          list-style:none;
+        }
+        </style>
+      </head>
+
+      <body style="background-color: rgb(255, 255, 255)">
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+          <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Egtronics</a>
+          <div class="navbar-nav col-md-1">
+            <a class="nav-link px-3" href="../home/login.html">Sign out</a>
+          </div>
+        </header>
+        
+        <div class="container-fluid">
+          <nav id="navMenu" class="col-md-2 d-md-block sidebar collapse">
+            <p>   
+          </nav>
+        
+          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 class="h2">충전 화면</h1>
+            </div>
+            <div id="gridDiv"></div>
+          </main>
+          
+        </div>
+      </body>
+</html>
+
+<script src="../practice.js"></script>
+<script >
+$(document).ready(function () {
+  var t = sessionStorage.getItem('accessToken');
+  var contentData = [];
+  //console.log("[accessToken] : " + JSON.stringify(t));
+  let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
+  var navItems  = [];
+  for(var i = 0; i < retrievedArray.length; i ++) {
+    if(retrievedArray[i].permit_r == true && retrievedArray[i].useYn =="Y" )
+    {
+      navItems.push(retrievedArray[i].menuName);
+    }
+  }
+      
+  navItems.forEach(item => {
+      const navLink = document.createElement('a'); // <a> 태그 생성
+      navLink.textContent = item; // 링크 텍스트 설정
+      navLink.href = href_link(item); // href 속성 설정
+      navMenu.appendChild(navLink); 
+    });
+    
+       $.ajax({    			
+        url: reqURL+"/transaction/info/page/list?page=1&size=1000&order=Descending&by=transactionId",
+        type: "GET",
+        dataType: "json", 
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","15");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+           // console.log("[data] : " + JSON.stringify(data));
+            var content =  data.payload.content;
+            for(var i = 0; i < content.length; i ++) {
+                var start_kWh= Wh_JSONformat(content[i].startChargingWh);
+                var stop_kWh= Wh_JSONformat(content[i].stopChargingWh);
+                var total_kWh= Wh_JSONformat(content[i].totalChargedWh);
+                var Amount= won_JSONformat(content[i].chargingAmount);
+                var start_Soc= SOC_JSONformat(content[i].startSoc);
+                var end_Soc= SOC_JSONformat(content[i].endSoc);
+                
+                var test = 
+                {
+                  transactionId : content[i].transactionId,
+                  stationId : content[i].stationId,
+                  chargerId : content[i].chargerId,
+                  connectorId : content[i].connectorId,
+                  rfCardNo : content[i].rfCardNo,
+                  updateDt : content[i].updateDt,
+                  startDt : content[i].startDt,
+                  stopDt : content[i].stopDt,
+                  startChargingWh : start_kWh,
+                  stopChargingWh : stop_kWh,
+                  totalChargedWh : total_kWh,
+                  chargingAmount : Amount,
+                  startSoc : start_Soc,
+                  endSoc : end_Soc,
+                  remoteStartDt : content[i].remoteStartDt,
+                  remoteStopDt : content[i].remoteStopDt,
+                }
+                contentData.push(test);
+            }
+            $("#gridDiv").kendoGrid({
+              dataBound: dataBound,
+              columnMenu: {
+                    filterable: false
+                },
+              dataSource: {
+                data:contentData,
+                pageSize: 10,
+                pageable: {
+                  input: true,
+                },
+              filterable: true,
+              editable: true,
+              },
+              noRecords: true,
+              scrollable: true,
+              sortable: true,
+              batch: true,
+              selectable: true,
+              pageable:true,
+            toolbar: [
+            { template:'<a>충전 정보</a>'}
+            ],
+            columns: [
+                { field: 'transactionId', title: '충전 ID', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 100},
+                { field: 'stationId', title: '충전소 ID', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120},
+                { field: 'chargerId', title: '충전기 ID', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 110},
+                { field: 'connectorId', title: '커넥터 ID', width: 110 },
+                { field: "rfCardNo", title: "회원 정보", width: 150},
+                { field: "updateDt", title: "마지막 전송 날짜", width: 180 },
+                { field: "startDt", title: "충전 시작 날짜", width: 180},
+                { field: "stopDt", title: "충전 종료 날짜", width: 180 },
+                { field: "startChargingWh", title: "시작 전력량", attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140  },
+                { field: "stopChargingWh", title: "종료 전력량", attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140  },
+                { field: "totalChargedWh", title: "충전 전력량", attributes: { "class": "table-cell", style: "text-align: center;" }, width: 130  },
+                { field: "chargingAmount", title: "충전 금액", width: 110},
+                { field: "startSoc", title: "충전시작 SOC", width: 140 },
+                { field: "endSoc", title: "충전종료 SOC", width: 140 },
+                { field: "remoteStartDt", title: "원격 충전 시작 날짜", width: 180 },
+                { field: "remoteStopDt", title: "원격 충전 종료 날짜", width: 180 },
+            ],
+            
+        });
+            
+        },
+        error: function(error) {
+            alert('실패: ' + error.responseText);
+        }
+    });
+
+});
+
+function dataBound(e) {
+    var _width = 1300;
+    var grid_data = $("#gridDiv").data("kendoGrid");
+
+    grid_data.thead.closest('table').width(_width);
+    grid_data.tbody.closest('table').width(_width);
+}
+
+</script>

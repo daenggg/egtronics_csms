@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="generator" content="">
+        <title>main</title>
+    
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="../kendo/kendo.all.min.js"></script>
+        <script src="../kendo/jszip.min.js"></script>
+        <script src="../kendo/cultures/kendo.culture.ko-KR.min.js"></script>
+        <!-- Bootstrap core CSS -->
+        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../dashboard.css" rel="stylesheet">
+        <style>
+        </style>
+      </head>
+
+      <body style="background-color: rgb(255, 255, 255)">
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+          <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Egtronics</a>
+          <div class="navbar-nav col-md-1">
+            <a class="nav-link px-3" href="../home/login.html">Sign out</a>
+          </div>
+        </header>
+        
+        <div class="container-fluid">
+            <nav id="navMenu" class="col-md-2 d-md-block sidebar collapse" style="overflow:auto">
+              <p>   
+            </nav>
+      
+          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 class="h2">Dashboard</h1>
+              <div class="btn-toolbar mb-2 mb-md-0">
+              </div>
+            </div>
+            <div id="stationGrid"></div>
+            <p></p><a></a>
+            <div id="chargerGrid"></div>
+            <p></p><a></a>
+            <div id="chargingGrid"></div>
+          </main>
+        </div>
+   </body>
+</html>
+
+<script type="text/javascript" src="../practice.js" ></script>
+<script >
+$(document).ready(function () {
+  var t = sessionStorage.getItem('accessToken');
+  var contentData_station = [];
+  var contentData_charger = [];
+  var contentData_charging = [];
+
+  let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
+  var navItems  = [];
+  for(var i = 0; i < retrievedArray.length; i ++) {
+    if(retrievedArray[i].permit_r == true && retrievedArray[i].useYn =="Y" )
+    {
+      navItems.push(retrievedArray[i].menuName);
+    }
+  }
+      
+  navItems.forEach(item => {
+      const navLink = document.createElement('a'); // <a> 태그 생성
+      navLink.textContent = item; // 링크 텍스트 설정
+      navLink.href = href_link(item); // href 속성 설정
+      navMenu.appendChild(navLink); 
+    });
+
+         $.ajax({    			
+        url: reqURL+"/station/info/page/list?page=1&size=10",
+        type: "GET",
+        dataType: "json", 
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","13");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+            var content =  data.payload.content;
+            for(var i = 0; i < content.length; i ++) {
+                var Addr = content[i].stationAddrCity +" "+ content[i].stationAddrCountry +" "+ content[i].stationAddrTown +" "+content[i].stationAddrRoadname;
+                var test = 
+                {
+                  stationId : content[i].stationId,
+                  stationName : content[i].stationName,
+                  companyName : content[i].companyName,
+                  companyCode : content[i].companyCode,
+                  stationAddr : Addr,
+                  useYn : content[i].useYn,
+                }
+                contentData_station.push(test);
+            }
+            $("#stationGrid").kendoGrid({
+              toolbar: [
+                { template:'<a>충전소</a>'}
+                ],
+            columns: [
+                { field: 'companyName', title: '사업자 이름', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 150 },
+                { field: 'stationId', title: '충전소 ID', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 130 },
+                { field: 'stationName', title: '충전소 이름', attributes: { "class": "table-cell", style: "text-align: center;" },width: 250 },
+                { field: 'stationAddr', title: '주소',  },
+                //{ field: "stationContractCapacity", title: "수주 용량" },
+                { field: "useYn", title: "사용여부", width: 90,},
+
+            ],
+            noRecords: true,
+            pageable:true,
+            dataSource: {
+              data:contentData_station,
+              pageSize: 10,
+            scrollable: true,
+            sortable: true,
+            selectable: true,
+            pageable: {
+                input: true,
+            },
+            editable: true,
+            batch: true,
+        }});
+        },
+        error: function(error) {
+            alert('실패: ' + error.responseText);
+        }
+    });
+
+    $.ajax({    			
+        url: reqURL+"/charger/info/page/list?page=1&size=10",
+        type: "GET",
+        dataType: "json", 
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","14");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+            var content =  data.payload.content;
+            for(var i = 0; i < content.length; i ++) {
+                var test = 
+                {
+                  stationId : content[i].stationId,
+                  stationName : content[i].stationName,
+                  chargerId : content[i].chargerId,
+                  chargerName : content[i].chargerName,
+                  chargerModelName : content[i].chargerModelName,
+                  useYn : content[i].useYn,
+                }
+                contentData_charger.push(test);
+            }
+            console.log("[data] : " + JSON.stringify(contentData_charger));
+            $("#chargerGrid").kendoGrid({
+              toolbar: [
+      { template:'<a>충전기</a>'}
+      ],
+      columns: [
+          { field: 'stationName', title: '충전소 이름', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 190 },
+          { field: 'stationId', title: '충전소 ID', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120},
+          { field: 'chargerName', title: '충전기 이름', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 220},
+          { field: 'chargerId', title: '충전기 ID', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 110},
+          { field: "chargerModelName", title: "충전기 모델 이름", attributes: { "class": "table-cell", style: "text-align: center;" }, width: 190},
+          { field: "useYn", title: "사용여부",width: 100 },
+          ],
+          noRecords: true,
+            pageable:true,
+            dataSource: {
+              data:contentData_charger,
+              pageSize: 10,
+            scrollable: true,
+            sortable: true,
+            selectable: true,
+            pageable: {
+                input: true,
+            },
+            editable: true,
+            batch: true,
+          },
+        });
+        },
+        error: function(error) {
+            alert('실패: ' + error.responseText);
+        }
+    });
+
+    $.ajax({    			
+        url: reqURL+"/transaction/info/page/list?page=1&size=50&order=Descending&by=transactionId",
+        type: "GET",
+        dataType: "json", 
+        //data : JSON.stringify(data1), //json 데이터
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","15");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+            var content =  data.payload.content;
+            for(var i = 0; i < content.length; i ++) {
+
+                var total_kWh= Wh_JSONformat(content[i].totalChargedWh);
+                var Amount= won_JSONformat(content[i].chargingAmount);
+                var test = 
+                {
+                  transactionId : content[i].transactionId,
+                  stationId : content[i].stationId,
+                  chargerId : content[i].chargerId,
+                  connectorId : content[i].connectorId,
+                  rfCardNo : content[i].rfCardNo,
+                  startDt : content[i].startDt,
+                  stopDt : content[i].stopDt,
+                  totalChargedWh : total_kWh,
+                  chargingAmount : Amount,
+                }
+                contentData_charging.push(test);
+            }
+            $("#chargingGrid").kendoGrid({
+      
+            toolbar: [
+            { template:'<a>충전 정보</a>'}
+            ],
+            columns: [
+                { field: 'transactionId', title: '충전 ID', attributes: { "class": "table-cell", style: "text-align: center;" },  width: 100},
+                { field: 'stationId', title: '충전소 ID', attributes: { "class": "table-cell", style: "text-align: center;" },  width: 120},
+                { field: 'chargerId', title: '충전기 ID', attributes: { "class": "table-cell", style: "text-align: center;" },  width: 100},
+                { field: 'connectorId', title: '커넥터 ID', width: 100},
+                { field: "rfCardNo", title: "회원 정보",  width: 150 },
+                { field: "startDt", title: "충전 시작 날짜", width: 180 },
+                { field: "stopDt", title: "충전 종료 날짜", width: 180 },
+                { field: "totalChargedWh", title: "충전 전력량" , attributes: { "class": "table-cell", style: "text-align: center;" }, width: 130  },
+                { field: "chargingAmount", title: "충전 금액", width: 110 },
+            ],
+            noRecords: true,
+            pageable:true,
+            dataSource: {
+              data:contentData_charging,
+              pageSize: 5,
+            scrollable: true,
+            sortable: true,
+            selectable: true,
+            pageable: {
+                input: true,
+            },
+            editable: true,
+            batch: true,
+        }});
+            
+        },
+        error: function(error) {
+            alert('실패: ' + error.responseText);
+        }
+    });
+});
+
+function sleep_T(sec) {
+    let start = Date.now(), now = start;
+    while (now - start < sec * 100) {
+        now = Date.now();
+    }
+  }
+
+
+</script>

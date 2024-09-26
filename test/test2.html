@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="generator" content="">
+        <title>test page</title>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="https://kendo.cdn.telerik.com/2020.3.915/js/kendo.all.min.js"></script>
+        <!-- Bootstrap core CSS -->
+      <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link href="../dashboard.css" rel="stylesheet">
+    </head>
+      
+      <body style="background-color: rgb(255, 255, 255)">
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+          <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Egtronics</a>
+        </header>
+
+        <div class="input-group-prepend">
+        <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="충전소 ID" style="width:200px; height:30px; background-color:cadetblue; text-align:center; color:white;">
+        <input id="stationId" type="text" class="form-control input-width" value="egtn04" placeholder="충전소" style="width:200px; height:30px;"/>  
+        </div>
+        <p></p>
+
+        <div class="input-group-prepend">
+        <input type="text"  class="form-control margin-right10 margin-left30" readonly="" value="충전기 ID" style="width:200px; height:30px; background-color:cadetblue; text-align:center; color:white;">
+        <input id="chargerId" name="chargerId" type="text" class="form-control input-width" value="c02" placeholder="충전기" style="width:200px; height:30px;"/>  
+        </div>
+        <p></p>
+
+        <div class="input-group-prepend">
+        <input type="text"  class="form-control margin-right10 margin-left30" readonly="" value="회원카드" style="width:200px; height:30px; background-color:cadetblue; text-align:center; color:white;">
+        <input id="idTag" name="idTag" type="text" class="form-control input-width" value="0206120110151405" placeholder="" style="width:200px; height:30px;"/>  
+        </div>
+        <p></p>
+        <div class="input-group-prepend">
+          <input type="text"  class="form-control margin-right10 margin-left30" readonly="" value="connector" style="width:200px; height:30px; background-color:cadetblue; text-align:center; color:white;">
+          <input id="connectorId" name="connectorId" type="text" class="form-control input-width" value="1" placeholder="" style="width:200px; height:30px;"/>  
+          </div>
+          <p></p>
+
+        <form id="RemoteStart">
+          <button type="button" id="RemoteStart"onclick="btnRemoteStartTransaction()">RemoteStartTransaction</button>
+        </form><p></p>
+          
+        <form id="RemoteStop">
+          <button type="button" id="RemoteStop"onclick="btnRemoteStopTransaction()">RemoteStopTransaction</button>
+        </form><p></p>
+
+        <form id="Availability">
+          <button type="button" id="AvailabilityOperative"onclick="btnChangeAvailabilityOperative()">ChangeAvailability: 운영</button>
+          <button type="button" id="AvailabilityInoperative"onclick="btnChangeAvailabilityInoperative()">ChangeAvailability: 중지</button>
+        </form><p></p>
+
+        <form id="Reset">
+          <button type="button" id="ResetSoft"onclick="btnResetSoft()">Reset: Soft</button>
+          <button type="button" id="ResetHard"onclick="btnResetHard()">Reset: Hard</button>
+        </form><p></p>
+
+        <form id="ChangeConfiguration ">
+          <button type="button" id="ChangeConfiguration"onclick="btnChangeConfiguration()">ChangeConfiguration : </button>
+          <input type="text"  class="form-control margin-right10 margin-left30" readonly="" value="value" style="width:100px; height:30px; background-color:cadetblue; text-align:center; color:white;">
+          <input id="ChangeConfigurationvalue" name="ChangeConfigurationvalue" type="text" class="form-control input-width" value="120" placeholder="" style="width:100px; height:30px;"/>  
+        </form><p></p>
+        
+        <form id="ClearCache">
+          <button type="button" id="ClearCache"onclick="btnClearCache()">ClearCache</button>
+        </form><p></p>
+
+        <form id="UnlockConnector">
+          <button type="button" id="UnlockConnector"onclick="btnUnlockConnector()">UnlockConnector</button>
+        </form><p></p>
+
+  </body>
+</html>
+
+<script type="text/javascript" src="../practice.js" ></script>
+<script >
+  function btnRemoteStartTransaction() {
+    var station = $('#stationId').val();
+    var charger = $('#chargerId').val();
+    var Tag = $('#idTag').val();
+    var connector = $('#connectorId').val();
+    var data1 = {action : "RemoteStartTransaction", data : { idTag : Tag , stationId : station , chargerId : charger , connectorId :connector }};
+//    console.log('data1 : '+ JSON.stringify(data1));
+    var t = sessionStorage.getItem('accessToken');
+
+    $.ajax({
+        type : 'post',
+        url : reqURL+'/send',
+        ype: 'POST',
+        dataType: "json", 
+        contentType: "application/json",
+        data : JSON.stringify(data1), //json 데이터
+        async: true, // 비동기 여부
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+        },
+        success : function(data) {
+          //console.log('응답'+ JSON.stringify(data));
+            alert("전송");
+        },
+        error : function(error) {
+          alert('실패: ' + error.responseText);
+        }
+    });
+  }
+
+  function btnRemoteStopTransaction() {
+    var station = $('#stationId').val();
+    var charger = $('#chargerId').val();
+    var Tag = $('#idTag').val();
+    var connector = $('#connectorId').val();
+    var data1 = {action : "RemoteStopTransaction", data : { idTag : Tag , stationId : station , chargerId : charger , connectorId :connector }};
+//    console.log('data1 : '+ JSON.stringify(data1));
+    var t = sessionStorage.getItem('accessToken');
+
+    $.ajax({
+        type : 'post',
+        url : reqURL+'/send',
+        ype: 'POST',
+        dataType: "json", 
+        contentType: "application/json",
+        data : JSON.stringify(data1), //json 데이터
+        async: true, // 비동기 여부
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+        },
+        success : function(data) {
+          //console.log('응답'+ JSON.stringify(data));
+            alert("전송");
+        },
+        error : function(error) {
+          alert('실패: ' + error.responseText);
+        }
+    });
+  }
+  
+  function btnChangeAvailabilityOperative() {
+    var station = $('#stationId').val();
+    var charger = $('#chargerId').val();
+    var Tag = $('#idTag').val();
+    var connector = $('#connectorId').val();
+    var data1 = {action : "ChangeAvailability", data : { stationId : station , chargerId : charger , connectorId :connector, type : "Operative" }};
+    var t = sessionStorage.getItem('accessToken');
+
+    $.ajax({
+        type : 'post',
+        url : reqURL+'/send',
+        ype: 'POST',
+        dataType: "json", 
+        contentType: "application/json",
+        data : JSON.stringify(data1), //json 데이터
+        async: true, // 비동기 여부
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+        },
+        success : function(data) {
+          //console.log('응답'+ JSON.stringify(data));
+            alert("전송");
+        },
+        error : function(error) {
+          alert('실패: ' + error.responseText);
+        }
+    });
+  }
+
+  function btnChangeAvailabilityInoperative() {
+    var station = $('#stationId').val();
+    var charger = $('#chargerId').val();
+    var Tag = $('#idTag').val();
+    var connector = $('#connectorId').val();
+    var data1 = {action : "ChangeAvailability", data : { stationId : station , chargerId : charger , connectorId :connector, type : "Inoperative" }};
+    var t = sessionStorage.getItem('accessToken');
+
+    $.ajax({
+        type : 'post',
+        url : reqURL+'/send',
+        ype: 'POST',
+        dataType: "json", 
+        contentType: "application/json",
+        data : JSON.stringify(data1), //json 데이터
+        async: true, // 비동기 여부
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+        },
+        success : function(data) {
+          //console.log('응답'+ JSON.stringify(data));
+            alert("전송");
+        },
+        error : function(error) {
+          alert('실패: ' + error.responseText);
+        }
+    });
+  }
+
+  function btnResetSoft() {
+    var station = $('#stationId').val();
+    var charger = $('#chargerId').val();
+    var Tag = $('#idTag').val();
+    var connector = $('#connectorId').val();
+    var data1 = {action : "Reset", data : { stationId : station , chargerId : charger , type : "Soft" }};
+    var t = sessionStorage.getItem('accessToken');
+
+    $.ajax({
+        type : 'post',
+        url : reqURL+'/send',
+        ype: 'POST',
+        dataType: "json", 
+        contentType: "application/json",
+        data : JSON.stringify(data1), //json 데이터
+        async: true, // 비동기 여부
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+        },
+        success : function(data) {
+          //console.log('응답'+ JSON.stringify(data));
+            alert("전송");
+        },
+        error : function(error) {
+          alert('실패: ' + error.responseText);
+        }
+    });
+  }
+
+  function btnResetHard() {
+    var station = $('#stationId').val();
+    var charger = $('#chargerId').val();
+    var Tag = $('#idTag').val();
+    var connector = $('#connectorId').val();
+    var data1 = {action : "Reset", data : { stationId : station , chargerId : charger , type : "Hard" }};
+    var t = sessionStorage.getItem('accessToken');
+
+    $.ajax({
+        type : 'post',
+        url : reqURL+'/send',
+        ype: 'POST',
+        dataType: "json", 
+        contentType: "application/json",
+        data : JSON.stringify(data1), //json 데이터
+        async: true, // 비동기 여부
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+        },
+        success : function(data) {
+          //console.log('응답'+ JSON.stringify(data));
+            alert("전송");
+        },
+        error : function(error) {
+          alert('실패: ' + error.responseText);
+        }
+    });
+  }
+
+  function btnClearCache() {
+    var station = $('#stationId').val();
+    var charger = $('#chargerId').val();
+    var Tag = $('#idTag').val();
+    var connector = $('#connectorId').val();
+    var data1 = {action : "ClearCache", data : { stationId : station , chargerId : charger , connectorId : connector}};
+    var t = sessionStorage.getItem('accessToken');
+
+    $.ajax({
+        type : 'post',
+        url : reqURL+'/send',
+        ype: 'POST',
+        dataType: "json", 
+        contentType: "application/json",
+        data : JSON.stringify(data1), //json 데이터
+        async: true, // 비동기 여부
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+        },
+        success : function(data) {
+          //console.log('응답'+ JSON.stringify(data));
+            alert("전송");
+        },
+        error : function(error) {
+          alert('실패: ' + error.responseText);
+        }
+    });
+  }
+
+  function btnChangeConfiguration() {
+    var station = $('#stationId').val();
+    var charger = $('#chargerId').val();
+    var Tag = $('#idTag').val();
+    var connector = $('#connectorId').val();
+    var data1 = {action : "ChangeConfiguration", data : { stationId : station , chargerId : charger , key : "MeterValueSampleInterval", value : "120" }};
+    var t = sessionStorage.getItem('accessToken');
+
+    $.ajax({
+        type : 'post',
+        url : reqURL+'/send',
+        ype: 'POST',
+        dataType: "json", 
+        contentType: "application/json",
+        data : JSON.stringify(data1), //json 데이터
+        async: true, // 비동기 여부
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+        },
+        success : function(data) {
+          //console.log('응답'+ JSON.stringify(data));
+            alert("전송");
+        },
+        error : function(error) {
+          alert('실패: ' + error.responseText);
+        }
+    });
+  }
+
+  function btnUnlockConnector() {
+    var station = $('#stationId').val();
+    var charger = $('#chargerId').val();
+    var Tag = $('#idTag').val();
+    var connector = $('#connectorId').val();
+    var data1 = {action : "UnlockConnector", data : { stationId : station , chargerId : charger , connectorId : connector}};
+    var t = sessionStorage.getItem('accessToken');
+
+    $.ajax({
+        type : 'post',
+        url : reqURL+'/send',
+        ype: 'POST',
+        dataType: "json", 
+        contentType: "application/json",
+        data : JSON.stringify(data1), //json 데이터
+        async: true, // 비동기 여부
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+        },
+        success : function(data) {
+          //console.log('응답'+ JSON.stringify(data));
+            alert("전송");
+        },
+        error : function(error) {
+          alert('실패: ' + error.responseText);
+        }
+    });
+  }
+
+</script>

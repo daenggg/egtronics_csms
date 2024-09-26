@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="generator" content="">
+        <title>충전소 수정</title>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="../kendo/kendo.all.min.js"></script>
+        <script src="../kendo/jszip.min.js"></script>
+        <script src="../kendo/cultures/kendo.culture.ko-KR.min.js"></script>
+        <!-- Bootstrap core CSS -->
+      <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+
+          #input-select {
+            width :400px;
+            height :40px;
+            font-size:12px;
+          }
+    
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+        </style>
+        <link href="../dashboard.css" rel="stylesheet">
+      </head>
+      
+      <body style="background-color: rgb(255, 255, 255)">
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+          <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">충전소 수정</a>
+        </header>
+        <div class="card">
+          <div class="card-body">
+            
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="충전소 이름" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="stationName" type="text" class="form-control margin-left30 input-width" value="" placeholder=" 충전소 이름을 입력하세요" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="충전소 ID" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="stationId" type="text" class="form-control input-width" readonly="" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="stationAddrCity" class="form-control margin-right10 margin-left30" readonly="" value="시, 도(광역자치)" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="stationAddrCity" type="text" class="form-control input-width" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="stationAddrCountry" class="form-control margin-right10 margin-left30" readonly="" value="시, 군, 구" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="stationAddrCountry" type="text" class="form-control input-width" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+        <div class="input-group-prepend">
+        <input type="text" id="stationAddrTown" class="form-control margin-right10 margin-left30" readonly="" value="읍, 면, 동" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+        </div>
+        <div class="input-group-prepend">
+        <input id="input-select" name="stationAddrTown" type="text" class="form-control input-width" value="" placeholder="" />
+        </div>
+        </div>
+        <p></p>
+
+        <div class="input-group"> 
+          <div class="input-group-prepend">
+          <input type="text" id="stationAddrRoadname" class="form-control margin-right10 margin-left30" readonly="" value="도로명" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+          </div>
+          <div class="input-group-prepend">
+          <input id="input-select" name="stationAddrRoadname" type="text" class="form-control input-width" value="" placeholder="" />
+          </div>
+          </div>
+          <p></p>
+
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="stationAddrDetail" class="form-control margin-right10 margin-left30" readonly="" value="상세 주소" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="stationAddrDetail" type="text" class="form-control input-width" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+        <div class="input-group-prepend">
+        <input type="text" id="stationGpsX" class="form-control margin-right10 margin-left30" readonly="" value="충전소 경도" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+        </div>
+        <div class="input-group-prepend">
+        <input id="input-select" name="stationGpsX" type="text" class="form-control input-width" value="" placeholder="" />
+        </div>
+        </div>
+        <p></p>
+
+        <div class="input-group"> 
+          <div class="input-group-prepend">
+          <input type="text" id="stationGpsY" class="form-control margin-right10 margin-left30" readonly="" value="충전소 위도" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+          </div>
+          <div class="input-group-prepend">
+          <input id="input-select" name="stationGpsY" type="text" class="form-control input-width" value="" placeholder="" />
+          </div>
+          </div>
+          <p></p>
+
+          <div class="input-group"> 
+            <div class="input-group-prepend">
+            <input type="text" id="stationVoltage" class="form-control margin-right10 margin-left30" readonly="" value="충전소 전압 종류" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+            </div>
+            <div class="input-group-prepend">
+            <input id="input-select" name="stationVoltageType" type="text" class="form-control input-width" value="" placeholder="" />
+            </div>
+            </div>
+            <p></p>
+
+            <div class="input-group"> 
+              <div class="input-group-prepend">
+              <input type="text" id="useYn" class="form-control margin-right10 margin-left30" readonly="" value="사용여부" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+              </div>
+              <div class="input-group-prepend">
+              <input id="input-select" name="useYn" type="text" class="form-control input-width" value="" placeholder="Y/N" />
+              </div>
+              </div>
+              <p></p>
+
+              <div class="input-group"> 
+                <div class="input-group-prepend">
+                <input type="text" id="deleteYn" class="form-control margin-right10 margin-left30" readonly="" value="삭제여부" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                </div>
+                <div class="input-group-prepend">
+                <input id="input-select" name="deleteYn" type="text" class="form-control input-width" value="" placeholder="Y/N" />
+                </div>
+                </div>
+                <p></p>
+                <p></p>
+
+                <input type="button" value="충전소 수정" onclick="btnStationUpdate()">
+        
+        
+          </div>
+        </div>
+        </body>
+</html>
+
+<script src="../practice.js"></script>
+<script >
+  var sStationId = sessionStorage.getItem('stationId'); 
+  $('input[name=stationId]').val(sStationId);
+
+function btnStationUpdate(){
+  var Load = {
+    stationId : sStationId,
+    stationName : $("input[name=stationName]").val(),
+    stationAddrCity : $("input[name=stationAddrCity]").val(),
+    stationAddrCountry : $("input[name=stationAddrCountry]").val(),
+    stationAddrDetail : $("input[name=stationAddrDetail]").val(),
+    stationAddrRoadname : $("input[name=stationAddrRoadname]").val(),
+    stationAddrTown : $("input[name=stationAddrTown]").val(),
+    stationGpsX : $("input[name=stationGpsX]").val(),
+    stationGpsY : $("input[name=stationGpsY]").val(),
+    stationVoltageType : $("input[name=stationVoltageType]").val(),
+    useYn : $("input[name=useYn]").val(),
+    deleteYn : $("input[name=deleteYn]").val(),
+  };
+   
+  var t = sessionStorage.getItem('accessToken');
+  $.ajax({
+        url: reqURL+"/station/info/update",
+        type: "PUT",
+        dataType: "json", 
+        data : JSON.stringify(Load), //json 데이터
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","13");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+           // console.log("[data] : " + JSON.stringify(data));
+           alert('충전소 정보가 변경 되었습니다.');
+           close();
+        },
+        error: function(error) {
+            alert('실패: ' + error.responseText);
+        }
+    });
+    
+}
+</script>

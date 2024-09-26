@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="">
+    <title>Sign-in egtronics</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+    </style>
+    <link href="signin.css" rel="stylesheet">
+  </head>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
+  <script type="text/javascript" src="../practice.js" ></script>
+  <!--<script type="module" src="../router/index.js"></script>-->
+
+  <body style="background-color: rgb(255, 255, 255)" class="text-center" >
+    <main class="form-signin">
+    
+      <img class="mb-5" src="../assets/brand/Logo1.jpg" alt="" width="290" height="60">
+      <form id = "loginForm" class="needs-validation user" >
+      <div class="form-floating">
+      <input type="text" class="form-control" id="userId" placeholder="" name = "userId">
+      <label for="userId">Sign in</label>
+      </div>
+      <div class="form-floating">
+      <input type="password" class="form-control" id="userPassword" placeholder="" name = "userPassword" onkeyup="enterkey()">
+      <label for="userPassword">Password</label>
+      </div>
+      <div class="my-4"></div>
+      </form>
+      
+      <header class="navbar-dark sticky-top bg-primary flex-md-nowrap p-2 shadow">
+      <button class="w-100 btn btn-lg btn-primary" onclick="login_signin()">Sign in</button>
+      </header>
+      <!-- <p class="mt-5"></p>-->
+     <!--<input data-navigate="" type="button" class="mt-5 button-KAKAO" onclick="OAuth_KAKAO()">-->
+      <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
+   
+    </main>
+  </body>
+</html>
+
+<script >
+  function enterkey() {
+  if (window.event.keyCode == 13) {
+       login_signin();
+  }
+}
+  function login_signin(){
+    var id =  $("#userId").val();
+    var pw =  $("#userPassword").val();
+    //alert("ID : " + id + ",  PW : " + pw);
+    SingIn(id,pw);
+  }
+  function OAuth_KAKAO(){
+    let url = OAuth_Login();
+    window.location.replace(url);
+  }
+</script>

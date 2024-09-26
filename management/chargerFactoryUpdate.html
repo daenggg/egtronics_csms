@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="generator" content="">
+        <title>제조 공장 수정</title>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="../kendo/kendo.all.min.js"></script>
+        <script src="../kendo/jszip.min.js"></script>
+        <script src="../kendo/cultures/kendo.culture.ko-KR.min.js"></script>
+        <!-- Bootstrap core CSS -->
+      <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+
+          #input-select {
+            width :400px;
+            height :40px;
+            font-size:12px;
+          }
+    
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+        </style>
+        <link href="../dashboard.css" rel="stylesheet">
+      </head>
+      
+      <body style="background-color: rgb(255, 255, 255)">
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+          <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">제조 공장 수정</a>
+        </header>
+        <div class="card">
+          <div class="card-body">
+            
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="제조 공장 이름" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="chargerFactoryName" type="text" class="form-control input-width" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+      
+      <div class="input-group"> 
+        
+        <div class="input-group-prepend col-6">
+        <input type="text" id="chargerFactoryAddress" class="form-control margin-right10 margin-left30" readonly="" value="공장 주소" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+        </div>
+        <div class="input-group-prepend ">
+        <input type="text" id="zip-code" class="form-control"name="chargerFactoryPostcode" placeholder="우편번호" style="width:150px; height:40px;" readonly>
+        
+        </div>
+        <div class="input-group-prepend ">
+          <input type="button"class="form-control " onclick="execDaumPostcode()" value="주소 찾기" style="height:40px;" >  
+        </div>
+      </div>
+      <p></p>
+      <div class="col-auto">
+<!--        <input id="address-1" name="chargerFactoryAddress"class="form-control" type="text"value="" placeholder="" style="width: 400px; height:40px;" readonly/>-->
+<input id="address-1" name="chargerFactoryAddress"class="form-control" type="text"value="" placeholder="" style="width: 400px; height:40px;"/>
+      </div>
+      <p></p>
+      
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="chargerFactoryCode" class="form-control margin-right10 margin-left30" readonly="" value="공장 코드" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="chargerFactoryCode" type="text" class="form-control input-width" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="chargerFactoryTel" class="form-control margin-right10 margin-left30" readonly="" value="공장 전화번호" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="chargerFactoryTel" type="text" class="form-control input-width" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+        <div class="input-group-prepend">
+        <input type="text" id="chargerFactoryManager" class="form-control margin-right10 margin-left30" readonly="" value="담당자 이름" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+        </div>
+        <div class="input-group-prepend">
+        <input id="input-select" name="chargerFactoryManager" type="text" class="form-control input-width" value="" placeholder="" />
+        </div>
+        </div>
+        <p></p>
+
+        <div class="input-group"> 
+          <div class="input-group-prepend">
+          <input type="text" id="chargerFactoryManagerTel" class="form-control margin-right10 margin-left30" readonly="" value="담당자 전화번호" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+          </div>
+          <div class="input-group-prepend">
+          <input id="input-select" name="chargerFactoryManagerTel" type="text" class="form-control input-width" value="" placeholder="" />
+          </div>
+          </div>
+          <p></p>
+
+          <div class="input-group"> 
+            <div class="input-group-prepend">
+            <input type="text" id="chargerFactoryManagerEmail" class="form-control margin-right10 margin-left30" readonly="" value="담당자 메일" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+            </div>
+            <div class="input-group-prepend">
+            <input id="input-select" name="chargerFactoryManagerEmail" type="text" class="form-control input-width" value="" placeholder="" />
+            </div>
+            </div>
+            <p></p>
+
+        <div class="input-group"> 
+        <div class="input-group-prepend">
+        <input type="text" id="description" class="form-control margin-right10 margin-left30" readonly="" value="비고" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+        </div>
+        <div class="input-group-prepend">
+        <input id="input-select" name="description" type="text" class="form-control input-width" value="" placeholder="" />
+        </div>
+        </div>
+        <p></p>
+
+        <div class="input-group"> 
+        <button class="btn btn-primary"onclick="btnchargerFactoryUpdate()">제조 공장 수정</button>
+      </div>
+          </div>
+        </div>
+    </body>
+</html>
+
+<script src="../practice.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script >
+  var sChargerFactoryCode = sessionStorage.getItem('chargerFactoryCode');  
+  $('input[name=chargerFactoryCode]').val(sChargerFactoryCode);
+
+function btnchargerFactoryUpdate(){
+  var Load = {
+    chargerFactoryName : $("input[name=chargerFactoryName]").val(),
+    chargerFactoryAddress : $("input[name=chargerFactoryAddress]").val(),
+    chargerFactoryCode : sChargerFactoryCode,
+    chargerFactoryTel : $("input[name=chargerFactoryTel]").val(),
+    chargerFactoryManager : $("input[name=chargerFactoryManager]").val(),
+    chargerFactoryManagerTel : $("input[name=chargerFactoryManagerTel]").val(),
+    chargerFactoryManagerEmail : $("input[name=chargerFactoryManagerEmail]").val(),
+    description : $("input[name=description]").val(),
+    useYn : "Y"
+  };
+//  console.log("[data] : " + JSON.stringify(Load));
+//  alert("[data] : " + JSON.stringify(PayLoad));
+   
+  var t = sessionStorage.getItem('accessToken');
+  $.ajax({    			
+        url: reqURL+"/charger/factory/info/update",
+        type: "POST",
+        dataType: "json", 
+        data : JSON.stringify(Load), //json 데이터
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","9");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+            console.log("[data] : " + JSON.stringify(data));
+            alert('제조 공장이 수정 되었습니다.');
+            close();
+        },
+        error: function(error) {
+            alert('실패: ' + error.responseText);
+        }
+    });
+}
+function execDaumPostcode() {
+    new daum.Postcode( {
+      
+      oncomplete: function( data ) {
+        document.getElementById( 'zip-code' ).value = data.zonecode ;
+        document.getElementById( 'address-1' ).value = data.address;
+      }
+    } ).open();
+  }
+</script>

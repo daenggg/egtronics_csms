@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="generator" content="">
+        <title>단가 정보</title>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="../kendo/kendo.all.min.js"></script>
+        <script src="../kendo/jszip.min.js"></script>
+        <script src="../kendo/cultures/kendo.culture.ko-KR.min.js"></script>
+        <!-- Bootstrap core CSS -->
+        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../dashboard.css" rel="stylesheet">
+        <style>
+          
+        </style>
+        
+      </head>
+      
+      <body style="background-color: rgb(255, 255, 255)">
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+          <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Egtronics</a>
+          <div class="navbar-nav col-md-1">
+            <a class="nav-link px-3" href="../home/login.html">Sign out</a>
+          </div>
+        </header>
+        
+        <div class="container-fluid">
+          <nav id="navMenu" class="col-md-2 d-md-block sidebar collapse">
+            <p>   
+          </nav>
+      
+          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 class="h2">충전기 단가 관리 화면</h1>
+            </div>
+<!--              <div id="gridDiv"></div> -->
+          </main>
+        </div>
+      </body>
+</html>
+
+<script src="../practice.js"></script>
+<script >
+$(document).ready(function () {
+  let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
+  var navItems  = [];
+  for(var i = 0; i < retrievedArray.length; i ++) {
+    if(retrievedArray[i].permit_r == true && retrievedArray[i].useYn =="Y" )
+    {
+      navItems.push(retrievedArray[i].menuName);
+    }
+  }
+      
+  navItems.forEach(item => {
+      const navLink = document.createElement('a'); // <a> 태그 생성
+      navLink.textContent = item; // 링크 텍스트 설정
+      navLink.href = href_link(item); // href 속성 설정
+      navMenu.appendChild(navLink); 
+    });
+});
+
+function dataBound(e) {
+    var _width = 1800;
+    var grid_data = $("#gridDiv").data("kendoGrid");
+
+    grid_data.thead.closest('table').width(_width);
+    grid_data.tbody.closest('table').width(_width);
+}
+</script>
