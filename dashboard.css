@@ -93,8 +93,7 @@ body {
     padding-top: .75rem;
     padding-bottom: .75rem;
     font-size: 1rem;
-    background-color: rgba(0, 0, 0, .25);
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+    background-color: white;
   }
   
   .navbar .navbar-toggler {
@@ -147,4 +146,13 @@ body {
   position: fixed;
   top: 20px; /* 상단 고정 */
   width: 200px; /* 너비 설정 */
+}
+.btn btn-dark{
+  
+}
+/* 로고 이미지 크기를 상자 크기에 맞추기 */
+.logo-img {
+  max-height: 50px; /* 헤더 높이에 맞게 이미지 크기를 제한 */
+  width: 120px;
+  object-fit: contain; /* 이미지를 왜곡 없이 상자에 맞춤 */
 }
