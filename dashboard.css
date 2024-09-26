@@ -1,5 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
+    color: #333333;
+    font-family: Century Gothic, sans-serif;
     font-size: .875rem;
   }
   
@@ -139,4 +140,11 @@ body {
 
   .stationGrid  {
     font-size: 5rem;
+}
+
+#navMenu {
+  z-index: 1000; 
+  position: fixed;
+  top: 20px; /* 상단 고정 */
+  width: 200px; /* 너비 설정 */
 }
