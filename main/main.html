@@ -19,6 +19,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
     </style>
 </head>
@@ -37,7 +38,14 @@
     </header>
 
     <div class="container-fluid">
-        <nav id="navMenu" class="col-md-2 d-md-block sidebar collapse" style="width: 220px;">
+        <nav id="navMenu" class = "side-bar">
+            <section class="side-bar__icon-box">
+                <section class="side-bar__icon-1">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </section>
+              </section>
             <p>
         </nav>
 
@@ -69,77 +77,71 @@
         // sessionStorage에서 'menuData' 키로 저장된 데이터를 가져와 JSON 객체로 파싱
         let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
         console.log(retrievedArray);
-        
+
         // 필터링된 네비게이션 항목을 저장할 빈 배열 선언
         var navItems = [];
         // retrievedArray의 각 항목을 순회
         for (var i = 0; i < retrievedArray.length; i++) {
-          // 항목의 permit_r가 true이고 useYn이 "Y"인지 확인
-            if (retrievedArray[i].permit_r == true && retrievedArray[i].useYn == "Y") {
-              // 조건을 만족하는 항목의 menuName을 navItems 배열에 추가
-                navItems.push(retrievedArray[i].menuName);
-            }
+        // 항목의 permit_r가 true이고 useYn이 "Y"인지 확인
+        if (retrievedArray[i].permit_r === true && retrievedArray[i].useYn === "Y") {
+            // 조건을 만족하는 항목의 menuName을 navItems 배열에 추가
+            navItems.push(retrievedArray[i].menuName);
+        }
         }
         console.log(navItems);
+
         // navItems 배열의 각 항목에 대해 반복
-        navItems.forEach(item => {
-            // navItems[6], [7]을 건너뛰기 위해 체크
-            if (item === navItems[6] || item === navItems[7]) {
-            return; 
-             }
+        navItems.forEach((item, index) => {
+        // navItems[6], [7]을 건너뛰기 위해 체크
+        if (index === 6 || index === 7) return;
 
-             for(let i = 16; i<=24; i++){
-                if(item === navItems[i]) {
-                    return;
-                }
-             }
-            const ul = document.createElement('ul');
-            const li1 = document.createElement('li');
-            const a1 = document.createElement('a');
-            a1.textContent = item; // 링크 텍스트 설정
-            a1.href = href_link(item); // href 속성 설정
-            li1.appendChild(a1);
+        // navItems[16]~[24]를 건너뛰기 위해 체크
+        if (index >= 16 && index <= 24) return;
 
-            if(item === navItems[5]){
-                const nestedUl1 = document.createElement('ul');
+        const ul = document.createElement('ul');
+        const li1 = document.createElement('li');
+        const a1 = document.createElement('a');
+        a1.textContent = item; // 링크 텍스트 설정
+        a1.href = href_link(item); // href 속성 설정
+        li1.appendChild(a1);
 
-                const nestedLi1 = document.createElement('li');
-                const nestedA1 = document.createElement('a');
-                nestedA1.textContent = navItems[6]; // 링크 텍스트 설정
-                nestedA1.href = href_link(navItems[6]); // href 속성 설정
-                nestedLi1.appendChild(nestedA1);
-                nestedUl1.appendChild(nestedLi1);
-                li1.appendChild(nestedUl1);
+        // navItems[5]에 대해 2차 메뉴 생성
+        if (index === 5) {
+            const nestedUl1 = document.createElement('ul');
 
-                const nestedLi2 = document.createElement('li');
-                const nestedA2 = document.createElement('a');
-                nestedA2.textContent = navItems[7]; // 링크 텍스트 설정
-                nestedA2.href = href_link(navItems[7]); // href 속성 설정
-                nestedLi2.appendChild(nestedA2);
-                nestedUl1.appendChild(nestedLi2);
-                li1.appendChild(nestedUl1);
+            // 2차 메뉴 항목 추가
+            [6, 7].forEach(subIndex => {
+            const nestedLi = document.createElement('li');
+            const nestedA = document.createElement('a');
+            nestedA.textContent = navItems[subIndex]; // 링크 텍스트 설정
+            nestedA.href = href_link(navItems[subIndex]); // href 속성 설정
+            nestedLi.appendChild(nestedA);
+            nestedUl1.appendChild(nestedLi);
+            });
+
+            li1.appendChild(nestedUl1);
+        }
+
+        // navItems[15]에 대해 2차 메뉴 생성
+        if (index === 15) {
+            const nestedUl1 = document.createElement('ul');
+
+            for (let i = 16; i <= 24; i++) {
+            const nestedLi = document.createElement('li');
+            const nestedA = document.createElement('a');
+            nestedA.textContent = navItems[i]; // 링크 텍스트 설정
+            nestedA.href = href_link(navItems[i]); // href 속성 설정
+            nestedLi.appendChild(nestedA);
+            nestedUl1.appendChild(nestedLi);
             }
-            
-            for(let i =16; i<=24; i++){
-                var j = 1; // 동적변수를 생성하기 위한 인덱스 번호
-                var nestedLi = {}; //동적 변수를 담을 빈 객체 생성
-                var nestedA = {}; //동적 변수를 담을 빈 객체 생성
-            if(item === navItems[15]){
-                const nestedUl1 = document.createElement('ul');
-                
-                nestedLi[`nestedLi${j}`] = document.createElement('li');
-                nestedA[`nestedA${j}`] = document.createElement('a');
-                nestedA[`nestedA${j}`].textContent = navItems[i]; // 링크 텍스트 설정
-                nestedA[`nestedA${j}`].href = href_link(navItems[i]); // href 속성 설정
-                nestedLi[`nestedLi${j}`].appendChild(nestedA[`nestedA${j}`]);
-                nestedUl1.appendChild(nestedLi[`nestedLi${j}`]);
-                li1.appendChild(nestedUl1);
-                j++;
-            }}
-            
-            ul.appendChild(li1);
-            navMenu.appendChild(ul);
+
+            li1.appendChild(nestedUl1);
+        }
+
+        ul.appendChild(li1);
+        navMenu.appendChild(ul);
         });
+
 
         $.ajax({
             url: reqURL + "/station/info/page/list?page=1&size=10",
