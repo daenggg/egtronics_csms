@@ -39,6 +39,7 @@ var menuData = [];
                   permit_u : menuRole[i].permit.u ,
                   permit_d : menuRole[i].permit.d ,
                 }
+                console.log(test);
                 menuData.push(test);
             }
             sessionStorage.setItem('menuData', JSON.stringify(menuData));
@@ -52,7 +53,7 @@ var menuData = [];
       },
     });
   }
-
+  
 function Station_List_Check(){
 
     var SingInURL = reqURL + '/station/info/list';
@@ -198,7 +199,7 @@ function SingIn_test(ID,PW) {
             sessionStorage.setItem('menuData', JSON.stringify(menuData));
             console.log("data : " + JSON.stringify(menuData));
             location.href="../test/main test.html";
-            //location.href="../role/role.html";
+            location.href="../role/role.html";
 
             //URL 데이터 이동
             //let queryString = "?array=" + encodeURIComponent(JSON.stringify(menuData));

@@ -147,9 +147,6 @@ body {
   top: 20px; /* 상단 고정 */
   width: 200px; /* 너비 설정 */
 }
-.btn btn-dark{
-  
-}
 /* 로고 이미지 크기를 상자 크기에 맞추기 */
 .logo-img {
   max-height: 50px; /* 헤더 높이에 맞게 이미지 크기를 제한 */
