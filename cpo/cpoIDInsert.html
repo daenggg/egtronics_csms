@@ -43,8 +43,8 @@
       </head>
       
       <body style="background-color: rgb(255, 255, 255)">
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-          <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">충전기 모델 등록</a>
+        <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 shadow">
+          <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
         </header>
         <div class="card">
           <div class="card-body">
@@ -64,7 +64,7 @@
       <input type="text" id="userPassword" class="form-control margin-right10 margin-left30" readonly="" value="유저 PW" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="userPassword" type="text" class="form-control input-width" value="test" placeholder="" />
+      <input id="input-select" name="userPassword" type="password" class="form-control input-width" value="test" placeholder="" />
       </div>
       </div>
       <p></p>
@@ -91,23 +91,19 @@
 
       <div class="input-group"> 
         <div class="input-group-prepend">
-        <input type="text" id="userAddress1" class="form-control margin-right10 margin-left30" readonly="" value="주소 1" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+            <input type="text" id="userAddress1" class="form-control margin-right10 margin-left30" readonly value="주소 1" style="width: 150px; height: 40px; background-color: cadetblue; text-align: center; color: white; border: none; border-radius: 5px;">
         </div>
-        <div class="input-group-prepend">
-        <input id="input-select" name="userAddress1" type="text" class="form-control input-width" value="test" placeholder="" />
+        <div class="input-group-prepend" style="flex-grow: 1; margin-left: 10px;">
+            <input id="sample6_postcode" class="form-control" placeholder="우편번호" style="width: 200px; height: 40px; border-radius: 5px;">
+            <div class="input-group-append" display: inline-block;>
+              <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="height: 40px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px;">
+          </div>
+            <input type="text" id="sample6_address" name="userAddress1" class="form-control" placeholder="주소" style="margin-top: 10px; border-radius: 5px;">
+            <input type="text" id="sample6_detailAddress" name="userAddress2"class="form-control" placeholder="상세주소" style="margin-top: 10px; border-radius: 5px;">
         </div>
-        </div>
-        <p></p>
-
-        <div class="input-group"> 
-          <div class="input-group-prepend">
-          <input type="text" id="userAddress2" class="form-control margin-right10 margin-left30" readonly="" value="주소 2" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
-          </div>
-          <div class="input-group-prepend">
-          <input id="input-select" name="userAddress2" type="text" class="form-control input-width" value="test" placeholder="" />
-          </div>
-          </div>
-          <p></p>
+      </div>
+      <p></p>
+    
 
         <div class="input-group"> 
         <div class="input-group-prepend">
@@ -149,13 +145,44 @@
             </div>
             <p></p>
 
-        <input type="button" value="CPO ID 등록" onclick="btncpoIDInsert()">
+        
+        <div class="input-group d-flex justify-content-center"> 
+          <button class="btn btn-primary"onclick="btncpoIDInsert()">CPO ID 등록</button>
+          <button class="btn btn-secondary ms-2" onclick="window.close()">취소</button>
+        </div>
         
           </div>
         </div>
     </body>
 </html>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
 <script src="../practice.js"></script>
 <script >
 function btncpoIDInsert(){

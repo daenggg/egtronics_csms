@@ -194,16 +194,16 @@ $(document).ready(function () {
                 { text: "select", template: '<a class="k-button" href="\\#" onclick="return btncpoIDInsert()"></span>&nbsp CPO 등록</a>' } //&nbsp;
             ],
             columns: [
-            { field: 'companyName', title:  '회사 이름', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 160 },
-            { field: 'companyCode', title:  '회사 코드', attributes: { "class": "table-cell", style: "text-align: center;" },width: 120 },
-            { field: 'companyNumber', title:  '사업자등록번호', attributes: { "class": "table-cell", style: "text-align: center;" },width: 150 },
-            { field: 'companyAddress', title:  '주소',width: 240 },
-            { field: 'companyRepresentative', title:  '대표자', width: 100 },
-            { field: 'companyTel', title:  '전화번호', width: 120 },
-            { field: 'companyFax', title:  'FAX', width: 110 },
-            { field: 'companyEmail', title:  'Email', width: 190 },
-            { field: 'useYn', title:  '사용 유무', width: 110 },
-            { field: 'paymentApiYn', title:  '결제 유무'}
+            { field: 'companyName', title:  '<strong>회사 이름', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 160 },
+            { field: 'companyCode', title:  '<strong>회사 코드', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 120 },
+            { field: 'companyNumber', title:  '<strong>사업자등록번호', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150 },
+            { field: 'companyAddress', title:  '<strong>주소', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 240 },
+            { field: 'companyRepresentative', title:  '<strong>대표자', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 100 },
+            { field: 'companyTel', title:  '<strong>전화번호', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 120 },
+            { field: 'companyFax', title:  '<strong>FAX', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 110 },
+            { field: 'companyEmail', title:  '<strong>Email', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 190 },
+            { field: 'useYn', title:  '<strong>사용 유무', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 110 },
+            { field: 'paymentApiYn', title:  '<strong>결제 유무', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 140}
             ],
             });
             
