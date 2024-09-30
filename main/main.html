@@ -170,44 +170,66 @@
                 }
                 $("#stationGrid").kendoGrid({
                     toolbar: [{
-                        template: '<a>충전소</a>'
+                        template: '<a><strong>충전소</a>'
                     }],
                     columns: [{
                             field: 'companyName',
-                            title: '사업자 이름',
+                            title: '<strong>사업자 이름',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
                             attributes: {
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 150
+                            width: 80
                         },
                         {
                             field: 'stationId',
-                            title: '충전소 ID',
+                            title: '<strong>충전소 ID',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
                             attributes: {
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 130
+                            width: 80
                         },
                         {
                             field: 'stationName',
-                            title: '충전소 이름',
+                            title: '<strong>충전소 이름',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
                             attributes: {
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 250
+                            width: 80
                         },
                         {
                             field: 'stationAddr',
-                            title: '주소',
+                            title: '<strong>주소',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                style:"text-align: center;"
+                            },
+                            width: 120
                         },
                         //{ field: "stationContractCapacity", title: "수주 용량" },
                         {
                             field: "useYn",
-                            title: "사용여부",
-                            width: 90,
+                            title: "<strong>사용여부",
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 60,
+                            attributes: {
+                                style:"text-align: center;"
+                            }
                         },
 
                     ],
@@ -259,57 +281,78 @@
 
                 $("#chargerGrid").kendoGrid({
                     toolbar: [{
-                        template: '<a>충전기</a>'
+                        template: '<a><strong>충전기</a>'
                     }],
                     columns: [{
                             field: 'stationName',
-                            title: '충전소 이름',
+                            title: '<strong>충전소 이름',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
                             attributes: {
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 190
+                            width: 80
                         },
                         {
                             field: 'stationId',
-                            title: '충전소 ID',
+                            title: '<strong>충전소 ID',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
                             attributes: {
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 120
+                            width: 80
                         },
                         {
                             field: 'chargerName',
-                            title: '충전기 이름',
+                            title: '<strong>충전기 이름',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
                             attributes: {
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 220
+                            width: 150
                         },
                         {
                             field: 'chargerId',
-                            title: '충전기 ID',
+                            title: '<strong>충전기 ID',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
                             attributes: {
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 110
+                            width: 80
                         },
                         {
                             field: "chargerModelName",
-                            title: "충전기 모델 이름",
+                            title: "<strong>충전기 모델 이름",
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
                             attributes: {
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 190
+                            width: 100
                         },
                         {
                             field: "useYn",
-                            title: "사용여부",
-                            width: 100
+                            title: "<strong>사용여부",
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 80,
+                            attributes: {
+                                style:"text-align: center;"
+                            }
                         },
                     ],
                     noRecords: true,
@@ -367,58 +410,94 @@
                 $("#chargingGrid").kendoGrid({
 
                     toolbar: [{
-                        template: '<a>충전 정보</a>'
+                        template: '<a style="font-weight:bold";>충전 정보</a>'
                     }],
                     columns: [{
                             field: 'transactionId',
-                            title: '충전 ID',
+                            title: '<strong>충전 ID<strong>',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
                             attributes: {
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 100
+                            width: 80
                         },
                         {
                             field: 'stationId',
-                            title: '충전소 ID',
+                            title: '<strong>충전소 ID',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
                             attributes: {
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 120
+                            width: 80
                         },
                         {
                             field: 'chargerId',
-                            title: '충전기 ID',
+                            title: '<strong>충전기 ID',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
                             attributes: {
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 100
+                            width: 80
                         },
                         {
                             field: 'connectorId',
-                            title: '커넥터 ID',
-                            width: 100
+                            title: '<strong>커넥터 ID',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 80,
+                            attributes: {
+                                style:"text-align: center;"
+                            }
                         },
                         {
                             field: "rfCardNo",
-                            title: "회원 정보",
-                            width: 150
+                            title: "<strong>회원 정보",
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 150,
+                            attributes: {
+                                style:"text-align: center;"
+                            }
                         },
                         {
                             field: "startDt",
-                            title: "충전 시작 날짜",
-                            width: 180
+                            title: "<strong>충전 시작 날짜",
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 180,
+                            attributes: {
+                                style:"text-align: center;"
+                            }
                         },
                         {
                             field: "stopDt",
-                            title: "충전 종료 날짜",
-                            width: 180
+                            title: "<strong>충전 종료 날짜",
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 180,
+                            attributes: {
+                                style:"text-align: center;"
+                            }
                         },
                         {
                             field: "totalChargedWh",
-                            title: "충전 전력량",
+                            title: "<strong>충전 전력량",
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
                             attributes: {
                                 "class": "table-cell",
                                 style: "text-align: center;"
@@ -427,8 +506,14 @@
                         },
                         {
                             field: "chargingAmount",
-                            title: "충전 금액",
-                            width: 110
+                            title: "<strong>충전 금액",
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 110,
+                            attributes: {
+                                style:"text-align: center;"
+                            }
                         },
                     ],
                     noRecords: true,
