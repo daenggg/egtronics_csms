@@ -18,6 +18,7 @@
         <!-- Bootstrap core CSS -->
         <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="../dashboard.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
           
         </style>
@@ -30,23 +31,25 @@
               <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
           </a>
           <div class="navbar-nav">
-              <button type="button" class="btn btn-dark">
-                  <a class="nav-link px-3" href="../home/login.html" style="color: white;">로그아웃</a>
-              </button>
+            <button type="button" class="btn-logout">
+              <a class="nav-link" href="../home/login.html" style="color:black">
+                <i class="fas fa-sign-out-alt"></i> 로그아웃
+              </a>
+            </button>
           </div>
-      </header>
+    </header>
         
-      <div class="container-fluid">
-        <nav id="navMenu" class = "side-bar">
-            <section class="side-bar__icon-box">
-                <section class="side-bar__icon-1">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </section>
+    <div class="container-fluid">
+      <nav id="navMenu" class = "side-bar">
+          <section class="side-bar__icon-box">
+              <section class="side-bar__icon-1" id="toggle-sidebar">
+                <div></div>
+                <div></div>
+                <div></div>
               </section>
-            <p>
-        </nav>
+            </section>
+          <p>
+      </nav>
         
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -94,7 +97,7 @@ let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
         if (index === 6 || index === 7) return;
 
         // navItems[16]~[24]를 건너뛰기 위해 체크
-        if (index >= 16 && index <= 24) return;
+        if (index >= 16 && index <= 22) return;
 
         const ul = document.createElement('ul');
         const li1 = document.createElement('li');
@@ -124,7 +127,7 @@ let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
         if (index === 15) {
             const nestedUl1 = document.createElement('ul');
 
-            for (let i = 16; i <= 24; i++) {
+            for (let i = 16; i <= 22; i++) {
             const nestedLi = document.createElement('li');
             const nestedA = document.createElement('a');
             nestedA.textContent = navItems[i]; // 링크 텍스트 설정
@@ -371,5 +374,21 @@ function Charger_Check(){
     }
   });
 }
-  
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.side-bar');
+    const toggleIcon = document.getElementById('toggle-sidebar');
+     let isSidebarVisible = false;  // 사이드바 상태를 저장할 변수
+
+     toggleIcon.addEventListener('click', function() {
+     if (isSidebarVisible) {
+      // 사이드바 숨기기
+      sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
+      isSidebarVisible = false;
+    } else {
+      // 사이드바 보이기
+      sidebar.style.transform = 'translate(0, 0)';
+      isSidebarVisible = true;
+    }
+  });
+}); 
 </script>

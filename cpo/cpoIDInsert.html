@@ -54,7 +54,7 @@
       <input type="text" id="userId" class="form-control margin-right10 margin-left30" readonly="" value="유저 ID" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="userId" type="text" class="form-control input-width" value="test" placeholder="" />
+      <input id="input-select" name="userId" type="text" class="form-control input-width" placeholder="예: cpo1" />
       </div>
       </div>
       <p></p>
@@ -74,7 +74,7 @@
       <input type="text" id="userName" class="form-control margin-right10 margin-left30" readonly="" value="유저 이름" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="userName" type="text" class="form-control input-width" value="test" placeholder="" />
+      <input id="input-select" name="userName" type="text" class="form-control input-width" value="" placeholder="예: 홍길동" />
       </div>
       </div>
       <p></p>
@@ -84,25 +84,26 @@
       <input type="text" id="userMobilePhone" class="form-control margin-right10 margin-left30" readonly="" value="연락처" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="userMobilePhone" type="text" class="form-control input-width" value="test" placeholder="" />
+      <input id="input-select" name="userMobilePhone" type="text" class="form-control input-width" value="" placeholder="예: 010-1234-1234" />
       </div>
       </div>
       <p></p>
 
       <div class="input-group"> 
         <div class="input-group-prepend">
-            <input type="text" id="userAddress1" class="form-control margin-right10 margin-left30" readonly value="주소 1" style="width: 150px; height: 40px; background-color: cadetblue; text-align: center; color: white; border: none; border-radius: 5px;">
+            <input type="text" id="userAddress1" class="form-control margin-right10 margin-left30" readonly value="주소" style="width: 150px; height: 40px; background-color: cadetblue; text-align: center; color: white; border: none; border-radius: 5px;">
         </div>
         <div class="input-group-prepend" style="flex-grow: 1; margin-left: 10px;">
-            <input id="sample6_postcode" class="form-control" placeholder="우편번호" style="width: 200px; height: 40px; border-radius: 5px;">
-            <div class="input-group-append" display: inline-block;>
-              <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="height: 40px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px;">
-          </div>
+            <div style="display: flex; align-items: center;">
+                <input id="sample6_postcode" class="form-control" placeholder="우편번호" style="width: 200px; height: 40px; border-radius: 5px;">
+                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="height: 40px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px;">
+            </div>
             <input type="text" id="sample6_address" name="userAddress1" class="form-control" placeholder="주소" style="margin-top: 10px; border-radius: 5px;">
             <input type="text" id="sample6_detailAddress" name="userAddress2"class="form-control" placeholder="상세주소" style="margin-top: 10px; border-radius: 5px;">
         </div>
-      </div>
-      <p></p>
+    </div>
+    <p></p>
+    
     
 
         <div class="input-group"> 
@@ -110,7 +111,7 @@
         <input type="text" id="userEmail" class="form-control margin-right10 margin-left30" readonly="" value="이메일" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
         </div>
         <div class="input-group-prepend">
-        <input id="input-select" name="userEmail" type="text" class="form-control input-width" value="test" placeholder="" />
+        <input id="input-select" name="userEmail" type="text" class="form-control input-width" value="" placeholder="예: egtn1234@egtronics.co.kr" />
         </div>
         </div>
         <p></p>
@@ -120,7 +121,7 @@
             <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="CPO 코드" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
             </div>
             <div class="input-group-prepend">
-            <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="test" placeholder="" />
+            <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="" placeholder="예: egtn" />
             </div>
             </div>
             <p></p>
@@ -140,7 +141,7 @@
             <input type="text" id="regUserId" class="form-control margin-right10 margin-left30" readonly="" value="등록자" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
             </div>
             <div class="input-group-prepend">
-            <input id="input-select" name="regUserId" type="text" class="form-control input-width" value="admin" placeholder="" />
+            <input id="input-select" name="regUserId" type="text" class="form-control input-width" value="" placeholder="예: admin" />
             </div>
             </div>
             <p></p>

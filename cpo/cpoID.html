@@ -18,6 +18,7 @@
         <!-- Bootstrap core CSS -->
         <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="../dashboard.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
           
         </style>
@@ -29,23 +30,25 @@
               <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
           </a>
           <div class="navbar-nav">
-              <button type="button" class="btn btn-dark">
-                  <a class="nav-link px-3" href="../home/login.html" style="color: white;">로그아웃</a>
-              </button>
+            <button type="button" class="btn-logout">
+              <a class="nav-link" href="../home/login.html" style="color:black">
+                <i class="fas fa-sign-out-alt"></i> 로그아웃
+              </a>
+            </button>
           </div>
-      </header>
+    </header>
         
-      <div class="container-fluid">
-        <nav id="navMenu" class = "side-bar">
-            <section class="side-bar__icon-box">
-                <section class="side-bar__icon-1">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </section>
+    <div class="container-fluid">
+      <nav id="navMenu" class = "side-bar">
+          <section class="side-bar__icon-box">
+              <section class="side-bar__icon-1" id="toggle-sidebar">
+                <div></div>
+                <div></div>
+                <div></div>
               </section>
-            <p>
-        </nav>
+            </section>
+          <p>
+      </nav>
       
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -193,8 +196,8 @@ $(document).ready(function () {
             { field: 'userId', title:  '<strong>사용자 ID', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120 },
             { field: 'userName', title:  '<strong>사용자 이름', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 120 },
             { field: 'userMobilePhone', title:  '<strong>연락처', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 120 },
-            { field: 'userAddress1', title:  '<strong>주소 1', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 120 },
-            { field: 'userAddress2', title:  '<strong>주소 2', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 120 },
+            { field: 'userAddress1', title:  '<strong>주소', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 120 },
+            { field: 'userAddress2', title:  '<strong>상세주소', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 120 },
             { field: 'userEmail', title:  '<strong>사용자 이메일', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 140 },
             { field: 'renewalPwDate', title:  '<strong>PW 갱신일시', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 140,
               template: "#= kendo.toString(kendo.parseDate(renewalPwDate), 'yyyy-MM-dd HH:mm') #" },
@@ -230,4 +233,21 @@ function dataBound(e) {
     grid_data.thead.closest('table').width(_width);
     grid_data.tbody.closest('table').width(_width);
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.side-bar');
+    const toggleIcon = document.getElementById('toggle-sidebar');
+     let isSidebarVisible = false;  // 사이드바 상태를 저장할 변수
+
+     toggleIcon.addEventListener('click', function() {
+     if (isSidebarVisible) {
+      // 사이드바 숨기기
+      sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
+      isSidebarVisible = false;
+    } else {
+      // 사이드바 보이기
+      sidebar.style.transform = 'translate(0, 0)';
+      isSidebarVisible = true;
+    }
+  });
+});
 </script>

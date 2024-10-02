@@ -18,29 +18,32 @@
         <!-- Bootstrap core CSS -->
         <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../dashboard.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </head>
       <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: white;">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="../main/main.html">
             <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
         </a>
         <div class="navbar-nav">
-            <button type="button" class="btn btn-dark">
-                <a class="nav-link px-3" href="../home/login.html" style="color: white;">로그아웃</a>
-            </button>
+          <button type="button" class="btn-logout">
+            <a class="nav-link" href="../home/login.html" style="color:black">
+              <i class="fas fa-sign-out-alt"></i> 로그아웃
+            </a>
+          </button>
         </div>
-    </header>
+  </header>
         
-    <div class="container-fluid">
-      <nav id="navMenu" class = "side-bar">
-          <section class="side-bar__icon-box">
-              <section class="side-bar__icon-1" id = "menuIcon">
-                <div></div>
-                <div></div>
-                <div></div>
-              </section>
+  <div class="container-fluid">
+    <nav id="navMenu" class = "side-bar">
+        <section class="side-bar__icon-box">
+            <section class="side-bar__icon-1" id="toggle-sidebar">
+              <div></div>
+              <div></div>
+              <div></div>
             </section>
-          <p>
-      </nav>
+          </section>
+        <p>
+    </nav>
         
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -58,9 +61,8 @@
 $(document).ready(function () {
   var t = sessionStorage.getItem('accessToken');
   var contentData = [];
-  //console.log("[accessToken] : " + JSON.stringify(t));
- // sessionStorage에서 'menuData' 키로 저장된 데이터를 가져와 JSON 객체로 파싱
- let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
+  // sessionStorage에서 'menuData' 키로 저장된 데이터를 가져와 JSON 객체로 파싱
+  let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
         console.log(retrievedArray);
 
         // 필터링된 네비게이션 항목을 저장할 빈 배열 선언
@@ -229,9 +231,22 @@ function dataBound(e) {
     grid_data.thead.closest('table').width(_width);
     grid_data.tbody.closest('table').width(_width);
 }
-document.getElementById('menuIcon').addEventListener('click', function(){
-  var menu = document.getElementById('navMenu');
-  menu.classList.toggle('navMenu');
 
-})
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.side-bar');
+    const toggleIcon = document.getElementById('toggle-sidebar');
+     let isSidebarVisible = false;  // 사이드바 상태를 저장할 변수
+
+     toggleIcon.addEventListener('click', function() {
+     if (isSidebarVisible) {
+      // 사이드바 숨기기
+      sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
+      isSidebarVisible = false;
+    } else {
+      // 사이드바 보이기
+      sidebar.style.transform = 'translate(0, 0)';
+      isSidebarVisible = true;
+    }
+  });
+});
 </script>

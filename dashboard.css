@@ -25,7 +25,7 @@ body {
 
 /* 사이드바의 너비와 높이를 변수를 통해 통제 */
 :root {
-  --side-bar-width: 270px;
+  --side-bar-width: 230px;
   --side-bar-height: 100vh;
 }
 
@@ -105,7 +105,9 @@ body {
   padding-left: 50px;
   transition: .5s;
 }
-
+.side-bar > ul{
+  padding-left: 0px;
+}
 /* 자식의 position이 absolute일 때 자식을 영역 안에 가두어 준다 */
 .side-bar > ul > li {
   position: relative;
@@ -146,10 +148,6 @@ body {
   transition: .5s;
 }
 
-/* 마우스 인식 시 원래의 위치로 이동 */
-.side-bar:hover {
-  transform: translate(-20px, 0);   /* 둥근 모서리의 너비만큼 숨겨주기 */
-}
 
 /* 사이드바 끝 */
 
@@ -303,6 +301,9 @@ body {
   margin-right: 5px; /* 아이콘과 텍스트 사이의 간격 */
 }
 
-
-
-
+.k-pager-wrap .k-link.k-state-selected{
+  background-color: #a5a1a1;
+}
+.k-pager-info, .k-label{
+  width: 200px;
+}

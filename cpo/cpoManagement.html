@@ -18,6 +18,7 @@
         <!-- Bootstrap core CSS -->
         <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="../dashboard.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
           
         </style>
@@ -29,16 +30,18 @@
               <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
           </a>
           <div class="navbar-nav">
-              <button type="button" class="btn btn-dark">
-                  <a class="nav-link px-3" href="../home/login.html" style="color: white;">로그아웃</a>
-              </button>
+            <button type="button" class="btn-logout">
+              <a class="nav-link" href="../home/login.html" style="color:black">
+                <i class="fas fa-sign-out-alt"></i> 로그아웃
+              </a>
+            </button>
           </div>
-      </header>
+    </header>
         
       <div class="container-fluid">
         <nav id="navMenu" class = "side-bar">
             <section class="side-bar__icon-box">
-                <section class="side-bar__icon-1">
+                <section class="side-bar__icon-1" id="toggle-sidebar">
                   <div></div>
                   <div></div>
                   <div></div>
@@ -130,12 +133,6 @@ $(document).ready(function () {
         navMenu.appendChild(ul);
         });
       
-  navItems.forEach(item => {
-      const navLink = document.createElement('a'); // <a> 태그 생성
-      navLink.textContent = item; // 링크 텍스트 설정
-      navLink.href = href_link(item); // href 속성 설정
-      navMenu.appendChild(navLink); 
-    });
 
        $.ajax({    			
         url: reqURL+"/company/info/list?page=1&size=10000",
@@ -225,4 +222,21 @@ function dataBound(e) {
     grid_data.thead.closest('table').width(_width);
     grid_data.tbody.closest('table').width(_width);
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.side-bar');
+    const toggleIcon = document.getElementById('toggle-sidebar');
+     let isSidebarVisible = false;  // 사이드바 상태를 저장할 변수
+
+     toggleIcon.addEventListener('click', function() {
+     if (isSidebarVisible) {
+      // 사이드바 숨기기
+      sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
+      isSidebarVisible = false;
+    } else {
+      // 사이드바 보이기
+      sidebar.style.transform = 'translate(0, 0)';
+      isSidebarVisible = true;
+    }
+  });
+});
 </script>
