@@ -49,7 +49,7 @@
       
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 class="h2">role</h1>
+              <h1 class="h2">권한관리</h1>
             </div>
             <div id="gridDiv"></div> 
           </main>
@@ -87,7 +87,7 @@ $(document).ready(function () {
         if (index === 6 || index === 7) return;
 
         // navItems[16]~[24]를 건너뛰기 위해 체크
-        if (index >= 16 && index <= 24) return;
+        if (index >= 16 && index <= 22) return;
 
         const ul = document.createElement('ul');
         const li1 = document.createElement('li');
@@ -117,7 +117,7 @@ $(document).ready(function () {
         if (index === 15) {
             const nestedUl1 = document.createElement('ul');
 
-            for (let i = 16; i <= 24; i++) {
+            for (let i = 16; i <= 22; i++) {
             const nestedLi = document.createElement('li');
             const nestedA = document.createElement('a');
             nestedA.textContent = navItems[i]; // 링크 텍스트 설정
@@ -186,13 +186,15 @@ $(document).ready(function () {
                 { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnRoleUpdate()"></span>&nbsp Role 변경</a>' },
             ],
             columns: [
-            { field: 'roleId', headerAttributes: {style: "text-align: center;"}, title:  '<strong>Role ID', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 100 },
-            { field: 'roleName', headerAttributes: {style: "text-align: center;"}, title:  '<strong>Role 이름', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140 },
-            { field: 'regDate', headerAttributes: {style: "text-align: center;"}, title:  '<strong>등록일', attributes:{style: "text-align: center;"}, width: 200 },
-            { field: 'modUserId', headerAttributes: {style: "text-align: center;"}, title:  '<strong>수정 ID', attributes:{style: "text-align: center;"}, width: 110 },
-            { field: 'modDate', headerAttributes: {style: "text-align: center;"}, title:  '<strong>수정일', attributes:{style: "text-align: center;"}, width: 200 },
-            { field: 'useYn', headerAttributes: {style: "text-align: center;"}, title:  '<strong>사용 유무', attributes:{style: "text-align: center;"}, width: 110 },
-            { field: 'description', headerAttributes: {style: "text-align: center;"}, title:  '<strong>비고', attributes:{style: "text-align: center;"}, width: 100 },
+              { field: 'roleId', headerAttributes: {style: "text-align: center;"}, title:  '<strong>권한 ID', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 100 },
+              { field: 'roleName', headerAttributes: {style: "text-align: center;"}, title:  '<strong>권한 이름', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140 },
+              { field: 'regDate', headerAttributes: {style: "text-align: center;"}, title:  '<strong>등록일시', attributes:{style: "text-align: center;"}, width: 200, 
+                template: "#= kendo.toString(kendo.parseDate(regDate), 'yyyy-MM-dd HH:mm') #" },
+              { field: 'modUserId', headerAttributes: {style: "text-align: center;"}, title:  '<strong>수정 ID', attributes:{style: "text-align: center;"}, width: 110 },
+              { field: 'modDate', headerAttributes: {style: "text-align: center;"}, title:  '<strong>수정일시', attributes:{style: "text-align: center;"}, width: 200, 
+                template: "#= kendo.toString(kendo.parseDate(modDate), 'yyyy-MM-dd HH:mm') #" },
+              { field: 'useYn', headerAttributes: {style: "text-align: center;"}, title:  '<strong>사용 유무', attributes:{style: "text-align: center;"}, width: 110 },
+              { field: 'description', headerAttributes: {style: "text-align: center;"}, title:  '<strong>비고', attributes:{style: "text-align: center;"}, width: 300 },
             ],
             });
             

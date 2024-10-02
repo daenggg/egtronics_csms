@@ -85,7 +85,7 @@ $(document).ready(function () {
         if (index === 6 || index === 7) return;
 
         // navItems[16]~[24]를 건너뛰기 위해 체크
-        if (index >= 16 && index <= 24) return;
+        if (index >= 16 && index <= 22) return;
 
         const ul = document.createElement('ul');
         const li1 = document.createElement('li');
@@ -115,7 +115,7 @@ $(document).ready(function () {
         if (index === 15) {
             const nestedUl1 = document.createElement('ul');
 
-            for (let i = 16; i <= 24; i++) {
+            for (let i = 16; i <= 22; i++) {
             const nestedLi = document.createElement('li');
             const nestedA = document.createElement('a');
             nestedA.textContent = navItems[i]; // 링크 텍스트 설정
@@ -196,15 +196,19 @@ $(document).ready(function () {
             { field: 'userAddress1', title:  '<strong>주소 1', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 120 },
             { field: 'userAddress2', title:  '<strong>주소 2', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 120 },
             { field: 'userEmail', title:  '<strong>사용자 이메일', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 140 },
-            { field: 'renewalPwDate', title:  '<strong>PW 갱신일자', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 140 },
+            { field: 'renewalPwDate', title:  '<strong>PW 갱신일시', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 140,
+              template: "#= kendo.toString(kendo.parseDate(renewalPwDate), 'yyyy-MM-dd HH:mm') #" },
             { field: 'companyCode', title:  '<strong>사업자 코드', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 140 },
-            { field: 'lastDate', title:  '<strong>최종 접속일', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 170 },
+            { field: 'lastDate', title:  '<strong>최종 접속일시', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 170, 
+              template: "#= kendo.toString(kendo.parseDate(lastDate), 'yyyy-MM-dd HH:mm') #"},
             { field: 'useYn', title:  '<strong>사용 유무', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 110 },
             { field: 'roleId', title:  '<strong>권한 ID', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 110 },
             { field: 'regUserId', title:  '<strong>등록자', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 110 },
-            { field: 'regDate', title:  '<strong>등록일시', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 110 },
+            { field: 'regDate', title:  '<strong>등록일시', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 130, 
+              template: "#= kendo.toString(kendo.parseDate(regDate), 'yyyy-MM-dd HH:mm') #"},
             { field: 'modUserId', title:  '<strong>수정자', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 110 },
-            { field: 'modDate', title:  '<strong>수정일시', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, },
+            { field: 'modDate', title:  '<strong>수정일시', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 200, 
+              template: "#= kendo.toString(kendo.parseDate(modDate), 'yyyy-MM-dd HH:mm') #"},
             ],
             });
             
