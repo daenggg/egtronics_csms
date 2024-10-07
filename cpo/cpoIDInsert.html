@@ -1,131 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <meta name="generator" content="">
-        <title>CPI ID 등록</title>
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
-        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
-        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
-        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-        <script src="../kendo/kendo.all.min.js"></script>
-        <script src="../kendo/jszip.min.js"></script>
-        <script src="../kendo/cultures/kendo.culture.ko-KR.min.js"></script>
-        <!-- Bootstrap core CSS -->
-      <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="">
+    <title>CPI ID 등록</title>
 
-        <style>
-          .bd-placeholder-img {
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="../kendo/kendo.all.min.js"></script>
+    <script src="../kendo/jszip.min.js"></script>
+    <script src="../kendo/cultures/kendo.culture.ko-KR.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
             -webkit-user-select: none;
             -moz-user-select: none;
             user-select: none;
-          }
+        }
 
-          #input-select {
-            width :400px;
-            height :40px;
-            font-size:12px;
-          }
-    
-          @media (min-width: 768px) {
+        #input-select {
+            width: 400px;
+            height: 40px;
+            font-size: 12px;
+        }
+
+        @media (min-width: 768px) {
             .bd-placeholder-img-lg {
-              font-size: 3.5rem;
+                font-size: 3.5rem;
             }
-          }
-        </style>
-        <link href="../dashboard.css" rel="stylesheet">
-      </head>
-      
-      <body style="background-color: rgb(255, 255, 255)">
-        <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 shadow">
-          <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
-        </header>
-        <div class="card">
-          <div class="card-body">
-            
-      <div class="input-group"> 
-      <div class="input-group-prepend">
-      <input type="text" id="userId" class="form-control margin-right10 margin-left30" readonly="" value="유저 ID" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
-      </div>
-      <div class="input-group-prepend">
-      <input id="input-select" name="userId" type="text" class="form-control input-width" placeholder="사용할 ID를 입력해주세요." />
-      </div>
-      </div>
-      <p></p>
+        }
+    </style>
+    <link href="../dashboard.css" rel="stylesheet">
+</head>
 
-      <div class="input-group"> 
-      <div class="input-group-prepend">
-      <input type="text" id="userPassword" class="form-control margin-right10 margin-left30" readonly="" value="유저 PW" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
-      </div>
-      <div class="input-group-prepend">
-      <input id="input-select" name="userPassword" type="password" class="form-control input-width" value="" placeholder="비밀번호를 입력해주세요." />
-      </div>
-      </div>
-      <p></p>
+<body style="background-color: rgb(255, 255, 255)">
+    <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 shadow">
+        <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
+    </header>
+    <div class="card">
+        <div class="card-body">
 
-      <div class="input-group"> 
-      <div class="input-group-prepend">
-      <input type="text" id="userName" class="form-control margin-right10 margin-left30" readonly="" value="유저 이름" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
-      </div>
-      <div class="input-group-prepend">
-      <input id="input-select" name="userName" type="text" class="form-control input-width" value="" placeholder="이름을 입력해주세요." />
-      </div>
-      </div>
-      <p></p>
-
-      <div class="input-group"> 
-      <div class="input-group-prepend">
-      <input type="text" id="userMobilePhone" class="form-control margin-right10 margin-left30" readonly="" value="연락처" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
-      </div>
-      <div class="input-group-prepend">
-      <input id="input-select" name="userMobilePhone" type="text" class="form-control input-width" value="" placeholder="휴대폰 번호(-포함)" />
-      </div>
-      </div>
-      <p></p>
-
-      <div class="input-group"> 
-        <div class="input-group-prepend">
-            <input type="text" id="userAddress1" class="form-control margin-right10 margin-left30" readonly value="주소" style="width: 150px; height: 40px; background-color: cadetblue; text-align: center; color: white; border: none; border-radius: 5px;">
-        </div>
-        <div class="input-group-prepend" style="flex-grow: 1; margin-left: 10px;">
-            <div style="display: flex; align-items: center;">
-                <input id="sample6_postcode" class="form-control" placeholder="우편번호" style="width: 200px; height: 40px; border-radius: 5px;">
-                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="height: 40px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px;">
-            </div>
-            <input type="text" id="sample6_address" name="userAddress1" class="form-control" placeholder="주소" style="margin-top: 10px; border-radius: 5px;">
-            <input type="text" id="sample6_detailAddress" name="userAddress2"class="form-control" placeholder="상세주소" style="margin-top: 10px; border-radius: 5px;">
-        </div>
-    </div>
-    <p></p>
-    
-    
-
-        <div class="input-group"> 
-        <div class="input-group-prepend">
-        <input type="email" id="userEmail" class="form-control margin-right10 margin-left30" readonly="" value="이메일" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
-        </div>
-        <div class="input-group-prepend">
-        <input id="input-select" name="userEmail" type="text" class="form-control input-width" value="" placeholder="이메일을 입력해주세요." />
-        </div>
-        </div>
-        <p></p>
-
-        <div class="input-group"> 
-            <div class="input-group-prepend">
-            <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="CPO 코드" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
-            </div>
-            <div class="input-group-prepend">
-            <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="" placeholder="사업자 코드를 입력해주세요." />
-            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <input type="text" id="userId" class="form-control margin-right10 margin-left30" readonly="" value="유저 ID" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                </div>
+                <div class="input-group-prepend">
+                    <input id="input-select" name="userId" type="text" class="form-control input-width" placeholder="사용할 ID를 입력해주세요." />
+                </div>
             </div>
             <p></p>
-<!--
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <input type="text" id="userPassword" class="form-control margin-right10 margin-left30" readonly="" value="유저 PW" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                </div>
+                <div class="input-group-prepend">
+                    <input id="input-select" name="userPassword" type="password" class="form-control input-width" value="" placeholder="비밀번호를 입력해주세요." />
+                </div>
+            </div>
+            <p></p>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <input type="text" id="userName" class="form-control margin-right10 margin-left30" readonly="" value="유저 이름" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                </div>
+                <div class="input-group-prepend">
+                    <input id="input-select" name="userName" type="text" class="form-control input-width" value="" placeholder="이름을 입력해주세요." />
+                </div>
+            </div>
+            <p></p>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <input type="text" id="userMobilePhone" class="form-control margin-right10 margin-left30" readonly="" value="연락처" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                </div>
+                <div class="input-group-prepend">
+                    <input id="input-select" name="userMobilePhone" type="text" class="form-control input-width" value="" placeholder="휴대폰 번호(-포함)" />
+                </div>
+            </div>
+            <p></p>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <input type="text" id="userAddress1" class="form-control margin-right10 margin-left30" readonly value="주소" style="width: 150px; height: 40px; background-color: cadetblue; text-align: center; color: white; border: none; border-radius: 5px;">
+                </div>
+                <div class="input-group-prepend" style="flex-grow: 1; margin-left: 10px;">
+                    <div style="display: flex; align-items: center;">
+                        <input id="sample6_postcode" class="form-control" placeholder="우편번호" style="width: 200px; height: 40px; border-radius: 5px;">
+                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="height: 40px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px;">
+                    </div>
+                    <input type="text" id="sample6_address" name="userAddress1" class="form-control" placeholder="주소" style="margin-top: 10px; border-radius: 5px;">
+                    <input type="text" id="sample6_detailAddress" name="userAddress2" class="form-control" placeholder="상세주소" style="margin-top: 10px; border-radius: 5px;">
+                </div>
+            </div>
+            <p></p>
+
+
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <input type="email" id="userEmail" class="form-control margin-right10 margin-left30" readonly="" value="이메일" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                </div>
+                <div class="input-group-prepend">
+                    <input id="input-select" name="userEmail" type="text" class="form-control input-width" value="" placeholder="이메일을 입력해주세요." />
+                </div>
+            </div>
+            <p></p>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="CPO 코드" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                </div>
+                <div class="input-group-prepend">
+                    <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="" placeholder="사업자 코드를 입력해주세요." />
+                </div>
+            </div>
+            <p></p>
+            <!--
         <div class="input-group"> 
             <div class="input-group-prepend">
             <input type="text" id="roleId" class="form-control margin-right10 margin-left30" readonly="" value="권한 ID" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
@@ -136,25 +137,26 @@
             </div>
             <p></p>
 -->
-        <div class="input-group"> 
-            <div class="input-group-prepend">
-            <input type="text" id="regUserId" class="form-control margin-right10 margin-left30" readonly="" value="등록자" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
-            </div>
-            <div class="input-group-prepend">
-            <input id="input-select" name="regUserId" type="text" class="form-control input-width" value="" placeholder="예: admin" />
-            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <input type="text" id="regUserId" class="form-control margin-right10 margin-left30" readonly="" value="등록자" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                </div>
+                <div class="input-group-prepend">
+                    <input id="input-select" name="regUserId" type="text" class="form-control input-width" value="" placeholder="예: admin" />
+                </div>
             </div>
             <p></p>
 
-        
-        <div class="input-group d-flex justify-content-center"> 
-          <button class="btn btn-primary"onclick="btncpoIDInsert()">CPO ID 등록</button>
-          <button class="btn btn-secondary ms-2" onclick="window.close()">취소</button>
+
+            <div class="input-group d-flex justify-content-center">
+                <button class="btn btn-primary" onclick="btncpoIDInsert()">CPO ID 등록</button>
+                <button class="btn btn-secondary ms-2" onclick="window.close()">취소</button>
+            </div>
+
         </div>
-        
-          </div>
-        </div>
-    </body>
+    </div>
+</body>
+
 </html>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -185,46 +187,46 @@
     }
 </script>
 <script src="../practice.js"></script>
-<script >
-function btncpoIDInsert(){
-  var Load = {
-    userId : $("input[name=userId]").val(),
-    userPassword : $("input[name=userPassword]").val(),
-    userName : $("input[name=userName]").val(),
-    userMobilePhone : $("input[name=userMobilePhone]").val(),
-    userAddress1 : $("input[name=userAddress1]").val(),
-    userAddress2 : $("input[name=userAddress2]").val(),
-    userEmail : $("input[name=userEmail]").val(),
-    renewalPwDate : $("input[name=renewalPwDate]").val(),
-    roleId : $("input[name=roleId]").val(),
-    regUserId : $("input[name=regUserId]").val(),
-    useYn : "Y",
-    roleId: 1
-  };
-//  console.log("[data] : " + JSON.stringify(Load));
-//  alert("[data] : " + JSON.stringify(PayLoad));
-   
-  var t = sessionStorage.getItem('accessToken');
-  $.ajax({    			
-        url: reqURL+"/user/info/create",
-        type: "POST",
-        dataType: "json", 
-        data : JSON.stringify(Load), //json 데이터
-        contentType: "application/json",
-        timeout: 5000, // 타임 아웃 설정
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization","Bearer " + t);
-            xhr.setRequestHeader("menuId","9");
-            xhr.setRequestHeader("permit","r");
-        },
-        success: function(data, textStatus, xhr) {
-            //console.log("[data] : " + JSON.stringify(data));
-           alert('CPO ID가 등록이 되었습니다.');
-           window.close();
-        },
-        error: function(error) {
-            alert('실패: ' + error.responseText);
-        }
-    });
-}
+<script>
+    function btncpoIDInsert() {
+        var Load = {
+            userId: $("input[name=userId]").val(),
+            userPassword: $("input[name=userPassword]").val(),
+            userName: $("input[name=userName]").val(),
+            userMobilePhone: $("input[name=userMobilePhone]").val(),
+            userAddress1: $("input[name=userAddress1]").val(),
+            userAddress2: $("input[name=userAddress2]").val(),
+            userEmail: $("input[name=userEmail]").val(),
+            renewalPwDate: $("input[name=renewalPwDate]").val(),
+            roleId: $("input[name=roleId]").val(),
+            regUserId: $("input[name=regUserId]").val(),
+            useYn: "Y",
+            roleId: 1
+        };
+        //  console.log("[data] : " + JSON.stringify(Load));
+        //  alert("[data] : " + JSON.stringify(PayLoad));
+
+        var t = sessionStorage.getItem('accessToken');
+        $.ajax({
+            url: reqURL + "/user/info/create",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(Load), //json 데이터
+            contentType: "application/json",
+            timeout: 5000, // 타임 아웃 설정
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer " + t);
+                xhr.setRequestHeader("menuId", "9");
+                xhr.setRequestHeader("permit", "r");
+            },
+            success: function(data, textStatus, xhr) {
+                //console.log("[data] : " + JSON.stringify(data));
+                alert('CPO ID가 등록이 되었습니다.');
+                window.close();
+            },
+            error: function(error) {
+                alert('실패: ' + error.responseText);
+            }
+        });
+    }
 </script>

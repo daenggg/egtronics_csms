@@ -350,3 +350,7 @@ body {
   color: #333;
   pointer-events: none; /* 화살표에 클릭 이벤트가 발생하지 않도록 설정 */
 }
+
+main{
+  transition: width 0.5s ease; /* 메인 콘텐츠의 너비 변경 시 부드러운 전환 효과 추가 */
+}

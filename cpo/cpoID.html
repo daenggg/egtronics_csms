@@ -1,72 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <meta name="generator" content="">
-        <title>CPO ID 관리</title>
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
-        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
-        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
-        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-        <script src="../kendo/kendo.all.min.js"></script>
-        <script src="../kendo/jszip.min.js"></script>
-        <script src="../kendo/cultures/kendo.culture.ko-KR.min.js"></script>
-        <!-- Bootstrap core CSS -->
-        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../dashboard.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <style>
-          
-        </style>
-      </head>
-      
-      <body style="background-color: rgb(255, 255, 255)">
-        <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: white;">
-          <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="../main/main.html">
-              <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
-          </a>
-          <div class="navbar-nav">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="">
+    <title>CPO ID 관리</title>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="../kendo/kendo.all.min.js"></script>
+    <script src="../kendo/jszip.min.js"></script>
+    <script src="../kendo/cultures/kendo.culture.ko-KR.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+
+    </style>
+</head>
+
+<body style="background-color: rgb(255, 255, 255)">
+    <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: white;">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="../main/main.html">
+            <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
+        </a>
+        <div class="navbar-nav">
             <button type="button" class="btn-logout">
-              <a class="nav-link" href="../home/login.html" style="color:black">
-                <i class="fas fa-sign-out-alt"></i> 로그아웃
-              </a>
+                <a class="nav-link" href="../home/login.html" style="color:black">
+                    <i class="fas fa-sign-out-alt"></i> 로그아웃
+                </a>
             </button>
-          </div>
+        </div>
     </header>
-        
+
     <div class="container-fluid">
-      <nav id="navMenu" class = "side-bar">
-          <section class="side-bar__icon-box">
-              <section class="side-bar__icon-1" id="toggle-sidebar">
-                <div></div>
-                <div></div>
-                <div></div>
-              </section>
+        <nav id="navMenu" class="side-bar">
+            <section class="side-bar__icon-box">
+                <section class="side-bar__icon-1" id="toggle-sidebar">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </section>
             </section>
-          <p>
-      </nav>
-      
-          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <p>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 class="h2">CPO ID 관리</h1>
+                <h1 class="h2">CPO ID 관리</h1>
             </div>
             <div id="gridDiv"></div>
-          </main>
-        </div>
-      </body>
+        </main>
+    </div>
+</body>
+
 </html>
 
 <script src="../practice.js"></script>
-<script >
-$(document).ready(function () {
-  var t = sessionStorage.getItem('accessToken');
-  var contentData = [];
+<script>
+    $(document).ready(function() {
+        var t = sessionStorage.getItem('accessToken');
+        var contentData = [];
 
-// sessionStorage에서 'menuData' 키로 저장된 데이터를 가져와 JSON 객체로 파싱
+        // sessionStorage에서 'menuData' 키로 저장된 데이터를 가져와 JSON 객체로 파싱
         let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
         console.log(retrievedArray);
 
@@ -74,180 +76,337 @@ $(document).ready(function () {
         var navItems = [];
         // retrievedArray의 각 항목을 순회
         for (var i = 0; i < retrievedArray.length; i++) {
-        // 항목의 permit_r가 true이고 useYn이 "Y"인지 확인
-        if (retrievedArray[i].permit_r === true && retrievedArray[i].useYn === "Y") {
-            // 조건을 만족하는 항목의 menuName을 navItems 배열에 추가
-            navItems.push(retrievedArray[i].menuName);
-        }
+            // 항목의 permit_r가 true이고 useYn이 "Y"인지 확인
+            if (retrievedArray[i].permit_r === true && retrievedArray[i].useYn === "Y") {
+                // 조건을 만족하는 항목의 menuName을 navItems 배열에 추가
+                navItems.push(retrievedArray[i].menuName);
+            }
         }
         console.log(navItems);
 
         // navItems 배열의 각 항목에 대해 반복
         navItems.forEach((item, index) => {
-        // navItems[6], [7]을 건너뛰기 위해 체크
-        if (index === 6 || index === 7) return;
+            // navItems[6], [7]을 건너뛰기 위해 체크
+            if (index === 6 || index === 7) return;
 
-        // navItems[16]~[24]를 건너뛰기 위해 체크
-        if (index >= 16 && index <= 22) return;
+            // navItems[16]~[24]를 건너뛰기 위해 체크
+            if (index >= 16 && index <= 22) return;
 
-        const ul = document.createElement('ul');
-        const li1 = document.createElement('li');
-        const a1 = document.createElement('a');
-        a1.textContent = item; // 링크 텍스트 설정
-        a1.href = href_link(item); // href 속성 설정
-        li1.appendChild(a1);
+            const ul = document.createElement('ul');
+            const li1 = document.createElement('li');
+            const a1 = document.createElement('a');
+            a1.textContent = item; // 링크 텍스트 설정
+            a1.href = href_link(item); // href 속성 설정
+            li1.appendChild(a1);
 
-        // navItems[5]에 대해 2차 메뉴 생성
-        if (index === 5) {
-            const nestedUl1 = document.createElement('ul');
+            // navItems[5]에 대해 2차 메뉴 생성
+            if (index === 5) {
+                const nestedUl1 = document.createElement('ul');
 
-            // 2차 메뉴 항목 추가
-            [6, 7].forEach(subIndex => {
-            const nestedLi = document.createElement('li');
-            const nestedA = document.createElement('a');
-            nestedA.textContent = navItems[subIndex]; // 링크 텍스트 설정
-            nestedA.href = href_link(navItems[subIndex]); // href 속성 설정
-            nestedLi.appendChild(nestedA);
-            nestedUl1.appendChild(nestedLi);
-            });
+                // 2차 메뉴 항목 추가
+                [6, 7].forEach(subIndex => {
+                    const nestedLi = document.createElement('li');
+                    const nestedA = document.createElement('a');
+                    nestedA.textContent = navItems[subIndex]; // 링크 텍스트 설정
+                    nestedA.href = href_link(navItems[subIndex]); // href 속성 설정
+                    nestedLi.appendChild(nestedA);
+                    nestedUl1.appendChild(nestedLi);
+                });
 
-            li1.appendChild(nestedUl1);
-        }
-
-        // navItems[15]에 대해 2차 메뉴 생성
-        if (index === 15) {
-            const nestedUl1 = document.createElement('ul');
-
-            for (let i = 16; i <= 22; i++) {
-            const nestedLi = document.createElement('li');
-            const nestedA = document.createElement('a');
-            nestedA.textContent = navItems[i]; // 링크 텍스트 설정
-            nestedA.href = href_link(navItems[i]); // href 속성 설정
-            nestedLi.appendChild(nestedA);
-            nestedUl1.appendChild(nestedLi);
+                li1.appendChild(nestedUl1);
             }
 
-            li1.appendChild(nestedUl1);
-        }
+            // navItems[15]에 대해 2차 메뉴 생성
+            if (index === 15) {
+                const nestedUl1 = document.createElement('ul');
 
-        ul.appendChild(li1);
-        navMenu.appendChild(ul);
+                for (let i = 16; i <= 22; i++) {
+                    const nestedLi = document.createElement('li');
+                    const nestedA = document.createElement('a');
+                    nestedA.textContent = navItems[i]; // 링크 텍스트 설정
+                    nestedA.href = href_link(navItems[i]); // href 속성 설정
+                    nestedLi.appendChild(nestedA);
+                    nestedUl1.appendChild(nestedLi);
+                }
+
+                li1.appendChild(nestedUl1);
+            }
+
+            ul.appendChild(li1);
+            navMenu.appendChild(ul);
         });
 
-       $.ajax({    			
-        url: reqURL+"/user/info/page/list?page=1&size=10000",
-        type: "GET",
-        dataType: "json", 
-        contentType: "application/json",
-        timeout: 5000, // 타임 아웃 설정
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization","Bearer " + t);
-            xhr.setRequestHeader("menuId","10");
-            xhr.setRequestHeader("permit","r");
-        },
-        success: function(data, textStatus, xhr) {
-          //console.log("data"+JSON.stringify(data));
-            var content =  data.payload.content;
-            //console.log(content.length);
-            for(var i = 0; i < content.length; i ++) {
-                var test = 
-                {
-                  userId : content[i].userId,
-                  userName : content[i].userName ,
-                  userMobilePhone : content[i].userMobilePhone ,
-                  userAddress1 : content[i].userAddress1 ,
-                  userAddress2 : content[i].userAddress2 ,
-                  renewalPwDate : content[i].renewalPwDate ,
-                  companyCode : content[i].companyCode ,
-                  lastDate : content[i].lastDate ,
-                  useYn : content[i].useYn,
-                  roleId : content[i].roleId,
-                  regUserId : content[i].regUserId,
-                  regDate : content[i].regDate,
-                  modUserId : content[i].modUserId,
-                  modDate : content[i].modDate,
+        $.ajax({
+            url: reqURL + "/user/info/page/list?page=1&size=10000",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            timeout: 5000, // 타임 아웃 설정
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer " + t);
+                xhr.setRequestHeader("menuId", "10");
+                xhr.setRequestHeader("permit", "r");
+            },
+            success: function(data, textStatus, xhr) {
+                //console.log("data"+JSON.stringify(data));
+                var content = data.payload.content;
+                //console.log(content.length);
+                for (var i = 0; i < content.length; i++) {
+                    var test = {
+                        userId: content[i].userId,
+                        userName: content[i].userName,
+                        userMobilePhone: content[i].userMobilePhone,
+                        userAddress1: content[i].userAddress1,
+                        userAddress2: content[i].userAddress2,
+                        renewalPwDate: content[i].renewalPwDate,
+                        companyCode: content[i].companyCode,
+                        lastDate: content[i].lastDate,
+                        useYn: content[i].useYn,
+                        roleId: content[i].roleId,
+                        regUserId: content[i].regUserId,
+                        regDate: content[i].regDate,
+                        modUserId: content[i].modUserId,
+                        modDate: content[i].modDate,
+                    }
+                    contentData.push(test);
                 }
-                contentData.push(test);
+                $("#gridDiv").kendoGrid({
+                    dataBound: dataBound,
+                    columnMenu: {
+                        filterable: false
+                    },
+                    dataSource: {
+                        data: contentData,
+                        pageSize: 10,
+                        pageable: {
+                            input: true,
+                        },
+                        filterable: true,
+                        editable: true,
+                    },
+                    noRecords: true,
+                    scrollable: true,
+                    sortable: true,
+                    batch: true,
+                    selectable: true,
+                    pageable: true,
+                    toolbar: [{
+                            text: "select",
+                            template: '<a class="k-button" href="\\#" onclick="return btncpoIDInsert()"></span>&nbsp CPO ID 등록</a>'
+                        } //&nbsp;
+                    ],
+                    columns: [{
+                            field: 'userId',
+                            title: '<strong>사용자 ID',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                "class": "table-cell",
+                                style: "text-align: center;"
+                            },
+                            width: 120
+                        },
+                        {
+                            field: 'userName',
+                            title: '<strong>사용자 이름',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                "class": "table-cell",
+                                style: "text-align: center;"
+                            },
+                            width: 120
+                        },
+                        {
+                            field: 'userMobilePhone',
+                            title: '<strong>연락처',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                "class": "table-cell",
+                                style: "text-align: center;"
+                            },
+                            width: 120
+                        },
+                        {
+                            field: 'userAddress1',
+                            title: '<strong>주소',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 150
+                        },
+                        {
+                            field: 'userAddress2',
+                            title: '<strong>상세주소',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 150
+                        },
+                        {
+                            field: 'userEmail',
+                            title: '<strong>사용자 이메일',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 150
+                        },
+                        {
+                            field: 'renewalPwDate',
+                            title: '<strong>PW 갱신일시',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 130,
+                            template: "#= kendo.toString(kendo.parseDate(renewalPwDate), 'yyyy-MM-dd HH:mm') #"
+                        },
+                        {
+                            field: 'companyCode',
+                            title: '<strong>사업자 코드',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 120
+                        },
+                        {
+                            field: 'lastDate',
+                            title: '<strong>최종 접속일시',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 140,
+                            template: "#= kendo.toString(kendo.parseDate(lastDate), 'yyyy-MM-dd HH:mm') #"
+                        },
+                        {
+                            field: 'useYn',
+                            title: '<strong>사용 유무',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 110
+                        },
+                        {
+                            field: 'roleId',
+                            title: '<strong>권한 ID',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 110
+                        },
+                        {
+                            field: 'regUserId',
+                            title: '<strong>등록자',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 110
+                        },
+                        {
+                            field: 'regDate',
+                            title: '<strong>등록일시',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 130,
+                            template: "#= kendo.toString(kendo.parseDate(regDate), 'yyyy-MM-dd HH:mm') #"
+                        },
+                        {
+                            field: 'modUserId',
+                            title: '<strong>수정자',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 110
+                        },
+                        {
+                            field: 'modDate',
+                            title: '<strong>수정일시',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 130,
+                            template: "#= kendo.toString(kendo.parseDate(modDate), 'yyyy-MM-dd HH:mm') #"
+                        },
+                    ],
+                });
+
+            },
+            error: function(error) {
+                alert('실패: ' + error.responseText);
             }
-            $("#gridDiv").kendoGrid({
-              dataBound: dataBound,
-              columnMenu: {
-                    filterable: false
-                },
-              dataSource: {
-                data:contentData,
-                pageSize: 10,
-                pageable: {
-                  input: true,
-                },
-              filterable: true,
-              editable: true,
-              },
-              noRecords: true,
-              scrollable: true,
-              sortable: true,
-              batch: true,
-              selectable: true,
-              pageable:true,
-            toolbar: [
-                { text: "select", template: '<a class="k-button" href="\\#" onclick="return btncpoIDInsert()"></span>&nbsp CPO ID 등록</a>' } //&nbsp;
-            ],
-            columns: [
-            { field: 'userId', title:  '<strong>사용자 ID', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120 },
-            { field: 'userName', title:  '<strong>사용자 이름', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 120 },
-            { field: 'userMobilePhone', title:  '<strong>연락처', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 120 },
-            { field: 'userAddress1', title:  '<strong>주소', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 150 },
-            { field: 'userAddress2', title:  '<strong>상세주소', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 150 },
-            { field: 'userEmail', title:  '<strong>사용자 이메일', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 150 },
-            { field: 'renewalPwDate', title:  '<strong>PW 갱신일시', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 130,
-              template: "#= kendo.toString(kendo.parseDate(renewalPwDate), 'yyyy-MM-dd HH:mm') #" },
-            { field: 'companyCode', title:  '<strong>사업자 코드', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 120 },
-            { field: 'lastDate', title:  '<strong>최종 접속일시', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 140, 
-              template: "#= kendo.toString(kendo.parseDate(lastDate), 'yyyy-MM-dd HH:mm') #"},
-            { field: 'useYn', title:  '<strong>사용 유무', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 110 },
-            { field: 'roleId', title:  '<strong>권한 ID', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 110 },
-            { field: 'regUserId', title:  '<strong>등록자', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 110 },
-            { field: 'regDate', title:  '<strong>등록일시', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 130, 
-              template: "#= kendo.toString(kendo.parseDate(regDate), 'yyyy-MM-dd HH:mm') #"},
-            { field: 'modUserId', title:  '<strong>수정자', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 110 },
-            { field: 'modDate', title:  '<strong>수정일시', headerAttributes: {style: "text-align: center;"}, attributes:{style: "text-align: center;"}, width: 130, 
-              template: "#= kendo.toString(kendo.parseDate(modDate), 'yyyy-MM-dd HH:mm') #"},
-            ],
-            });
-            
-        },
-        error: function(error) {
-            alert('실패: ' + error.responseText);
-        }
+        });
     });
-});
 
-function btncpoIDInsert(){
-  window.open("cpoIDInsert.html", "CPO ID 등록", "width=600, height=850, top=150, left=200");
-}
+    function btncpoIDInsert() {
+        window.open("cpoIDInsert.html", "CPO ID 등록", "width=600, height=850, top=150, left=200");
+    }
 
-function dataBound(e) {
-    var _width = 1800;
-    var grid_data = $("#gridDiv").data("kendoGrid");
+    function dataBound(e) {
+        var _width = 1800;
+        var grid_data = $("#gridDiv").data("kendoGrid");
 
-    grid_data.thead.closest('table').width(_width);
-    grid_data.tbody.closest('table').width(_width);
-}
-document.addEventListener('DOMContentLoaded', function() {
+        grid_data.thead.closest('table').width(_width);
+        grid_data.tbody.closest('table').width(_width);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.querySelector('.side-bar');
     const toggleIcon = document.getElementById('toggle-sidebar');
-     let isSidebarVisible = false;  // 사이드바 상태를 저장할 변수
+    const mainContent = document.querySelector('main'); // 메인 콘텐츠 선택
+    let isSidebarVisible = false; // 사이드바 상태를 저장할 변수
+    mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 초기 상태에서 메인 콘텐츠 너비 조정
 
-     toggleIcon.addEventListener('click', function() {
-     if (isSidebarVisible) {
-      // 사이드바 숨기기
-      sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
-      isSidebarVisible = false;
-    } else {
-      // 사이드바 보이기
-      sidebar.style.transform = 'translate(0, 0)';
-      isSidebarVisible = true;
-    }
-  });
+    toggleIcon.addEventListener('click', function() {
+        if (isSidebarVisible) {
+            // 사이드바 숨기기
+            sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
+            mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 메인 콘텐츠 넓이 늘리기
+            isSidebarVisible = false;
+        } else {
+            // 사이드바 보이기
+            sidebar.style.transform = 'translate(0, 0)';
+            mainContent.style.width = '88%'; // 메인 콘텐츠 넓이 원래대로
+            isSidebarVisible = true;
+        }
+    });
 });
 </script>
