@@ -43,9 +43,9 @@
       </head>
       
       <body style="background-color: rgb(255, 255, 255)">
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-          <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">회원 카드 등록</a>
-        </header>
+        <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 shadow">
+          <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
+      </header>
         <div class="card">
           <div class="card-body">
             
@@ -69,15 +69,20 @@
       </div>
       <p></p>
 
-      <div class="input-group"> 
-      <div class="input-group-prepend">
-      <input type="text" id="cardStatus" class="form-control margin-right10 margin-left30" readonly="" value="카드 상태" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
-      </div>
-      <div class="input-group-prepend">
-      <input id="input-select" name="cardStatus" type="text" class="form-control input-width" value="" placeholder="회원 카드 상태를 입력하세요" />
-      </div>
-      </div>
-      <p></p>
+      <div class="input-group">
+        <div class="input-group-prepend">
+            <input type="text" id="cardStatus" class="form-control margin-right10 margin-left30" readonly="" value="카드 상태" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+        </div>
+        <div class="custom-select-wrapper">
+            <select name="cardStatus" id="cardStatus" class="form-control input-width custom-select">
+                <option value="Approving">발급중</option>
+                <option value="Approved">발급 완료</option>
+                <option value="Approval denied">발급 거절</option>
+            </select>
+        </div>
+
+    </div>
+    <p></p>
 <!--
       <div class="input-group"> 
       <div class="input-group-prepend">
@@ -154,8 +159,10 @@
                   </div>
                   <p></p>
 -->
-                <input type="button" value="회원 카드 등록" onclick="btnMemberCardInsert()">
-        
+                <div class="input-group d-flex justify-content-center">
+                  <button class="btn btn-primary" onclick="btnMemberCardInsert()">회원 카드 등록</button>
+                  <button class="btn btn-secondary ms-2" onclick="window.close()">취소</button>
+              </div>
         
           </div>
         </div>
@@ -168,7 +175,7 @@ function btnMemberCardInsert(){
   var Load = {
     cardNumber : $("input[name=cardNumber]").val(),
     memberId : $("input[name=MemberId]").val(),
-    cardStatus : $("input[name=cardStatus]").val(),
+    cardStatus : $("select[name=cardStatus]").val(),
    // bid : $("input[name=bid]").val(),
     userCardStop : "N",//$("input[name=userCardStop]").val(),
     userStatusKeco : "N",//$("input[name=userStatusKeco]").val(),

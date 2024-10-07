@@ -288,7 +288,10 @@
             ],
             columns: [{
                     field: 'stationName',
-                    title: '충전소 이름',
+                    title: '<strong>충전소 이름',
+                    headerAttributes: {
+                            style: "text-align: center;"
+                        },
                     attributes: {
                         "class": "table-cell",
                         style: "text-align: center;"
@@ -297,7 +300,10 @@
                 },
                 {
                     field: 'chargerName',
-                    title: '충전기 이름',
+                    title: '<strong>충전기 이름',
+                    headerAttributes: {
+                            style: "text-align: center;"
+                        },
                     attributes: {
                         "class": "table-cell",
                         style: "text-align: center;"
@@ -306,7 +312,10 @@
                 },
                 {
                     field: 'stationId',
-                    title: '충전소 ID',
+                    title: '<strong>충전소 ID',
+                    headerAttributes: {
+                        style: "text-align: center;"
+                        },
                     attributes: {
                         "class": "table-cell",
                         style: "text-align: center;"
@@ -315,7 +324,10 @@
                 },
                 {
                     field: 'chargerId',
-                    title: '충전기 ID',
+                    title: '<strong>충전기 ID',
+                    headerAttributes: {
+                        style: "text-align: center;"
+                        },
                     attributes: {
                         "class": "table-cell",
                         style: "text-align: center;"
@@ -324,7 +336,10 @@
                 },
                 {
                     field: "ocppId",
-                    title: "OCPP ID",
+                    title: "<strong>OCPP ID",
+                    headerAttributes: {
+                        style: "text-align: center;"
+                        },
                     attributes: {
                         "class": "table-cell",
                         style: "text-align: center;"
@@ -333,7 +348,10 @@
                 },
                 {
                     field: "heartbeatStatus",
-                    title: "충전기 상태",
+                    title: "<strong>충전기 상태",
+                    headerAttributes: {
+                            style: "text-align: center;"
+                        },
                     attributes: {
                         "class": "table-cell",
                         style: "text-align: center;"
@@ -343,7 +361,10 @@
                 //{ field: "ocppPw", title: "OCPP PW" },
                 {
                     field: "chargerModelName",
-                    title: "충전기 모델 이름",
+                    title: "<strong>충전기 모델 이름",
+                        headerAttributes: {
+                                style: "text-align: center;"
+                            },
                     attributes: {
                         "class": "table-cell",
                         style: "text-align: center;"
@@ -352,60 +373,138 @@
                 },
                 {
                     field: "chargerModelCode",
-                    title: "충전기 모델 코드",
+                    title: "<strong>충전기 모델 코드",
+                        headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
                     width: 160
                 },
                 {
                     field: "chargerSerialNumber",
-                    title: "충전기 시리얼",
+                    title: "<strong>충전기 시리얼",
+                        headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
                     width: 200
                 },
                 {
                     field: "vendorId",
-                    title: "충전기 제조사",
+                    title: "<strong>충전기 제조사",
+                        headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
                     width: 140
                 },
                 {
                     field: "firmwareVersion",
-                    title: "프로그램 버전",
+                    title: "<strong>프로그램 버전",
+                        headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
                     width: 150
                 },
                 {
                     field: "localListVersion",
-                    title: "로컬 회원 버전",
+                    title: "<strong>로컬 회원 버전",
+                        headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
                     width: 150
                 },
                 //{ field: "kecoRoamingYn", title: "환경부 로밍 여부", width: 140  },
                 //{ field: "kepcoRoamingYn", title: "한전 로밍 여부", width: 140  },
                 {
                     field: "registrationStatus",
-                    title: "충전기 부팅",
+                    title: "<strong>충전기 부팅",
+                        headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
                     width: 150
                 },
                 {
                     field: "availableStatus",
-                    title: "충전기 가용여부",
+                    title: "<strong>충전기 가용여부",
+                        headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
                     width: 150
                 },
                 {
                     field: "heartbeatDate",
-                    title: "충전기 정보 전송 일시",
-                    width: 190
+                    title: "<strong>충전기 정보 전송 일시",
+                        headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
+                    width: 190,
+                    template: "#= kendo.toString(kendo.parseDate(heartbeatDate), 'yyyy-MM-dd HH:mm') #" 
                 },
                 {
                     field: "chargerGpsX",
-                    title: "GPS X",
+                    title: "<strong>GPS X",
+                        headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
                     width: 140
                 },
                 {
                     field: "chargerGpsY",
-                    title: "GPS Y",
+                    title: "<strong>GPS Y",
+                        headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
                     width: 140
                 },
                 {
                     field: "useYn",
-                    title: "사용여부",
-                    width: 100
+                    title: "<strong>사용여부",
+                        headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
+                    width: 120
                 },
                 //{ field: "deleteYn", title: "삭제여부" },
 
