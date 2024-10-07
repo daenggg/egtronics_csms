@@ -54,7 +54,7 @@
       <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="충전기 모델 명" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="chargerModelName" type="text" class="form-control input-width" value="" placeholder="" />
+      <input id="input-select" name="chargerModelName" type="text" class="form-control input-width" value="" placeholder="충전기 모델 명을 입력하세요." />
       </div>
       </div>
       <p></p>
@@ -64,27 +64,27 @@
       <input type="text" id="chargerModelCode" class="form-control margin-right10 margin-left30" readonly="" value="충전기 모델 코드" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="chargerModelCode" type="text" class="form-control input-width" value="" placeholder="" />
+      <input id="input-select" name="chargerModelCode" type="text" class="form-control input-width" value="" placeholder="충전기 모델 코드를 입력하세요." />
       </div>
       </div>
       <p></p>
 
       <div class="input-group"> 
       <div class="input-group-prepend">
-      <input type="text" id="chargerFactoryCode" class="form-control margin-right10 margin-left30" readonly="" value="공장 정보" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      <input type="text" id="chargerFactoryCode" class="form-control margin-right10 margin-left30" readonly="" value="제조 공장" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="chargerFactoryCode" type="text" class="form-control input-width" value="" placeholder="" />
+      <input id="input-select" name="chargerFactoryCode" type="text" class="form-control input-width" value="" placeholder="제조 공장을 입력하세요." />
       </div>
       </div>
       <p></p>
 
       <div class="input-group"> 
       <div class="input-group-prepend">
-      <input type="text" id="chargerModelKw" class="form-control margin-right10 margin-left30" readonly="" value="충전용량" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      <input type="text" id="chargerModelKw" class="form-control margin-right10 margin-left30" readonly="" value="충전 용량" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="chargerModelKw" type="text" class="form-control input-width" value="" placeholder="" />
+      <input id="input-select" name="chargerModelKw" type="text" class="form-control input-width" value="" placeholder="단위(kW) 포함" />
       </div>
       </div>
       <p></p>
@@ -94,20 +94,25 @@
         <input type="text" id="connectorNumber" class="form-control margin-right10 margin-left30" readonly="" value="커넥터 개수" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
         </div>
         <div class="input-group-prepend">
-        <input id="input-select" name="connectorNumber" type="text" class="form-control input-width" value="" placeholder="1" />
+        <input type="number" id="connectorNumber" name="connectorNumber" min="1" max="10" value="1" class="form-control input-width">
         </div>
         </div>
         <p></p>
 
-        <div class="input-group"> 
+
+        <div class="input-group">
           <div class="input-group-prepend">
-          <input type="text" id="rfidUseYn" class="form-control margin-right10 margin-left30" readonly="" value="회원카드 여부" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+              <input type="text" id="useYn" class="form-control margin-right10 margin-left30" readonly="" value="사용여부" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
           </div>
-          <div class="input-group-prepend">
-          <input id="input-select" name="rfidUseYn" type="text" class="form-control input-width" value="" placeholder="Y" />
+          <div class="custom-select-wrapper">
+              <select name="useYn" id="useYn" class="form-control input-width custom-select">
+                  <option value="answer-use">사용</option>
+                  <option value="answer-not-use">미사용</option>
+              </select>
           </div>
-          </div>
-          <p></p>
+
+      </div>
+      <p></p>
 
         <div class="input-group"> 
         <div class="input-group-prepend">
@@ -141,7 +146,7 @@ function btnMemberCardInsert(){
     connectorNumber : $("input[name=connectorNumber]").val(),
     rfidUseYn : $("input[name=rfidUseYn]").val(),
     description : $("input[name=description]").val(),
-    useYn : "Y"
+    useYn: $("select[name=useYn]").val(), // 수정
   };
 //  console.log("[data] : " + JSON.stringify(Load));
 //  alert("[data] : " + JSON.stringify(PayLoad));

@@ -90,7 +90,7 @@
                     <input type="text" id="chargerFactoryTel" class="form-control margin-right10 margin-left30" readonly="" value="공장 전화번호" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
                 </div>
                 <div class="input-group-prepend">
-                    <input id="input-select" name="chargerFactoryTel" type="text" class="form-control input-width" value="" placeholder="예: 010-1234-1234" />
+                    <input id="input-select" name="chargerFactoryTel" type="text" class="form-control input-width" value="" placeholder="예: 010-1234-1234('-'포함)" />
                 </div>
             </div>
             <p></p>
@@ -110,7 +110,7 @@
                     <input type="text" id="chargerFactoryManagerTel" class="form-control margin-right10 margin-left30" readonly="" value="담당자 전화번호" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
                 </div>
                 <div class="input-group-prepend">
-                    <input id="input-select" name="chargerFactoryManagerTel" type="text" class="form-control input-width" value="" placeholder="예: 010-1234-1234" />
+                    <input id="input-select" name="chargerFactoryManagerTel" type="text" class="form-control input-width" value="" placeholder="예: 010-1234-1234('-포함')" />
                 </div>
             </div>
             <p></p>
@@ -160,6 +160,11 @@
             description: $("input[name=description]").val(),
             useYn: "Y"
         };
+
+        if (!chargerFactoryTel.includes('-') && !chargerFactoryManagerTel.includes('-')) {
+        alert('전화번호는 "-" 기호를 포함해야 합니다. 예: 010-1234-1234');
+        return; // 함수를 종료
+        }
         //  console.log("[data] : " + JSON.stringify(Load));
         //  alert("[data] : " + JSON.stringify(PayLoad));
 
