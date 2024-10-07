@@ -136,12 +136,6 @@ $(document).ready(function () {
         navMenu.appendChild(ul);
         });
       
-  navItems.forEach(item => {
-      const navLink = document.createElement('a'); // <a> 태그 생성
-      navLink.textContent = item; // 링크 텍스트 설정
-      navLink.href = href_link(item); // href 속성 설정
-      navMenu.appendChild(navLink); 
-    });
 
        $.ajax({    			
         url: reqURL+"/charger/factory/info/page/list?page=1&size=10000",
@@ -197,15 +191,15 @@ $(document).ready(function () {
                 { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnFactoryUpdate()"></span>&nbsp제조 공장 수정</a>' } //&nbsp;
             ],
             columns: [
-            { field: 'chargerFactoryName', title:  '공장 이름', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 170 },
-            { field: 'chargerFactoryAddress', title:  '공장 주소', width: 400 },
-            { field: 'chargerFactoryCode', title:  '공장 코드', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 130 },
-            { field: 'chargerFactoryTel', title:  '공장 전화번호', width: 140 },
-            { field: 'chargerFactoryManager', title:  '담당자 이름', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 130 },
-            { field: 'chargerFactoryManagerTel', title:  '담당자 전화번호',width: 140 },
-            { field: 'chargerFactoryManagerEmail', title:  '담당자 메일', width: 170 },
-            { field: 'useYn', title:  '사용 유무', width: 100 },
-            { field: 'description', title:  '비고' },
+            { field: 'chargerFactoryName', title:  '<strong>공장 이름', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 170 },
+            { field: 'chargerFactoryAddress', title:  '<strong>공장 주소', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 400 },
+            { field: 'chargerFactoryCode', title:  '<strong>공장 코드', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 130 },
+            { field: 'chargerFactoryTel', title:  '<strong>공장 전화번호', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140 },
+            { field: 'chargerFactoryManager', title:  '<strong>담당자 이름', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 130 },
+            { field: 'chargerFactoryManagerTel', title:  '<strong>담당자 전화번호', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140 },
+            { field: 'chargerFactoryManagerEmail', title:  '<strong>담당자 메일', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 170 },
+            { field: 'useYn', title:  '<strong>사용 유무', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120 },
+            { field: 'description', title:  '<strong>비고', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, },
             ],
             });
             

@@ -43,9 +43,9 @@
       </head>
       
       <body style="background-color: rgb(255, 255, 255)">
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-          <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">충전소 수정</a>
-        </header>
+        <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 shadow">
+          <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
+      </header>
         <div class="card">
           <div class="card-body">
             
@@ -139,39 +139,54 @@
           </div>
           <p></p>
 
-          <div class="input-group"> 
+          <div class="input-group">
             <div class="input-group-prepend">
-            <input type="text" id="stationVoltage" class="form-control margin-right10 margin-left30" readonly="" value="충전소 전압 종류" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                <input type="text" id="stationVoltage" class="form-control margin-right10 margin-left30" readonly="" value="충전소 전압 종류" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
             </div>
             <div class="input-group-prepend">
-            <input id="input-select" name="stationVoltageType" type="text" class="form-control input-width" value="" placeholder="" />
+                <div class="custom-select-wrapper">
+                  <select name="stationVoltageType" id="stationVoltageType" class="form-control input-width custom-select">
+                      <option value="high-voltage">고압</option>
+                      <option value="middle-voltage">중압</option>
+                      <option value="low-voltage">저압</option>
+                  </select>
+                </div>
             </div>
-            </div>
-            <p></p>
+        </div>
+        <p></p>
 
-            <div class="input-group"> 
-              <div class="input-group-prepend">
+        <div class="input-group">
+          <div class="input-group-prepend">
               <input type="text" id="useYn" class="form-control margin-right10 margin-left30" readonly="" value="사용여부" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
-              </div>
-              <div class="input-group-prepend">
-              <input id="input-select" name="useYn" type="text" class="form-control input-width" value="" placeholder="Y/N" />
-              </div>
-              </div>
-              <p></p>
+          </div>
+          <div class="custom-select-wrapper">
+            <select name="useYn" id="useYn" class="form-control input-width custom-select">
+                <option value="answer-use">사용</option>
+                <option value="answer-not-use">미사용</option>
+            </select>
+          </div>
 
-              <div class="input-group"> 
-                <div class="input-group-prepend">
-                <input type="text" id="deleteYn" class="form-control margin-right10 margin-left30" readonly="" value="삭제여부" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
-                </div>
-                <div class="input-group-prepend">
-                <input id="input-select" name="deleteYn" type="text" class="form-control input-width" value="" placeholder="Y/N" />
-                </div>
-                </div>
-                <p></p>
-                <p></p>
+      </div>
+      <p></p>
 
-                <input type="button" value="충전소 수정" onclick="btnStationUpdate()">
-        
+      <div class="input-group">
+        <div class="input-group-prepend">
+            <input type="text" id="deleteYn" class="form-control margin-right10 margin-left30" readonly="" value="삭제여부" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+        </div>
+        <div class="custom-select-wrapper">
+          <select name="deleteYn" id="deleteYn" class="form-control input-width custom-select">
+              <option value="answer-yes">예</option>
+              <option value="answer-no">아니오</option>
+          </select>
+        </div>
+    </div>
+    <p></p>
+
+                
+                <div class="input-group d-flex justify-content-center">
+                  <button class="btn btn-primary" onclick="btnStationUpdate()">충전소 수정</button>
+                  <button class="btn btn-secondary ms-2" onclick="window.close()">취소</button>
+              </div>
         
           </div>
         </div>
@@ -194,9 +209,9 @@ function btnStationUpdate(){
     stationAddrTown : $("input[name=stationAddrTown]").val(),
     stationGpsX : $("input[name=stationGpsX]").val(),
     stationGpsY : $("input[name=stationGpsY]").val(),
-    stationVoltageType : $("input[name=stationVoltageType]").val(),
-    useYn : $("input[name=useYn]").val(),
-    deleteYn : $("input[name=deleteYn]").val(),
+    stationVoltageType: $("select[name=stationVoltageType]").val(), // 수정
+            useYn: $("select[name=useYn]").val(), // 수정
+           deleteYn: $("select[name=deleteYn]").val(), // 수정
   };
    
   var t = sessionStorage.getItem('accessToken');
