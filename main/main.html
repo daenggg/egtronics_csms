@@ -474,22 +474,24 @@
                         },
                         {
                             field: "startDt",
-                            title: "<strong>충전 시작 날짜",
+                            title: "<strong>충전 시작 일시",
                             headerAttributes: {
                                 style: "text-align: center;"
                             },
                             width: 180,
+                            template: "#= kendo.toString(kendo.parseDate(startDt), 'yyyy-MM-dd HH:mm') #" ,
                             attributes: {
                                 style:"text-align: center;"
                             }
                         },
                         {
                             field: "stopDt",
-                            title: "<strong>충전 종료 날짜",
+                            title: "<strong>충전 종료 일시",
                             headerAttributes: {
                                 style: "text-align: center;"
                             },
                             width: 180,
+                            template: "#= kendo.toString(kendo.parseDate(stopDt), 'yyyy-MM-dd HH:mm') #" ,
                             attributes: {
                                 style:"text-align: center;"
                             }
@@ -555,6 +557,18 @@
     let isSidebarVisible = false; // 사이드바 상태를 저장할 변수
     mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 초기 상태에서 메인 콘텐츠 너비 조정
 
+    if (isSidebarVisible) {
+            // 사이드바 숨기기
+            sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
+            mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 메인 콘텐츠 넓이 늘리기
+            
+        } else {
+            // 사이드바 보이기
+            sidebar.style.transform = 'translate(0, 0)';
+            mainContent.style.width = '88%'; // 메인 콘텐츠 넓이 원래대로
+            isSidebarVisible = true;
+        }
+
     toggleIcon.addEventListener('click', function() {
         if (isSidebarVisible) {
             // 사이드바 숨기기
@@ -567,6 +581,7 @@
             mainContent.style.width = '88%'; // 메인 콘텐츠 넓이 원래대로
             isSidebarVisible = true;
         }
+        localStorage.setItem('isSidebarVisible', isSidebarVisible); // 상태 저장
     });
 });
 

@@ -16,6 +16,9 @@ body {
     height: 16px;
     vertical-align: text-bottom;
   }
+  .container-fluid{
+    padding-left: 0%;
+  }
   
   /* 사이드바 시작 */
   /* 커스텀 시작 */
@@ -117,8 +120,8 @@ body {
 
 /* 모든 메뉴가 마우스 인식 시 반응 */
 .side-bar ul > li:hover > a {
-  background-color: #77EEDF;
-  border-bottom: 1px solid white;
+  background-color: #B7E3E4;
+  border-bottom: 1px solid #B7E3E4;
 }
 
 /* 1차 메뉴의 항목이 마우스 인식 시에 2차 메뉴 등장 */
@@ -144,7 +147,6 @@ body {
 
 /* 사이드바 너비의 80%만큼 왼쪽으로 이동 */
 .side-bar {
-  border-radius: 20px;
   transform: translate(calc(var(--side-bar-width) * -0.8), 0);
   transition: .5s;
 }
@@ -333,10 +335,11 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   text-align: left;
-  font-size: 16px;
+  font-size: 15px;
   color: #333;
   text-align: center;
   text-align-last: center; /* 드롭다운 목록이 열렸을 때 항목도 중앙 정렬 */
+  margin-left: 10px;
 }
 
 /* 화살표 추가 */
@@ -353,4 +356,22 @@ body {
 
 main{
   transition: width 0.5s ease; /* 메인 콘텐츠의 너비 변경 시 부드러운 전환 효과 추가 */
+}
+.custom-select-wrapper {
+  height: 40px; /* input-group-prepend와 동일한 높이 */
+
+}
+
+/* select 요소 자체의 높이도 맞춰주기 위해 추가 */
+.custom-select-wrapper select {
+  height: 100%;
+}
+
+#input-select{
+  margin-left: 10px;
+  width: 370px;
+}
+button{
+  font-weight: bold; 
+  color: black;
 }
