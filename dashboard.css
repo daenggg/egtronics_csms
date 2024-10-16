@@ -43,6 +43,8 @@ body {
   transition: background-color 0.3s, transform 0.3s; /* 부드러운 전환 효과 */
   transform: translate(calc(var(--side-bar-width) * -0.8), 0); /* 기본 숨김 상태 */
 }
+
+
 /* 아이콘 시작 */
 .side-bar__icon-box {
   display: flex;
@@ -116,12 +118,15 @@ body {
   position: relative;
   list-style-type: none;
   padding-left: 0;
+  transition: transform 0.3s box-shadow 0.2s;
 }
 
 /* 모든 메뉴가 마우스 인식 시 반응 */
 .side-bar ul > li:hover > a {
   background-color: #B7E3E4;
   border-bottom: 1px solid #B7E3E4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* 1차 메뉴의 항목이 마우스 인식 시에 2차 메뉴 등장 */
@@ -135,14 +140,19 @@ body {
   margin: 0;  /* 바깥쪽 여백을 없앰 */
   padding: 0; /* 안쪽 여백을 없앰 */
   list-style: none; /* 리스트 마커(불릿, 숫자)를 없앰 */
-  transition: background-color 0.3s, transform 0.3s; /* 부드러운 전환 효과 */
-  border-radius: 10px;
+  transition: background-color 0.3s, transform 0.2s /* 부드러운 전환 효과 */
+ 
 }
 .side-bar > ul > li:hover > ul > li{
   padding-top: 5px;
   padding-bottom: 5px;
   margin-left: 0;
   padding-left: 0;
+  transition: transform 0.3s box-shadow 0.2s;
+}
+.side-bar > ul > li:hover > ul > li:hover{
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
 }
 
 /* 사이드바 너비의 80%만큼 왼쪽으로 이동 */
@@ -371,7 +381,62 @@ main{
   margin-left: 10px;
   width: 370px;
 }
-button{
-  font-weight: bold; 
+
+#inputHeader{/*입력 헤더 선택자*/
+  width:100px; 
+  height:40px; 
+  background-color:#B7E3E4; 
+  text-align:center; 
+  color:black;
+  font-weight: bold;
+
+}
+#insertButton{/*등록, 수정 버튼 스타일 선택자*/
   color: black;
+  background-color: #B7E3E4;
+  font-weight: bold;
+  border: none;
+  transition: box-shadow 0.2s;
+}
+#insertButton:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#cancelButton{/*취소 버튼 스타일 선택자*/
+  color: black;
+  background-color: #B7E3E4;
+  font-weight: bold;
+  border: none;
+  transition: box-shadow 0.2s;
+}
+#cancelButton:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#useYnHeader{ /*사용유무 헤더 스타일 선택자*/
+  width:100px; 
+  height:40px; 
+  background-color:#B7E3E4; 
+  text-align:center; 
+  color:black;
+  font-weight: bold;
+}
+
+.k-state-selected { /*row 선택되면 배경색 변경*/
+  background-color: #B7E3E4;
+  color:black;
+}
+
+.k-state-selected:hover {
+  background-color: #B7E3E4 !important; /* 선택된 상태 유지 */
+  color: black !important; /* 텍스트 색상 유지 */
+}
+
+#userId, #userPassword, #userName, #userMobilePhone, #userAddress1, #userEmail, #companyCode, #roleId, #regUserId{
+  width:100px; 
+  height:40px; 
+  background-color:#B7E3E4; 
+  text-align:center; 
+  color:black;
+  font-weight: bold;
 }

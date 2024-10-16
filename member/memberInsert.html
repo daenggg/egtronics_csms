@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="generator" content="">
+        <title>회원 등록</title>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="../kendo/kendo.all.min.js"></script>
+        <script src="../kendo/jszip.min.js"></script>
+        <script src="../kendo/cultures/kendo.culture.ko-KR.min.js"></script>
+        <!-- Bootstrap core CSS -->
+      <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+
+          #input-select {
+            width :400px;
+            height :40px;
+            font-size:12px;
+          }
+    
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+        </style>
+        <link href="../dashboard.css" rel="stylesheet">
+      </head>
+      
+      <body style="background-color: rgb(255, 255, 255)">
+        <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 shadow">
+            <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
+        </header>
+        <div class="card">
+          <div class="card-body">
+            
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="id" class="form-control margin-right10 margin-left30" readonly="" value="회원 ID" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="id" type="text" class="form-control input-width" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="password" class="form-control margin-right10 margin-left30" readonly="" value="회원 PW" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="password" type="text" class="form-control input-width" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="name" class="form-control margin-right10 margin-left30" readonly="" value="회원 이름" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="name" type="text" class="form-control input-width" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+
+    <div class="input-group"> 
+        <div class="input-group-prepend">
+        <input type="text" id="email" class="form-control margin-right10 margin-left30" readonly="" value="Email" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+        </div>
+        <div class="input-group-prepend">
+        <input id="input-select" name="email" type="text" class="form-control input-width" value="" placeholder="" />
+        </div>
+        </div>
+        <p></p>
+
+        <div class="input-group"> 
+        <div class="input-group-prepend">
+        <input type="text" id="mobile" class="form-control margin-right10 margin-left30" readonly="" value="전화번호" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+        </div>
+        <div class="input-group-prepend">
+        <input id="input-select" name="mobile" type="text" class="form-control input-width" value="" placeholder="" />
+        </div>
+        </div>
+        <p></p>
+               
+        <div class="input-group"> 
+            <div class="input-group-prepend">
+            <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="사업자코드" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+            </div>
+            <div class="input-group-prepend">
+            <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="" placeholder="" />
+            </div>
+            </div>
+            <p></p>
+
+                
+                <div class="input-group d-flex justify-content-center">
+                    <button class="btn btn-primary" onclick="btnMemberInsert()">등록</button>
+                    <button class="btn btn-secondary" onclick="window.close()">취소</button>
+                </div>
+          </div>
+        </div>
+        </body>
+</html>
+
+<script src="../practice.js"></script>
+<script >
+function btnMemberInsert(){
+  var Load = {
+    id : $("input[name=id]").val(),
+    password : $("input[name=password]").val(),
+    name : $("input[name=name]").val(),
+    email : $("input[name=email]").val(),
+    mobile : $("input[name=mobile]").val(),
+    companyCode : $("input[name=companyCode]").val(),
+    useYn: "Y",
+    deleteYn: "N",
+    loginYn: "N",
+    socialYn: "N",
+  };
+//  console.log("[data] : " + JSON.stringify(Load));
+  //alert("[data] : " + JSON.stringify(Load));
+   
+  var t = sessionStorage.getItem('accessToken');
+  $.ajax({    			
+        url: reqURL+"/member/info/create",
+        type: "POST",
+        dataType: "json", 
+        data : JSON.stringify(Load), //json 데이터
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","19");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+           alert("회원이 등록 되었습니다.");
+        },
+        error: function(error) {
+            alert('실패: ' + error.responseText);
+        }
+    });
+    
+}
+</script>

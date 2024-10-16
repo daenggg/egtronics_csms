@@ -1,5 +1,5 @@
 //var reqURL = 'http://52.79.186.236:8443/api';
-var reqURL = 'http://egtn.iptime.org:8443/api';
+var reqURL = 'https://egtn.iptime.org:8443/api';
 //var reqURL = 'http://192.168.0.101:8443/api';
 var KAKAO_URL = 'http://52.79.186.236:8443/oauth/kakao';
 var menuData = [];
@@ -308,3 +308,4 @@ function href_link(item) {
    }
  return href;
  }
+ 

@@ -50,20 +50,31 @@
     <div class="card">
         <div class="card-body">
 
+            <div class="input-group"> 
+                <div class="input-group-prepend">
+                <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="권한 ID" id = 'inputHeader' >
+                </div>
+                <div class="input-group-prepend">
+                <input id="input-select" name="roleId" type="text" class="form-control input-width" value="" placeholder="등록할 권한 ID를 입력해주세요." />
+                </div>
+                </div>
+                <p></p>
+
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="권한 ID" style="width:100px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="권한 이름" id = 'inputHeader'>
 
                 </div>
                 <div class="input-group-prepend">
-                    <input id="input-select" name="roleName" type="text" class="form-control input-width" value="" placeholder="등록할 권한 ID를 입력해주세요." />
+                    <input id="input-select" name="roleName" type="text" class="form-control input-width" value="" placeholder="등록할 권한 이름을 입력해주세요." />
                 </div>
             </div>
             <p></p>
 
+        
             <div class="input-group d-flex justify-content-center">
-                <button class="btn btn-primary" style="font-weight: bold; color: black;" onclick="btnRoleInsert()">등록</button>
-                <button class="btn btn-secondary ms-2" style="font-weight: bold; color: black;" onclick="window.close()">취소</button>
+                <button class="btn btn-primary" id = 'insertButton'  onclick="btnRoleInsert()">등록</button>
+                <button class="btn btn-secondary ms-2" id = 'cancelButton' onclick="window.close()">취소</button>
             </div>
         </div>
     </div>
@@ -76,6 +87,7 @@
 <script>
     function btnRoleInsert() {
         var Load = {
+            roleId : $("input[name=roleId]").val(),
             roleName: $("input[name=roleName]").val(),
             useYn: "Y"
         };
@@ -97,7 +109,10 @@
             },
             success: function(data, textStatus, xhr) {
                 console.log("[data] : " + JSON.stringify(data));
-                alert('Role 등록이 되었습니다.');
+                if (confirm('권한이 등록되었습니다.')) {
+                    window.close();  // 현재 창을 닫음
+                    window.opener.location.reload();  // 부모 창(원본 창)을 새로고침
+                    }
             },
             error: function(error) {
                 alert('실패: ' + error.responseText);

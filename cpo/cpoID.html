@@ -66,8 +66,10 @@
 <script>
     $(document).ready(function() {
         var t = sessionStorage.getItem('accessToken');
+        sessionStorage.setItem('CPOId', "");
+        sessionStorage.setItem('companyCode', "");
+        
         var contentData = [];
-
         // sessionStorage에서 'menuData' 키로 저장된 데이터를 가져와 JSON 객체로 파싱
         let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
         console.log(retrievedArray);
@@ -190,14 +192,14 @@
                     batch: true,
                     selectable: true,
                     pageable: true,
-                    toolbar: [{
-                            text: "select",
-                            template: '<a class="k-button" href="\\#" onclick="return btncpoIDInsert()"></span>&nbsp CPO ID 등록</a>'
-                        } //&nbsp;
+                    toolbar: [
+                        {text: "select", template: '<a class="k-button" href="\\#" onclick="return btncpoIDInsert()"></span>&nbsp CPO ID 등록</a>'}, //&nbsp;
+                        { text: "select", template: '<a class="k-button" href="\\#" onclick="return btncpoIDUpdate()"></span>&nbsp CPO ID 수정</a>' }, //&nbsp;
+                        { text: "select", template: '<a class="k-button" href="\\#" onclick="return btncpoID_PWUpdate()"></span>&nbsp CPO ID 비밀번호 변경</a>' } //&nbsp;
                     ],
                     columns: [{
                             field: 'userId',
-                            title: '<strong>사용자 ID',
+                            title: '<strong>CPO ID',
                             headerAttributes: {
                                 style: "text-align: center;"
                             },
@@ -205,11 +207,11 @@
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 120
+                            width: 100
                         },
                         {
                             field: 'userName',
-                            title: '<strong>사용자 이름',
+                            title: '<strong>CPO 이름',
                             headerAttributes: {
                                 style: "text-align: center;"
                             },
@@ -240,7 +242,7 @@
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 150
+                            width: 250
                         },
                         {
                             field: 'userAddress2',
@@ -255,7 +257,7 @@
                         },
                         {
                             field: 'userEmail',
-                            title: '<strong>사용자 이메일',
+                            title: '<strong>CPO 이메일',
                             headerAttributes: {
                                 style: "text-align: center;"
                             },
@@ -273,7 +275,7 @@
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 130,
+                            width: 160,
                             template: "#= kendo.toString(kendo.parseDate(renewalPwDate), 'yyyy-MM-dd HH:mm') #"
                         },
                         {
@@ -296,7 +298,7 @@
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 140,
+                            width: 160,
                             template: "#= kendo.toString(kendo.parseDate(lastDate), 'yyyy-MM-dd HH:mm') #"
                         },
                         {
@@ -319,7 +321,7 @@
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 110
+                            width: 100
                         },
                         {
                             field: 'regUserId',
@@ -341,7 +343,7 @@
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 130,
+                            width: 160,
                             template: "#= kendo.toString(kendo.parseDate(regDate), 'yyyy-MM-dd HH:mm') #"
                         },
                         {
@@ -353,7 +355,7 @@
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 110
+                            width: 100
                         },
                         {
                             field: 'modDate',
@@ -364,7 +366,7 @@
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 130,
+                            width: 160,
                             template: "#= kendo.toString(kendo.parseDate(modDate), 'yyyy-MM-dd HH:mm') #"
                         },
                     ],
@@ -379,6 +381,43 @@
 
     function btncpoIDInsert() {
         window.open("cpoIDInsert.html", "CPO ID 등록", "width=600, height=850, top=150, left=200");
+    }
+
+    function btncpoIDUpdate(){
+        CPO_Check();
+        var data = sessionStorage.getItem('CPOId');
+        if(data == "" ||data == null){
+            alert('수정할 곳을 선택하여 주세요');
+        }
+        else{
+            window.open("cpoIDUpdate.html", "CPO ID 수정", "width=600, height=850, top=150, left=200");
+        }
+    }
+
+    function CPO_Check(){
+    var grid = $("#gridDiv").data("kendoGrid");
+    var rows = grid.select();
+     var selectedIds = [];
+
+    $(rows).each(function(){
+        var dataItem = grid.dataItem(this);
+        selectedIds.push(dataItem);
+        for(var i in selectedIds) {
+        sessionStorage.setItem('CPOId', selectedIds[i].userId);
+        sessionStorage.setItem('companyCode', selectedIds[i].companyCode);
+        }
+    });
+    }
+
+    function btncpoID_PWUpdate(){
+        CPO_Check();
+        var data = sessionStorage.getItem('CPOId');
+        if(data == "" ||data == null){
+            alert('수정할 곳을 선택하여 주세요');
+        }
+        else{
+            window.open("cpoID_PWUpdate.html", "CPO ID 비밀번호 변경", "width=600, height=850, top=150, left=200");
+        }
     }
 
     function dataBound(e) {

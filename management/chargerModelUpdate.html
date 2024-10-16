@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <meta name="generator" content="">
-        <title>충전기 모델 등록</title>
+        <title>충전기 모델 수정</title>
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
         <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
@@ -44,7 +44,7 @@
       
       <body style="background-color: rgb(255, 255, 255)">
         <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 shadow">
-          <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
+            <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
         </header>
         <div class="card">
           <div class="card-body">
@@ -54,7 +54,7 @@
       <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="충전기 모델 명" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="chargerModelName" type="text" class="form-control input-width" value="" placeholder="충전기 모델 명을 입력하세요." />
+      <input id="input-select" name="chargerModelName" type="text" class="form-control input-width" value="" placeholder="" readonly="" />
       </div>
       </div>
       <p></p>
@@ -64,27 +64,27 @@
       <input type="text" id="chargerModelCode" class="form-control margin-right10 margin-left30" readonly="" value="충전기 모델 코드" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="chargerModelCode" type="text" class="form-control input-width" value="" placeholder="충전기 모델 코드를 입력하세요." />
+      <input id="input-select" name="chargerModelCode" type="text" class="form-control input-width" value="" placeholder="" readonly=""/>
       </div>
       </div>
       <p></p>
 
       <div class="input-group"> 
       <div class="input-group-prepend">
-      <input type="text" id="chargerFactoryCode" class="form-control margin-right10 margin-left30" readonly="" value="제조 공장" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      <input type="text" id="chargerFactoryCode" class="form-control margin-right10 margin-left30" readonly="" value="공장 정보" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="chargerFactoryCode" type="text" class="form-control input-width" value="" placeholder="제조 공장을 입력하세요." />
+      <input id="input-select" name="chargerFactoryCode" type="text" class="form-control input-width" value="" placeholder="" />
       </div>
       </div>
       <p></p>
 
       <div class="input-group"> 
       <div class="input-group-prepend">
-      <input type="text" id="chargerModelKw" class="form-control margin-right10 margin-left30" readonly="" value="충전 용량" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      <input type="text" id="chargerModelKw" class="form-control margin-right10 margin-left30" readonly="" value="충전용량" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="chargerModelKw" type="text" class="form-control input-width" value="" placeholder="단위(kW) 포함" />
+      <input id="input-select" name="chargerModelKw" type="text" class="form-control input-width" value="" placeholder="" />
       </div>
       </div>
       <p></p>
@@ -94,25 +94,20 @@
         <input type="text" id="connectorNumber" class="form-control margin-right10 margin-left30" readonly="" value="커넥터 개수" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
         </div>
         <div class="input-group-prepend">
-        <input type="number" id="connectorNumber" name="connectorNumber" min="1" max="10" value="1" class="form-control input-width" style="margin-left: 10px; text-align: center;">
+        <input id="input-select" name="connectorNumber" type="text" class="form-control input-width" value="" placeholder="1" />
         </div>
         </div>
         <p></p>
 
-
-        <div class="input-group">
+        <div class="input-group"> 
           <div class="input-group-prepend">
-              <input type="text" id="useYn" class="form-control margin-right10 margin-left30" readonly="" value="사용여부" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+          <input type="text" id="rfidUseYn" class="form-control margin-right10 margin-left30" readonly="" value="회원카드 여부" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
           </div>
-          <div class="custom-select-wrapper">
-              <select name="useYn" id="useYn" class="form-control input-width custom-select">
-                  <option value="answer-use">사용</option>
-                  <option value="answer-not-use">미사용</option>
-              </select>
+          <div class="input-group-prepend">
+          <input id="input-select" name="rfidUseYn" type="text" class="form-control input-width" value="" placeholder="Y" />
           </div>
-
-      </div>
-      <p></p>
+          </div>
+          <p></p>
 
         <div class="input-group"> 
         <div class="input-group-prepend">
@@ -124,11 +119,11 @@
         </div>
         <p></p>
 
-        <div class="input-group d-flex justify-content-center"> 
-          <button class="btn btn-primary" style="font-weight: bold; color: black;" onclick="chargerModelInsert()">등록</button>
-          <button class="btn btn-secondary ms-2" style="font-weight: bold; color: black;" onclick="window.close()">취소</button>
-        </div>
         
+        <div class="input-group d-flex justify-content-center">
+            <button class="btn btn-primary" onclick="btnMemberCardUpdate()">등록</button>
+            <button class="btn btn-secondary ms-2" onclick="window.close()">취소</button>
+        </div>
         
           </div>
         </div>
@@ -137,7 +132,12 @@
 
 <script src="../practice.js"></script>
 <script >
-function chargerModelInsert(){
+  var sChargerModelName = sessionStorage.getItem('chargerModelName'); 
+  $('input[name=chargerModelName]').val(sChargerModelName);
+var sChargerModelCode = sessionStorage.getItem('chargerModelCode'); 
+$('input[name=chargerModelCode]').val(sChargerModelCode);
+
+function btnMemberCardUpdate(){
   var Load = {
     chargerModelName : $("input[name=chargerModelName]").val(),
     chargerModelCode : $("input[name=chargerModelCode]").val(),
@@ -146,15 +146,12 @@ function chargerModelInsert(){
     connectorNumber : $("input[name=connectorNumber]").val(),
     rfidUseYn : $("input[name=rfidUseYn]").val(),
     description : $("input[name=description]").val(),
-    useYn: $("select[name=useYn]").val(), // 수정
   };
-//  console.log("[data] : " + JSON.stringify(Load));
-//  alert("[data] : " + JSON.stringify(PayLoad));
    
   var t = sessionStorage.getItem('accessToken');
   $.ajax({    			
-        url: reqURL+"/charger/model/info/create",
-        type: "POST",
+        url: reqURL+"/charger/model/info/update",
+        type: "PUT",
         dataType: "json", 
         data : JSON.stringify(Load), //json 데이터
         contentType: "application/json",
@@ -166,7 +163,10 @@ function chargerModelInsert(){
         },
         success: function(data, textStatus, xhr) {
             console.log("[data] : " + JSON.stringify(data));
-           alert('충전기 모델이 등록이 되었습니다.');
+           if (confirm('충전기 모델이 수정 되었습니다.')) {
+            window.close();  // 현재 창을 닫음
+            window.opener.location.reload();  // 부모 창(원본 창)을 새로고침
+          }
         },
         error: function(error) {
             alert('실패: ' + error.responseText);

@@ -25,23 +25,36 @@
       </head>
       
       <body style="background-color: rgb(255, 255, 255)">
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-          <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Egtronics</a>
-          <div class="navbar-nav col-md-1">
-            <a class="nav-link px-3" href="../home/login.html">Sign out</a>
-          </div>
+        <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: white;">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="../main/main.html">
+                <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
+            </a>
+            <div class="navbar-nav">
+                <button type="button" class="btn-logout">
+                    <a class="nav-link" href="../home/login.html" style="color:black">
+                        <i class="fas fa-sign-out-alt"></i> 로그아웃
+                    </a>
+                </button>
+            </div>
         </header>
         
         <div class="container-fluid">
-          <nav id="navMenu" class="col-md-2 d-md-block sidebar collapse">
-            <p>   
-          </nav>
+            <nav id="navMenu" class="side-bar">
+                <section class="side-bar__icon-box">
+                    <section class="side-bar__icon-1" id="toggle-sidebar">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </section>
+                </section>
+                <p>
+            </nav>
       
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 class="h2">충전기 단가 관리 화면</h1>
+              <h1 class="h2">충전 요금 관리 화면</h1>
             </div>
-<!--              <div id="gridDiv"></div> -->
+              <div id="gridDiv"></div> 
           </main>
         </div>
       </body>
@@ -49,23 +62,223 @@
 
 <script src="../practice.js"></script>
 <script >
-$(document).ready(function () {
-  let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
-  var navItems  = [];
-  for(var i = 0; i < retrievedArray.length; i ++) {
-    if(retrievedArray[i].permit_r == true && retrievedArray[i].useYn =="Y" )
-    {
-      navItems.push(retrievedArray[i].menuName);
-    }
-  }
-      
-  navItems.forEach(item => {
-      const navLink = document.createElement('a'); // <a> 태그 생성
-      navLink.textContent = item; // 링크 텍스트 설정
-      navLink.href = href_link(item); // href 속성 설정
-      navMenu.appendChild(navLink); 
+   $(document).ready(function() {
+        var t = sessionStorage.getItem('accessToken');
+        var contentData = [];
+
+        // sessionStorage에서 'menuData' 키로 저장된 데이터를 가져와 JSON 객체로 파싱
+        let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
+        console.log(retrievedArray);
+
+        // 필터링된 네비게이션 항목을 저장할 빈 배열 선언
+        var navItems = [];
+        // retrievedArray의 각 항목을 순회
+        for (var i = 0; i < retrievedArray.length; i++) {
+            // 항목의 permit_r가 true이고 useYn이 "Y"인지 확인
+            if (retrievedArray[i].permit_r === true && retrievedArray[i].useYn === "Y") {
+                // 조건을 만족하는 항목의 menuName을 navItems 배열에 추가
+                navItems.push(retrievedArray[i].menuName);
+            }
+        }
+        console.log(navItems);
+
+        // navItems 배열의 각 항목에 대해 반복
+        navItems.forEach((item, index) => {
+            // navItems[6], [7]을 건너뛰기 위해 체크
+            if (index === 6 || index === 7) return;
+
+            // navItems[16]~[24]를 건너뛰기 위해 체크
+            if (index >= 16 && index <= 22) return;
+
+            const ul = document.createElement('ul');
+            const li1 = document.createElement('li');
+            const a1 = document.createElement('a');
+            a1.textContent = item; // 링크 텍스트 설정
+            a1.href = href_link(item); // href 속성 설정
+            li1.appendChild(a1);
+
+            // navItems[5]에 대해 2차 메뉴 생성
+            if (index === 5) {
+                const nestedUl1 = document.createElement('ul');
+
+                // 2차 메뉴 항목 추가
+                [6, 7].forEach(subIndex => {
+                    const nestedLi = document.createElement('li');
+                    const nestedA = document.createElement('a');
+                    nestedA.textContent = navItems[subIndex]; // 링크 텍스트 설정
+                    nestedA.href = href_link(navItems[subIndex]); // href 속성 설정
+                    nestedLi.appendChild(nestedA);
+                    nestedUl1.appendChild(nestedLi);
+                });
+
+                li1.appendChild(nestedUl1);
+            }
+
+            // navItems[15]에 대해 2차 메뉴 생성
+            if (index === 15) {
+                const nestedUl1 = document.createElement('ul');
+
+                for (let i = 16; i <= 22; i++) {
+                    const nestedLi = document.createElement('li');
+                    const nestedA = document.createElement('a');
+                    nestedA.textContent = navItems[i]; // 링크 텍스트 설정
+                    nestedA.href = href_link(navItems[i]); // href 속성 설정
+                    nestedLi.appendChild(nestedA);
+                    nestedUl1.appendChild(nestedLi);
+                }
+
+                li1.appendChild(nestedUl1);
+            }
+
+            ul.appendChild(li1);
+            navMenu.appendChild(ul);
+        });
+
+    $.ajax({    			
+        url: reqURL+"/cost/info/list",
+        type: "GET",
+        dataType: "json", 
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","9");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+            
+            var content =  data.payload;
+            console.log(content);
+            for(var i = 0; i < content.length; i ++) {
+                var test = 
+                {
+                  companyCode : content[i].companyCode ,
+                  hour0 : content[i].hour0 ,
+                  hour1 : content[i].hour1 ,
+                  hour2 : content[i].hour2 ,
+                  hour3 : content[i].hour3 ,
+                  hour4 : content[i].hour4 ,
+                  hour5 : content[i].hour5 ,
+                  hour6 : content[i].hour6 ,
+                  hour7 : content[i].hour7 ,
+                  hour8 : content[i].hour8 ,
+                  hour9 : content[i].hour9 ,
+                  hour10 : content[i].hour10 ,
+                  hour11 : content[i].hour11 ,
+                  hour12 : content[i].hour12 ,
+                  hour13 : content[i].hour13 ,
+                  hour14 : content[i].hour14 ,
+                  hour15 : content[i].hour15 ,
+                  hour16 : content[i].hour16 ,
+                  hour17 : content[i].hour17 ,
+                  hour18 : content[i].hour18,
+                  hour19 : content[i].hour19 ,
+                  hour20 : content[i].hour20 ,
+                  hour21 : content[i].hour21 ,
+                  hour22 : content[i].hour22 ,
+                  hour23 : content[i].hour23 ,
+                  modDate : content[i].modDate ,
+                  modUserId : content[i].modUserId ,
+                  regDate : content[i].regDate ,
+                  regUserId : content[i].regUserId ,
+                }
+                contentData.push(test);
+            }
+            $("#gridDiv").kendoGrid({
+              dataBound: dataBound,
+              columnMenu: {
+                    filterable: false
+                },
+              dataSource: {
+                data:contentData,
+                pageSize: 10,
+                pageable: {
+                  input: true,
+                },
+              filterable: true,
+              editable: true,
+              },
+              noRecords: true,
+              scrollable: true,
+              sortable: true,
+              batch: true,
+              selectable: true,
+              pageable:true,
+            toolbar: [
+                { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnCostInsert()"></span>&nbsp충전 요금 등록</a>' }, //&nbsp;
+                { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnCostUpdate()"></span>&nbsp충전 요금 수정</a>' } //&nbsp;
+            ],
+            columns: [
+            { field: 'companyCode', title:  '회사 코드', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120 },
+            { field: 'hour0', title: '00시 충전 요금', width: 150 },
+            { field: 'hour1', title: '01시 충전 요금', width: 150 },
+            { field: 'hour2', title: '02시 충전 요금', width: 150 },
+            { field: 'hour3', title: '03시 충전 요금', width: 150 },
+            { field: 'hour4', title: '04시 충전 요금', width: 150 },
+            { field: 'hour5', title: '05시 충전 요금', width: 150 },
+            { field: 'hour6', title: '06시 충전 요금', width: 150 },
+            { field: 'hour7', title: '07시 충전 요금', width: 150 },
+            { field: 'hour8', title: '08시 충전 요금', width: 150 },
+            { field: 'hour9', title: '09시 충전 요금', width: 150 },
+            { field: 'hour10', title: '10시 충전 요금', width: 150 },
+            { field: 'hour11', title: '11시 충전 요금', width: 150 },
+            { field: 'hour12', title: '12시 충전 요금', width: 150 },
+            { field: 'hour13', title: '13시 충전 요금', width: 150 },
+            { field: 'hour14', title: '14시 충전 요금', width: 150 },
+            { field: 'hour15', title: '15시 충전 요금', width: 150 },
+            { field: 'hour16', title: '16시 충전 요금', width: 150 },
+            { field: 'hour17', title: '17시 충전 요금', width: 150 },
+            { field: 'hour18', title: '18시 충전 요금', width: 150 },
+            { field: 'hour19', title: '19시 충전 요금', width: 150 },
+            { field: 'hour20', title: '20시 충전 요금', width: 150 },
+            { field: 'hour21', title: '21시 충전 요금', width: 150 },
+            { field: 'hour22', title: '22시 충전 요금', width: 150 },
+            { field: 'hour23', title: '23시 충전 요금', width: 150 },
+            { field: 'regDate ', title:  '등록 일자', width: 200 },
+            { field: 'regUserId ', title:  '등록자',width: 120 },
+            { field: 'modDate ', title:  '수정 일자',  width: 200 },
+            { field: 'modUserId ', title:  '수정자', width: 120 },
+            ],
+            });
+            
+        },
+        error: function(error) {
+            alert('실패: ' + error.responseText);
+        }
     });
 });
+
+function btnCostInsert(){
+  window.open("chargerCostInsert.html", "충전 요금 등록", "width=600, height=1500, top=150, left=200");
+}
+
+function btnCostUpdate(){
+  Code_Check();
+  var data = sessionStorage.getItem('companyCode');
+  if(data == "" ||data == null){
+    alert('수정할 곳을 선택하여 주세요');
+  }
+  else{
+    window.open("chargerCostUpdate.html", "충전 요금 수정", "width=600, height=1500, top=150, left=200");
+  }
+  
+}
+
+
+function Code_Check(){
+  var grid = $("#gridDiv").data("kendoGrid");
+  var rows = grid.select();
+  var selectedIds = [];
+
+  $(rows).each(function(){
+    var dataItem = grid.dataItem(this);
+    selectedIds.push(dataItem);
+    for(var i in selectedIds) {
+      sessionStorage.setItem('companyCode', selectedIds[i].companyCode);
+      //console.log("[충전 수정] : " + selectedIds[i].companyCode);
+    }
+  });
+}
 
 function dataBound(e) {
     var _width = 1800;
@@ -74,4 +287,38 @@ function dataBound(e) {
     grid_data.thead.closest('table').width(_width);
     grid_data.tbody.closest('table').width(_width);
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.side-bar');
+    const toggleIcon = document.getElementById('toggle-sidebar');
+    const mainContent = document.querySelector('main'); // 메인 콘텐츠 선택
+    let isSidebarVisible = false; // 사이드바 상태를 저장할 변수
+    mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 초기 상태에서 메인 콘텐츠 너비 조정
+
+    if (isSidebarVisible) {
+            // 사이드바 숨기기
+            sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
+            mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 메인 콘텐츠 넓이 늘리기
+            
+        } else {
+            // 사이드바 보이기
+            sidebar.style.transform = 'translate(0, 0)';
+            mainContent.style.width = '88%'; // 메인 콘텐츠 넓이 원래대로
+            isSidebarVisible = true;
+        }
+
+    toggleIcon.addEventListener('click', function() {
+        if (isSidebarVisible) {
+            // 사이드바 숨기기
+            sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
+            mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 메인 콘텐츠 넓이 늘리기
+            isSidebarVisible = false;
+        } else {
+            // 사이드바 보이기
+            sidebar.style.transform = 'translate(0, 0)';
+            mainContent.style.width = '88%'; // 메인 콘텐츠 넓이 원래대로
+            isSidebarVisible = true;
+        }
+        localStorage.setItem('isSidebarVisible', isSidebarVisible); // 상태 저장
+    });
+});
 </script>

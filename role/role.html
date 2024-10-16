@@ -216,7 +216,7 @@
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 140
+                            width: 120
                         },
                         {
                             field: 'regDate',
@@ -227,7 +227,7 @@
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 200,
+                            width: 160,
                             template: "#= kendo.toString(kendo.parseDate(regDate), 'yyyy-MM-dd HH:mm') #"
                         },
                         {
@@ -250,7 +250,7 @@
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 200,
+                            width: 160,
                             template: "#= kendo.toString(kendo.parseDate(modDate), 'yyyy-MM-dd HH:mm') #"
                         },
                         {
@@ -273,7 +273,7 @@
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 300
+                            width: 850
                         },
                     ],
                 });
@@ -296,7 +296,7 @@
         if (data == "" || data == null) {
             alert('수정할 곳을 선택하여 주세요');
         } else {
-            window.open("RoleUpdate.html", "Role 변경", "width=600, height=350, top=150, left=200");
+            window.open("RoleUpdate.html", "Role 변경", "width=600, height=450, top=150, left=200");
         }
     }
 
@@ -355,4 +355,5 @@
         localStorage.setItem('isSidebarVisible', isSidebarVisible); // 상태 저장
     });
 });
+
 </script>

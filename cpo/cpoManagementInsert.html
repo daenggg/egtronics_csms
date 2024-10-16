@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="generator" content="">
+        <title>CPO 등록</title>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
+        <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="../kendo/kendo.all.min.js"></script>
+        <script src="../kendo/jszip.min.js"></script>
+        <script src="../kendo/cultures/kendo.culture.ko-KR.min.js"></script>
+        <!-- Bootstrap core CSS -->
+      <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+
+          #input-select {
+            width :400px;
+            height :40px;
+            font-size:12px;
+          }
+    
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+        </style>
+        <link href="../dashboard.css" rel="stylesheet">
+      </head>
+      
+      <body style="background-color: rgb(255, 255, 255)">
+        <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 shadow">
+            <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
+        </header>
+        <div class="card">
+          <div class="card-body">
+            
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="companyName" class="form-control margin-right10 margin-left30" readonly="" value="회사이름" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="companyName" type="text" class="form-control input-width" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="회사 코드" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="companyNumber" class="form-control margin-right10 margin-left30" readonly="" value="사업자등록번호" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="companyNumber" type="text" class="form-control input-width" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="companyAddress" class="form-control margin-right10 margin-left30" readonly="" value="회사 주소" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="companyAddress" type="text" class="form-control input-width" value="" placeholder="" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+        <div class="input-group-prepend">
+        <input type="text" id="companyRepresentative" class="form-control margin-right10 margin-left30" readonly="" value="대표자" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+        </div>
+        <div class="input-group-prepend">
+        <input id="input-select" name="companyRepresentative" type="text" class="form-control input-width" value="" placeholder="" />
+        </div>
+        </div>
+        <p></p>
+
+        <div class="input-group"> 
+          <div class="input-group-prepend">
+          <input type="text" id="companyTel" class="form-control margin-right10 margin-left30" readonly="" value="전화번호" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+          </div>
+          <div class="input-group-prepend">
+          <input id="input-select" name="companyTel" type="text" class="form-control input-width" value="" placeholder="" />
+          </div>
+          </div>
+          <p></p>
+
+        <div class="input-group"> 
+        <div class="input-group-prepend">
+        <input type="text" id="companyFax" class="form-control margin-right10 margin-left30" readonly="" value="FAX" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+        </div>
+        <div class="input-group-prepend">
+        <input id="input-select" name="companyFax" type="text" class="form-control input-width" value="" placeholder="" />
+        </div>
+        </div>
+        <p></p>
+
+        <div class="input-group"> 
+            <div class="input-group-prepend">
+            <input type="text" id="companyEmail" class="form-control margin-right10 margin-left30" readonly="" value="Email" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+            </div>
+            <div class="input-group-prepend">
+            <input id="input-select" name="companyEmail" type="text" class="form-control input-width" value="" placeholder="" />
+            </div>
+            </div>
+            <p></p>
+
+        <div class="input-group"> 
+            <div class="input-group-prepend">
+            <input type="text" id="paymentApiYn" class="form-control margin-right10 margin-left30" readonly="" value="결제 사용 유무" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+            </div>
+            <div class="input-group-prepend">
+            <input id="input-select" name="paymentApiYn" type="text" class="form-control input-width" value="1" placeholder="" />
+            </div>
+            </div>
+            <p></p>
+
+        <div class="input-group"> 
+            <div class="input-group-prepend">
+            <input type="text" id="useYn" class="form-control margin-right10 margin-left30" readonly="" value="사용 유무" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+            </div>
+            <div class="input-group-prepend">
+            <input id="input-select" name="useYn" type="text" class="form-control input-width" value="" placeholder="" />
+            </div>
+            </div>
+            <p></p>
+
+            <div class="input-group"> 
+                <div class="input-group-prepend">
+                <input type="text" id="description" class="form-control margin-right10 margin-left30" readonly="" value="비고" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                </div>
+                <div class="input-group-prepend">
+                <input id="input-select" name="description" type="text" class="form-control input-width" value="" placeholder="" />
+                </div>
+                </div>
+                <p></p>
+
+        <div class="input-group d-flex justify-content-center">
+            <button class="btn btn-primary" onclick="btncpoInsert()">등록</button>
+            <button class="btn btn-secondary ms-2" onclick="window.close()">취소</button>
+        </div>
+        
+          </div>
+        </div>
+    </body>
+</html>
+
+<script src="../practice.js"></script>
+<script >
+function btncpoInsert(){
+  var Load = {
+
+    companyName : $("input[name=companyName]").val(),
+    companyCode : $("input[name=companyCode]").val(),
+    companyNumber : $("input[name=companyNumber]").val(),
+    companyAddress : $("input[name=companyAddress]").val(),
+    companyRepresentative : $("input[name=companyRepresentative]").val(),
+    companyTel : $("input[name=companyTel]").val(),
+    companyFax : $("input[name=companyFax]").val(),
+    companyEmail : $("input[name=companyEmail]").val(),
+    paymentApiYn : $("input[name=paymentApiYn]").val(),
+    useYn : "Y",
+    description : $("input[name=description]").val(),
+  };
+   
+  var t = sessionStorage.getItem('accessToken');
+  $.ajax({    			
+        url: reqURL+"/company/info/create",
+        type: "POST",
+        dataType: "json", 
+        data : JSON.stringify(Load), //json 데이터
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","9");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+            //console.log("[data] : " + JSON.stringify(data));
+           alert('CPO가 등록이 되었습니다.');
+           window.close();
+        },
+        error: function(error) {
+            alert('실패: ' + error.responseText);
+        }
+    });
+}
+</script>
