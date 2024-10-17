@@ -111,6 +111,15 @@ function SOC_JSONformat(value_data)
 {
     return value_data + ' %';
 }
+function USEYN_JSONformat(value_data){
+  if(value_data == "Y"){
+    value_data = "사용" ;
+  }
+  else if(value_data == "N"){
+    value_data = "미사용";
+  }
+  return value_data;
+}
 
 
 
@@ -254,10 +263,10 @@ function href_link(item) {
      case "충전기 모델 관리" :
      href = "../management/chargerModel.html";
      break;
-     case "충전기 단가 등록" :
+     case "충전 요금 등록" :
      href = "../management/chargerCost.html";
      break;
-     case "충전기 단가 설정" :
+     case "충전 요금 설정" :
      href = "";
      break;
      case "충전소 관리" :

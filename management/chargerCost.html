@@ -52,7 +52,7 @@
       
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 class="h2">충전 요금 관리 화면</h1>
+              <h1 class="h2">충전 요금 관리</h1>
             </div>
               <div id="gridDiv"></div> 
           </main>
@@ -64,6 +64,7 @@
 <script >
    $(document).ready(function() {
         var t = sessionStorage.getItem('accessToken');
+        sessionStorage.setItem('companyCode', "");
         var contentData = [];
 
         // sessionStorage에서 'menuData' 키로 저장된 데이터를 가져와 JSON 객체로 파싱
@@ -209,35 +210,33 @@
                 { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnCostUpdate()"></span>&nbsp충전 요금 수정</a>' } //&nbsp;
             ],
             columns: [
-            { field: 'companyCode', title:  '회사 코드', attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120 },
-            { field: 'hour0', title: '00시 충전 요금', width: 150 },
-            { field: 'hour1', title: '01시 충전 요금', width: 150 },
-            { field: 'hour2', title: '02시 충전 요금', width: 150 },
-            { field: 'hour3', title: '03시 충전 요금', width: 150 },
-            { field: 'hour4', title: '04시 충전 요금', width: 150 },
-            { field: 'hour5', title: '05시 충전 요금', width: 150 },
-            { field: 'hour6', title: '06시 충전 요금', width: 150 },
-            { field: 'hour7', title: '07시 충전 요금', width: 150 },
-            { field: 'hour8', title: '08시 충전 요금', width: 150 },
-            { field: 'hour9', title: '09시 충전 요금', width: 150 },
-            { field: 'hour10', title: '10시 충전 요금', width: 150 },
-            { field: 'hour11', title: '11시 충전 요금', width: 150 },
-            { field: 'hour12', title: '12시 충전 요금', width: 150 },
-            { field: 'hour13', title: '13시 충전 요금', width: 150 },
-            { field: 'hour14', title: '14시 충전 요금', width: 150 },
-            { field: 'hour15', title: '15시 충전 요금', width: 150 },
-            { field: 'hour16', title: '16시 충전 요금', width: 150 },
-            { field: 'hour17', title: '17시 충전 요금', width: 150 },
-            { field: 'hour18', title: '18시 충전 요금', width: 150 },
-            { field: 'hour19', title: '19시 충전 요금', width: 150 },
-            { field: 'hour20', title: '20시 충전 요금', width: 150 },
-            { field: 'hour21', title: '21시 충전 요금', width: 150 },
-            { field: 'hour22', title: '22시 충전 요금', width: 150 },
-            { field: 'hour23', title: '23시 충전 요금', width: 150 },
-            { field: 'regDate ', title:  '등록 일자', width: 200 },
-            { field: 'regUserId ', title:  '등록자',width: 120 },
-            { field: 'modDate ', title:  '수정 일자',  width: 200 },
-            { field: 'modUserId ', title:  '수정자', width: 120 },
+            { field: 'companyCode', title: '<strong>회사 코드', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120},
+            { field: 'hour0', title: '<strong>00시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150,}, 
+              { field: 'hour2', title: '<strong>02시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150 ,},
+              { field: 'hour3', title: '<strong>03시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150 , },
+            { field: 'hour4', title: '<strong>04시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150 , },
+            { field: 'hour5', title: '<strong>05시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150 , },
+            { field: 'hour6', title: '<strong>06시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150 , },
+            { field: 'hour7', title: '<strong>07시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150 , },
+            { field: 'hour8', title: '<strong>08시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150 , },
+            { field: 'hour9', title: '<strong>09시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150 , },
+            { field: 'hour10', title: '<strong>10시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150 , },
+            { field: 'hour11', title: '<strong>11시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150, },
+            { field: 'hour12', title: '<strong>12시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150 , },
+            { field: 'hour13', title: '<strong>13시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150, },
+            { field: 'hour14', title: '<strong>14시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150, },
+            { field: 'hour15', title: '<strong>15시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150,},
+            { field: 'hour16', title: '<strong>16시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150, },
+            { field: 'hour17', title: '<strong>17시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150, },
+            { field: 'hour18', title: '<strong>18시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150, },
+            { field: 'hour19', title: '<strong>19시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150, },
+            { field: 'hour21', title: '<strong>21시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150, },
+            { field: 'hour22', title: '<strong>22시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150, },
+            { field: 'hour23', title: '<strong>23시 충전 요금', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150, },
+            { field: 'regDate ', title:  '<strong>등록 일시', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 200, template: "#= kendo.toString(kendo.parseDate(regDate), 'yyyy-MM-dd HH:mm') #" },
+            { field: 'regUserId ', title:  '<strong>등록자',headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 120 },
+            { field: 'modDate ', title:  '<strong>수정 일시', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 200, template: "#= kendo.toString(kendo.parseDate(regDate), 'yyyy-MM-dd HH:mm') #" },
+            { field: 'modUserId ', title:  '<strong>수정자', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120 },
             ],
             });
             

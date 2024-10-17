@@ -151,6 +151,7 @@
                 console.log("[data] : " + JSON.stringify(data));
                 var content = data.payload.content;
                 for (var i = 0; i < content.length; i++) {
+                    var useYN_name = USEYN_JSONformat(content[i].useYn);
                     var test = {
                         stationId: content[i].stationId,
                         stationName: content[i].stationName,
@@ -166,7 +167,7 @@
                         stationGpsX: content[i].stationGpsX,
                         stationGpsY: content[i].stationGpsY,
                         stationContractCapacity: content[i].stationContractCapacity,
-                        useYn: content[i].useYn,
+                        useYn: useYN_name
                     }
                     contentData.push(test);
                 }
@@ -321,7 +322,7 @@
                         },
                         {
                             field: "stationGpsX",
-                            title: "<strong>GPS X",
+                            title: "<strong>경도",
                             headerAttributes: {
                                 style: "text-align: center;"
                             },
@@ -333,7 +334,7 @@
                         },
                         {
                             field: "stationGpsY",
-                            title: "<strong>GPS Y",
+                            title: "<strong>위도",
                             headerAttributes: {
                                 style: "text-align: center;"
                             },

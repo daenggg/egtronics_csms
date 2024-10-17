@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <meta name="generator" content="">
-        <title>CPI ID 수정</title>
+        <title>CPO 수정</title>
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
         <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
@@ -44,59 +44,48 @@
       
       <body style="background-color: rgb(255, 255, 255)">
         <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 shadow">
-          <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
-      </header>
+            <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
+        </header>
         <div class="card">
           <div class="card-body">
             
-            <div class="input-group"> 
-              <div class="input-group-prepend">
-              <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="CPO 코드">
-              </div> 
-              <div class="input-group-prepend">
-              <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="" placeholder="" readonly="" />
-              </div>
-              </div>
-              <p></p>
-              
       <div class="input-group"> 
       <div class="input-group-prepend">
-      <input type="text" id="userId" class="form-control margin-right10 margin-left30" readonly="" value="CPO ID" >
+      <input type="text" id="companyName" class="form-control margin-right10 margin-left30" readonly="" value="회사명" >
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="userId" type="text" class="form-control input-width" value="" placeholder=""  readonly=""/>
-      </div>
-      </div>
-      <p></p>
-
-
-      <div class="input-group"> 
-      <div class="input-group-prepend">
-      <input type="text" id="userName" class="form-control margin-right10 margin-left30" readonly="" value="CPO 이름">
-      </div>
-      <div class="input-group-prepend">
-      <input id="input-select" name="userName" type="text" class="form-control input-width" value="" placeholder="이름을 입력해주세요." />
+      <input id="input-select" name="companyName" type="text" class="form-control input-width" value="" placeholder=""  readonly=""/>
       </div>
       </div>
       <p></p>
 
       <div class="input-group"> 
       <div class="input-group-prepend">
-      <input type="text" id="userMobilePhone" class="form-control margin-right10 margin-left30" readonly="" value="연락처">
+      <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="회사 코드" >
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="userMobilePhone" type="text" class="form-control input-width" value="" placeholder="숫자만 입력해주세요('-'제외)" />
+      <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="" placeholder="" readonly="" />
+      </div>
+      </div>
+      <p></p>
+
+      <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="companyNumber" class="form-control margin-right10 margin-left30" readonly="" value="사업자등록번호" >
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="companyNumber" type="text" class="form-control input-width" value="" placeholder="사업자등록번호를 입력해주세요." />
       </div>
       </div>
       <p></p>
 
       <div class="input-group">
         <div class="input-group-prepend">
-            <input type="text" id="userAddress1" class="form-control margin-right10 margin-left30" readonly value="주소">
+            <input type="text" id="companyAddress" class="form-control margin-right10 margin-left30" readonly value="회사 주소">
         </div>
         <div class="input-group-prepend" style="flex-grow: 1; margin-left: 10px;">
             <div style="display: flex; align-items: center;">
-                <input id="sample6_postcode" class="form-control" placeholder="우편번호" style="width: 200px; height: 40px; border-radius: 5px;" onclick="sample6_execDaumPostcode()" readonly>
+                <input id="sample6_postcode" class="form-control" placeholder="우편번호" style="width: 200px; height: 40px; border-radius: 5px;" readonly onclick="sample6_execDaumPostcode()">
                 <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="height: 40px; background-color: #B7E3E4; color: black; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px; font-weight: bold;">
             </div>
             <input type="text" id="sample6_address" name="userAddress1" class="form-control" placeholder="주소" style="margin-top: 10px; border-radius: 5px; width: 370px;" readonly>
@@ -105,31 +94,87 @@
     </div>
     <p></p>
 
-        <div class="input-group"> 
+      <div class="input-group"> 
         <div class="input-group-prepend">
-        <input type="text" id="userEmail" class="form-control margin-right10 margin-left30" readonly="" value="이메일">
+        <input type="text" id="companyRepresentative" class="form-control margin-right10 margin-left30" readonly="" value="대표자" >
         </div>
         <div class="input-group-prepend">
-        <input id="input-select" name="userEmail" type="text" class="form-control input-width" value="" placeholder="이메일을 입력해주세요." />
+        <input id="input-select" name="companyRepresentative" type="text" class="form-control input-width" value="" placeholder="대표자를 입력해주세요." />
+        </div>
+        </div>
+        <p></p>
+
+        <div class="input-group"> 
+          <div class="input-group-prepend">
+          <input type="text" id="companyTel" class="form-control margin-right10 margin-left30" readonly="" value="전화번호" >
+          </div>
+          <div class="input-group-prepend">
+          <input id="input-select" name="companyTel" type="text" class="form-control input-width" value="" placeholder="숫자만 입력해주세요('-'제외)" />
+          </div>
+          </div>
+          <p></p>
+
+        <div class="input-group"> 
+        <div class="input-group-prepend">
+        <input type="text" id="companyFax" class="form-control margin-right10 margin-left30" readonly="" value="FAX" >
+        </div>
+        <div class="input-group-prepend">
+        <input id="input-select" name="companyFax" type="text" class="form-control input-width" value="" placeholder="숫자만 입력해주세요('-'제외)" />
         </div>
         </div>
         <p></p>
 
         <div class="input-group"> 
             <div class="input-group-prepend">
-            <input type="text" id="regUserId" class="form-control margin-right10 margin-left30" readonly="" value="등록자">
+            <input type="text" id="companyEmail" class="form-control margin-right10 margin-left30" readonly="" value="Email" >
             </div>
             <div class="input-group-prepend">
-            <input id="input-select" name="regUserId" type="text" class="form-control input-width" value="" placeholder="예: admin" />
+            <input id="input-select" name="companyEmail" type="text" class="form-control input-width" value="" placeholder="이메일을 입력해주세요." />
             </div>
             </div>
             <p></p>
 
-        <div class="input-group d-flex justify-content-center">
-            <button class="btn btn-primary" onclick="btncpoIDUpdate()" id="insertButton">수정</button>
-            <button class="btn btn-secondary ms-2" onclick="window.close()" id="cancelButton">취소</button>
-        </div>
-        
+        <div class="input-group"> 
+            <div class="input-group-prepend">
+            <input type="text" id="paymentApiYn" class="form-control margin-right10 margin-left30" readonly="" value="사용 유무" >
+            </div>
+            <div class="custom-select-wrapper">
+                <select name="paymentApiYn" id="useYn1" class="form-control input-width custom-select">
+                    <option value="answer-use">사용</option>
+                    <option value="answer-not-use">미사용</option>
+                </select>
+            </div>
+            </div>
+            <p></p>
+
+            <div class="input-group"> 
+                <div class="input-group-prepend">
+                <input type="text" id="useYn" class="form-control margin-right10 margin-left30" readonly="" value="결제API 사용 유무" >
+                </div>
+                <div class="custom-select-wrapper">
+                    <select name="useYn" id="useYn1" class="form-control input-width custom-select">
+                        <option value="answer-use">사용</option>
+                        <option value="answer-not-use">미사용</option>
+                    </select>
+                </div>
+                </div>
+                <p></p>
+
+            <div class="input-group"> 
+                <div class="input-group-prepend">
+                <input type="text" id="description" class="form-control margin-right10 margin-left30" readonly="" value="비고" >
+                </div>
+                <div class="input-group-prepend">
+                    <textarea rows = "4" cols ="30" id="input-select" name="description" class="form-control" value="" placeholder="" style="height: 100px;"></textarea>
+                </div>
+                </div>
+                <p></p>
+
+            <div class="input-group d-flex justify-content-center">
+                <button class="btn btn-primary" onclick="btncpoUpdate()" id="insertButton">수정</button>
+                <button class="btn btn-secondary ms-2" onclick="window.close()" id="cancelButton">취소</button>
+            </div>
+
           </div>
         </div>
     </body>
@@ -165,26 +210,30 @@
 
 <script src="../practice.js"></script>
 <script >
-  var sCPOId = sessionStorage.getItem('CPOId'); 
-  $('input[name=userId]').val(sCPOId);
+  var sCompanyName = sessionStorage.getItem('companyName'); 
+  $('input[name=companyName]').val(sCompanyName);
 var sCompanyCode = sessionStorage.getItem('companyCode'); 
 $('input[name=companyCode]').val(sCompanyCode);
 
-function btncpoIDUpdate(){
+function btncpoUpdate(){
   var Load = {
-    userId : $("input[name=userId]").val(),
-    userName : $("input[name=userName]").val(),
-    companyCode: $("input[name=companyCode]").val(),
-    userMobilePhone : $("input[name=userMobilePhone]").val(),
-    userAddress1 : $("input[name=userAddress1]").val(),
-    userAddress2 : $("input[name=userAddress2]").val(),
-    userEmail : $("input[name=userEmail]").val(),
-    regUserId : $("input[name=regUserId]").val(),
+    companyName : $("input[name=companyName]").val(),
+    companyCode : $("input[name=companyCode]").val(),
+    companyNumber : $("input[name=companyNumber]").val(),
+    companyAddress : $("input[name=userAddress1]").val() + " " + $("input[name=userAddress2]").val(), //주소 + 상세주소 합치기
+    companyRepresentative : $("input[name=companyRepresentative]").val(),
+    companyTel : $("input[name=companyTel]").val(),
+    companyFax : $("input[name=companyFax]").val(),
+    companyEmail : $("input[name=companyEmail]").val(),
+    useYn : $("select[name=useYn]").val(), //input -> select수정
+    paymentApiYn : $("select[name=paymentApiYn]").val(),//input -> select수정
+    description : $("textarea[name=description]").val(), //input -> textarea 수정
+    
   };
    
   var t = sessionStorage.getItem('accessToken');
   $.ajax({    			
-        url: reqURL+"/user/info/update",
+        url: reqURL+"/company/info/update",
         type: "PUT",
         dataType: "json", 
         data : JSON.stringify(Load), //json 데이터
@@ -197,10 +246,10 @@ function btncpoIDUpdate(){
         },
         success: function(data, textStatus, xhr) {
             //console.log("[data] : " + JSON.stringify(data));
-            if (confirm('CPO ID가 수정되었습니다.')) {
+            if (confirm('CPO 수정되었습니다.')) {
                     window.close();  // 현재 창을 닫음
                     window.opener.location.reload();  // 부모 창(원본 창)을 새로고침
-              }
+                }
         },
         error: function(error) {
             alert('실패: ' + error.responseText);

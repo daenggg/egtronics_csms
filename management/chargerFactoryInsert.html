@@ -52,7 +52,7 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="제조 공장 이름" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="chargerFactoryName"class="form-control margin-right10 margin-left30" readonly="" value="제조 공장 이름">
                 </div>
                 <div class="input-group-prepend">
                     <input id="input-select" name="chargerFactoryName" type="text" class="form-control input-width" value="" placeholder="예: 화신전자" />
@@ -60,16 +60,17 @@
             </div>
             <p></p>
 
+
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="chargerFactoryAddress" class="form-control margin-right10 margin-left30" readonly value="공장 주소" style="width: 150px; height: 40px; background-color: cadetblue; text-align: center; color: white; border: none; border-radius: 5px;">
+                    <input type="text" id="chargerFactoryAddress" class="form-control margin-right10 margin-left30" readonly value="공장 주소">
                 </div>
                 <div class="input-group-prepend" style="flex-grow: 1; margin-left: 10px;">
                     <div style="display: flex; align-items: center;">
-                        <input id="sample6_postcode" class="form-control" placeholder="우편번호" style="width: 200px; height: 40px; border-radius: 5px;">
-                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="height: 40px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px;">
+                        <input id="sample6_postcode" class="form-control" placeholder="우편번호" style="width: 200px; height: 40px; border-radius: 5px;" readonly onclick="sample6_execDaumPostcode()">
+                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="height: 40px; background-color: #B7E3E4; color: black; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px; font-weight: bold;">
                     </div>
-                    <input type="text" id="sample6_address" name="userAddress1" class="form-control" placeholder="주소" style="margin-top: 10px; border-radius: 5px; width: 370px;">
+                    <input type="text" id="sample6_address" name="userAddress1" class="form-control" placeholder="주소" style="margin-top: 10px; border-radius: 5px; width: 370px;" readonly>
                     <input type="text" id="sample6_detailAddress" name="userAddress2" class="form-control" placeholder="상세주소" style="margin-top: 10px; border-radius: 5px; width: 370px;">
                 </div>
             </div>
@@ -77,7 +78,7 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="chargerFactoryCode" class="form-control margin-right10 margin-left30" readonly="" value="공장 코드" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="chargerFactoryCode" class="form-control margin-right10 margin-left30" readonly="" value="공장 코드" >
                 </div>
                 <div class="input-group-prepend">
                     <input id="input-select" name="chargerFactoryCode" type="text" class="form-control input-width" value="" placeholder="예: hwashin" />
@@ -87,17 +88,17 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="chargerFactoryTel" class="form-control margin-right10 margin-left30" readonly="" value="공장 전화번호" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="chargerFactoryTel" class="form-control margin-right10 margin-left30" readonly="" value="공장 전화번호" >
                 </div>
                 <div class="input-group-prepend">
-                    <input id="input-select" name="chargerFactoryTel" type="text" class="form-control input-width" value="" placeholder="예: 010-1234-1234('-'포함)" />
+                    <input id="input-select" name="chargerFactoryTel" type="text" class="form-control input-width" value="" placeholder="숫자만 입력해주세요('-'제외)" />
                 </div>
             </div>
             <p></p>
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="chargerFactoryManager" class="form-control margin-right10 margin-left30" readonly="" value="담당자 이름" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="chargerFactoryManager" class="form-control margin-right10 margin-left30" readonly="" value="담당자 이름" >
                 </div>
                 <div class="input-group-prepend">
                     <input id="input-select" name="chargerFactoryManager" type="text" class="form-control input-width" value="" placeholder="예: 홍길동" />
@@ -107,17 +108,17 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="chargerFactoryManagerTel" class="form-control margin-right10 margin-left30" readonly="" value="담당자 전화번호" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="chargerFactoryManagerTel" class="form-control margin-right10 margin-left30" readonly="" value="담당자 전화번호" >
                 </div>
                 <div class="input-group-prepend">
-                    <input id="input-select" name="chargerFactoryManagerTel" type="text" class="form-control input-width" value="" placeholder="예: 010-1234-1234('-포함')" />
+                    <input id="input-select" name="chargerFactoryManagerTel" type="text" class="form-control input-width" value="" placeholder="숫자만 입력해주세요('-'제외)" />
                 </div>
             </div>
             <p></p>
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="chargerFactoryManagerEmail" class="form-control margin-right10 margin-left30" readonly="" value="담당자 메일" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="chargerFactoryManagerEmail" class="form-control margin-right10 margin-left30" readonly="" value="담당자 메일" >
                 </div>
                 <div class="input-group-prepend">
                     <input id="input-select" name="chargerFactoryManagerEmail" type="text" class="form-control input-width" value="" placeholder="예: egtn1234@egtronics.co.kr" />
@@ -127,17 +128,17 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="description" class="form-control margin-right10 margin-left30" readonly="" value="비고" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="description" class="form-control margin-right10 margin-left30" readonly="" value="비고">
                 </div>
                 <div class="input-group-prepend">
-                    <input id="input-select" name="description" type="text" class="form-control input-width" value="" placeholder="" />
+                    <textarea rows = "4" cols ="30" id="input-select" name="description" class="form-control" value="" placeholder="" style="height: 100px;"></textarea>
                 </div>
             </div>
             <p></p>
 
             <div class="input-group d-flex justify-content-center">
-                <button class="btn btn-primary" style="font-weight: bold; color: black;" onclick="btnchargerFactoryInsert()">등록</button>
-                <button class="btn btn-secondary ms-2" style="font-weight: bold; color: black;" onclick="window.close()">취소</button>
+                <button class="btn btn-primary" onclick="btnchargerFactoryInsert()" id="insertButton">등록</button>
+                <button class="btn btn-secondary ms-2" onclick="window.close()" id="cancelButton">취소</button>
             </div>
         </div>
     </div>
@@ -151,20 +152,16 @@
     function btnchargerFactoryInsert() {
         var Load = {
             chargerFactoryName: $("input[name=chargerFactoryName]").val(),
-            chargerFactoryAddress: $("input[name=userAddress1]").val(),
+            chargerFactoryAddress: $("input[name=userAddress1]").val() + " " + $("input[name=userAddress2]").val(), //주소 + 상세주소 합치기
             chargerFactoryCode: $("input[name=chargerFactoryCode]").val(),
             chargerFactoryTel: $("input[name=chargerFactoryTel]").val(),
             chargerFactoryManager: $("input[name=chargerFactoryManager]").val(),
             chargerFactoryManagerTel: $("input[name=chargerFactoryManagerTel]").val(),
             chargerFactoryManagerEmail: $("input[name=chargerFactoryManagerEmail]").val(),
-            description: $("input[name=description]").val(),
+            description: $("textarea[name=description]").val(),
             useYn: "Y"
         };
 
-        if (!chargerFactoryTel.includes('-') && !chargerFactoryManagerTel.includes('-')) {
-        alert('전화번호는 "-" 기호를 포함해야 합니다. 예: 010-1234-1234');
-        return; // 함수를 종료
-        }
         //  console.log("[data] : " + JSON.stringify(Load));
         //  alert("[data] : " + JSON.stringify(PayLoad));
 
@@ -183,8 +180,10 @@
             },
             success: function(data, textStatus, xhr) {
                 console.log("[data] : " + JSON.stringify(data));
-                alert('제조 공장이 등록 되었습니다.');
-                close();
+                if (confirm('제조공장이 등록되었습니다.')) {
+                    window.close();  // 현재 창을 닫음
+                    window.opener.location.reload();  // 부모 창(원본 창)을 새로고침
+                }
             },
             error: function(error) {
                 alert('실패: ' + error.responseText);

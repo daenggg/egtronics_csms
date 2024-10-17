@@ -187,14 +187,9 @@
                     batch: true,
                     selectable: true,
                     pageable: true,
-                    toolbar: [{
-                            text: "select",
-                            template: '<a class="k-button" href="\\#" onclick="return btnFactoryInsert()"></span>&nbsp제조 공장 등록</a>'
-                        }, //&nbsp;
-                        {
-                            text: "select",
-                            template: '<a class="k-button" href="\\#" onclick="return btnFactoryUpdate()"></span>&nbsp제조 공장 수정</a>'
-                        } //&nbsp;
+                    toolbar: [
+                    { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnFactoryInsert()"></span>&nbsp제조 공장 등록</a>' }, //&nbsp;
+                    { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnFactoryUpdate()"></span>&nbsp제조 공장 수정</a>' } //&nbsp;
                     ],
                     columns: [{
                             field: 'chargerFactoryName',
@@ -206,7 +201,7 @@
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 170
+                            width: 140
                         },
                         {
                             field: 'chargerFactoryAddress',
@@ -230,7 +225,7 @@
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 130
+                            width: 120
                         },
                         {
                             field: 'chargerFactoryTel',
@@ -242,7 +237,7 @@
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 140
+                            width: 150
                         },
                         {
                             field: 'chargerFactoryManager',
@@ -254,7 +249,7 @@
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 130
+                            width: 120
                         },
                         {
                             field: 'chargerFactoryManagerTel',
@@ -266,7 +261,7 @@
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 140
+                            width: 150
                         },
                         {
                             field: 'chargerFactoryManagerEmail',
@@ -278,7 +273,7 @@
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 170
+                            width: 150
                         },
                         {
                             field: 'useYn',
@@ -290,7 +285,7 @@
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 120
+                            width: 110
                         },
                         {
                             field: 'description',
@@ -302,6 +297,7 @@
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
+                            width: 850
                         },
                     ],
                 });
@@ -318,7 +314,7 @@
     }
 
     function btnFactoryUpdate() {
-        Station_Check();
+        Charger_Check();
         var data = sessionStorage.getItem('chargerFactoryCode');
         if (data == "" || data == null) {
             alert('수정할 곳을 선택하여 주세요');

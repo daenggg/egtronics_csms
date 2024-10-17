@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <meta name="generator" content="">
-        <title>회원 등록</title>
+        <title>회원 수정</title>
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js" ></script>
         <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
@@ -44,8 +44,8 @@
       
       <body style="background-color: rgb(255, 255, 255)">
         <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 shadow">
-            <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
-        </header>
+          <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
+      </header>
         <div class="card">
           <div class="card-body">
             
@@ -54,30 +54,20 @@
       <input type="text" id="id" class="form-control margin-right10 margin-left30" readonly="" value="회원 ID">
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="id" type="text" class="form-control input-width" value="" placeholder="ID를 입력해주세요." />
+      <input id="input-select" name="id" type="text" class="form-control input-width" value="" placeholder=""readonly="" />
       </div>
       </div>
       <p></p>
 
       <div class="input-group"> 
-      <div class="input-group-prepend">
-      <input type="text" id="password" class="form-control margin-right10 margin-left30" readonly="" value="회원 PW" >
-      </div>
-      <div class="input-group-prepend">
-      <input id="input-select" name="password" type="text" class="form-control input-width" value="" placeholder="패스워드를 입력해주세요." />
-      </div>
-      </div>
-      <p></p>
-
-      <div class="input-group"> 
-      <div class="input-group-prepend">
-      <input type="text" id="name" class="form-control margin-right10 margin-left30" readonly="" value="회원 이름" >
-      </div>
-      <div class="input-group-prepend">
-      <input id="input-select" name="name" type="text" class="form-control input-width" value="" placeholder="이름을 입력해주세요." />
-      </div>
-      </div>
-      <p></p>
+        <div class="input-group-prepend">
+        <input type="text" id="name" class="form-control margin-right10 margin-left30" readonly="" value="회원 이름">
+        </div>
+        <div class="input-group-prepend">
+        <input id="input-select" name="name" type="text" class="form-control input-width" value="" placeholder=""readonly="" />
+        </div>
+        </div>
+        <p></p>
 
     <div class="input-group"> 
         <div class="input-group-prepend">
@@ -98,22 +88,45 @@
         </div>
         </div>
         <p></p>
+
+        <div class="input-group"> 
+          <div class="input-group-prepend">
+          <input type="text" id="grade" class="form-control margin-right10 margin-left30" readonly="" value="회원 등급" >
+          </div>
+          <div class="input-group-prepend">
+          <input id="input-select" name="grade" type="text" class="form-control input-width" value="" placeholder="" />
+          </div>
+          </div>
+          <p></p>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+                <input type="text" id="useYn" class="form-control margin-right10 margin-left30" readonly="" value="사용 유무" >
+            </div>
+            <div class="custom-select-wrapper">
+                <select name="useYn" id="useYn1" class="form-control input-width custom-select">
+                    <option value="answer-use">사용</option>
+                    <option value="answer-not-use">미사용</option>
+                </select>
+            </div>
+        </div>
+        <p></p>
                
         <div class="input-group"> 
             <div class="input-group-prepend">
-            <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="사업자코드">
+            <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="사업자코드" >
             </div>
             <div class="input-group-prepend">
-            <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="" placeholder="사업자 코드를 입력해주세요." />
+            <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="" placeholder="" />
             </div>
             </div>
             <p></p>
 
-                
                 <div class="input-group d-flex justify-content-center">
-                    <button class="btn btn-primary" id="insertButton" onclick="btnMemberInsert()">등록</button>
-                    <button class="btn btn-secondary" id="cancelButton" onclick="window.close()">취소</button>
-                </div>
+                  <button class="btn btn-primary" id="insertButton" onclick="btnMemberUpdate()">수정</button>
+                  <button class="btn btn-secondary" id="cancelButton" onclick="window.close()">취소</button>
+              </div>
+
           </div>
         </div>
         </body>
@@ -121,26 +134,26 @@
 
 <script src="../practice.js"></script>
 <script >
-function btnMemberInsert(){
+    var sMemberId = sessionStorage.getItem('MemberId'); 
+  $('input[name=id]').val(sMemberId);
+var sMemberName = sessionStorage.getItem('MemberName'); 
+$('input[name=name]').val(sMemberName);
+
+function btnMemberUpdate(){
   var Load = {
     id : $("input[name=id]").val(),
-    password : $("input[name=password]").val(),
     name : $("input[name=name]").val(),
     email : $("input[name=email]").val(),
     mobile : $("input[name=mobile]").val(),
     companyCode : $("input[name=companyCode]").val(),
-    useYn: "Y",
-    deleteYn: "N",
-    loginYn: "N",
-    socialYn: "N",
+    grade: $("input[name=grade]").val(),
+    useYn: $("input[name=useYn]").val(),
   };
-//  console.log("[data] : " + JSON.stringify(Load));
-  //alert("[data] : " + JSON.stringify(Load));
    
   var t = sessionStorage.getItem('accessToken');
   $.ajax({    			
-        url: reqURL+"/member/info/create",
-        type: "POST",
+        url: reqURL+"/member/info/update",
+        type: "PUT",
         dataType: "json", 
         data : JSON.stringify(Load), //json 데이터
         contentType: "application/json",
@@ -151,10 +164,8 @@ function btnMemberInsert(){
             xhr.setRequestHeader("permit","r");
         },
         success: function(data, textStatus, xhr) {
-          if (confirm('회원이 등록되었습니다.')) {
-                    window.close();  // 현재 창을 닫음
-                    window.opener.location.reload();  // 부모 창(원본 창)을 새로고침
-                }
+           alert("회원 수정 되었습니다.");
+           window.close();
         },
         error: function(error) {
             alert('실패: ' + error.responseText);

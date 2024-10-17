@@ -85,7 +85,7 @@
                     <input type="text" id="userMobilePhone" class="form-control margin-right10 margin-left30" readonly="" value="연락처" >
                 </div>
                 <div class="input-group-prepend">
-                    <input id="input-select" name="userMobilePhone" type="text" class="form-control input-width" value="" placeholder="휴대폰 번호(-포함)" />
+                    <input id="input-select" name="userMobilePhone" type="text" class="form-control input-width" value="" placeholder="숫자만 입력해주세요('-'제외)" />
                 </div>
             </div>
             <p></p>
@@ -96,10 +96,10 @@
                 </div>
                 <div class="input-group-prepend" style="flex-grow: 1; margin-left: 10px;">
                     <div style="display: flex; align-items: center;">
-                        <input id="sample6_postcode" class="form-control" placeholder="우편번호" style="width: 200px; height: 40px; border-radius: 5px;">
-                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="height: 40px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px;">
+                        <input id="sample6_postcode" class="form-control" placeholder="우편번호" style="width: 200px; height: 40px; border-radius: 5px;" readonly onclick="sample6_execDaumPostcode()">
+                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="height: 40px; background-color: #B7E3E4; color: black; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px; font-weight: bold;">
                     </div>
-                    <input type="text" id="sample6_address" name="userAddress1" class="form-control" placeholder="주소" style="margin-top: 10px; border-radius: 5px; width: 370px;">
+                    <input type="text" id="sample6_address" name="userAddress1" class="form-control" placeholder="주소" style="margin-top: 10px; border-radius: 5px; width: 370px;" readonly>
                     <input type="text" id="sample6_detailAddress" name="userAddress2" class="form-control" placeholder="상세주소" style="margin-top: 10px; border-radius: 5px; width: 370px;">
                 </div>
             </div>

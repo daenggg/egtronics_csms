@@ -191,10 +191,10 @@ $(document).ready(function () {
             { field: 'chargerFactoryCode', title:  '<strong>제조 공장', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },width: 150 },
             { field: 'chargerModelKw', title:  '<strong>충전 용량', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 150 },
             { field: 'connectorNumber', title:  '<strong>커넥터 개수', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120 },
-            { field: 'rfidUseYn', title:  '<strong>RF리더기', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 110 },
+            { field: 'rfidUseYn', title:  '<strong>RF리더기 유무', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140 },
             { field: 'useYn', title:  '<strong>사용 유무', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 110 },
             { field: 'deleteYn', title:  '<strong>삭제 유무', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 110 },
-            { field: 'description', title:  '<strong>비고', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }},
+            { field: 'description', title:  '<strong>비고', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 850},
             ],
             });
             
@@ -205,8 +205,36 @@ $(document).ready(function () {
     });
 });
 
-function btnMemberCardInsert(){
+function btnchargerModelInsert(){
   window.open("chargerModelInsert.html", "충전기 모델 등록", "width=600, height=850, top=150, left=200");
+}
+
+
+function btnchargerModelUpdate(){
+  Model_Check();
+  var data = sessionStorage.getItem('chargerModelCode');
+  if(data == "" ||data == null){
+    alert('수정할 곳을 선택하여 주세요');
+  }
+  else{
+    window.open("chargerModelUpdate.html", "충전기 모델 수정", "width=600, height=800, top=150, left=200");
+  }
+  
+}
+
+function Model_Check(){
+  var grid = $("#gridDiv").data("kendoGrid");
+  var rows = grid.select();
+  var selectedIds = [];
+
+  $(rows).each(function(){
+    var dataItem = grid.dataItem(this);
+    selectedIds.push(dataItem);
+    for(var i in selectedIds) {
+      sessionStorage.setItem('chargerModelCode', selectedIds[i].chargerModelCode);
+      sessionStorage.setItem('chargerModelName', selectedIds[i].chargerModelName);
+    }
+  });
 }
 
 function dataBound(e) {

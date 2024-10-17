@@ -52,17 +52,18 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="충전소 ID" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="stationId" class="form-control margin-right10 margin-left30" readonly="" value="충전소 ID">
                 </div>
                 <div class="input-group-prepend">
-                    <input id="input-select" name="stationId" type="text" class="form-control input-width" value="" placeholder=" 충전소 ID를 입력하세요" />
+                    <select id="input-select" name="stationId" class="form-control input-width">
+                    </select>
                 </div>
             </div>
             <p></p>
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="chargerId" class="form-control margin-right10 margin-left30" readonly="" value="충전기 ID" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="chargerId" class="form-control margin-right10 margin-left30" readonly="" value="충전기 ID" >
                 </div>
                 <div class="input-group-prepend">
                     <input id="input-select" name="chargerId" type="text" class="form-control input-width" value="" placeholder=" 충전기 ID를 입력하세요" />
@@ -72,7 +73,7 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="chargerName" class="form-control margin-right10 margin-left30" readonly="" value="충전기 이름" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="chargerName" class="form-control margin-right10 margin-left30" readonly="" value="충전기 이름" >
                 </div>
                 <div class="input-group-prepend">
                     <input id="input-select" name="chargerName" type="text" class="form-control input-width" value="" placeholder="충전기 이름을 입력하세요" />
@@ -82,17 +83,19 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="chargerModelCode" class="form-control margin-right10 margin-left30" readonly="" value="충전기 모델 코드" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="chargerModelCode" class="form-control margin-right10 margin-left30" readonly="" value="충전기 모델 명" >
                 </div>
                 <div class="input-group-prepend">
-                    <input id="input-select" name="chargerModelCode" type="text" class="form-control input-width" value="" placeholder="충전기 모델 코드를 입력하세요." />
+                    <select id="input-select" name="chargerModelCode" class="form-control input-width" placeholder="충전기 모델 코드를 입력하세요." >
+
+                    </select>
                 </div>
             </div>
             <p></p>
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="chargerSerialNumber" class="form-control margin-right10 margin-left30" readonly="" value="충전기 시리얼" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="chargerSerialNumber" class="form-control margin-right10 margin-left30" readonly="" value="충전기 시리얼" >
                 </div>
                 <div class="input-group-prepend">
                     <input id="input-select" name="chargerSerialNumber" type="text" class="form-control input-width" value="" placeholder="충전기 시리얼 번호를 입력하세요." />
@@ -102,10 +105,10 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="kecoRoamingYn" class="form-control margin-right10 margin-left30" readonly="" value="환경부 로밍 여부" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="kecoRoamingYn" class="form-control margin-right10 margin-left30" readonly="" value="환경부 로밍 여부" >
                 </div>
                 <div class="custom-select-wrapper">
-                    <select name="kecoRoamingYn" id="kecoRoamingYn" class="form-control input-width custom-select">
+                    <select name="kecoRoamingYn" id="kecoRoamingYn1" class="form-control input-width custom-select">
                         <option value="answer-use1">사용</option>
                         <option value="answer-not-use1">미사용</option>
                     </select>
@@ -116,10 +119,10 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="kepcoRoamingYn" class="form-control margin-right10 margin-left30" readonly="" value="한전 로밍 여부" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="kepcoRoamingYn" class="form-control margin-right10 margin-left30" readonly="" value="한전 로밍 여부" >
                 </div>
                 <div class="custom-select-wrapper">
-                    <select name="kepcoRoamingYn" id="kepcoRoamingYn" class="form-control input-width custom-select">
+                    <select name="kepcoRoamingYn" id="kepcoRoamingYn1" class="form-control input-width custom-select">
                         <option value="answer-use1">사용</option>
                         <option value="answer-not-use1">미사용</option>
                     </select>
@@ -130,10 +133,10 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="useYn" class="form-control margin-right10 margin-left30" readonly="" value="사용여부" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="useYn" class="form-control margin-right10 margin-left30" readonly="" value="사용 유무" >
                 </div>
                 <div class="custom-select-wrapper">
-                    <select name="useYn" id="useYn" class="form-control input-width custom-select">
+                    <select name="useYn" id="useYn1" class="form-control input-width custom-select">
                         <option value="answer-use">사용</option>
                         <option value="answer-not-use">미사용</option>
                     </select>
@@ -144,10 +147,10 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="deleteYn" class="form-control margin-right10 margin-left30" readonly="" value="삭제여부" style="width:150px; height:40px; background-color:cadetblue; text-align:center; color:white;">
+                    <input type="text" id="deleteYn" class="form-control margin-right10 margin-left30" readonly="" value="삭제 유무" >
                 </div>
                 <div class="custom-select-wrapper">
-                    <select name="deleteYn" id="deleteYn" class="form-control input-width custom-select">
+                    <select name="deleteYn" id="deleteYn1" class="form-control input-width custom-select">
                         <option value="answer-yes">예</option>
                         <option value="answer-no">아니오</option>
                     </select>
@@ -159,8 +162,8 @@
 
 
             <div class="input-group d-flex justify-content-center">
-                <button class="btn btn-primary" onclick="btnStationInsert()">등록</button>
-                <button class="btn btn-secondary ms-2" onclick="window.close()">취소</button>
+                <button class="btn btn-primary" id="insertButton" onclick="btnStationInsert()">등록</button>
+                <button class="btn btn-secondary ms-2" id="cancelButton" onclick="window.close()">취소</button>
             </div>
 
         </div>
@@ -171,42 +174,105 @@
 
 <script src="../practice.js"></script>
 <script>
-    function btnStationInsert() {
-        var Load = {
-            stationId: $("input[name=stationId]").val(),
-            chargerId: $("input[name=chargerId]").val(),
-            chargerName: $("input[name=chargerName]").val(),
-            chargerModelCode: $("input[name=chargerModelCode]").val(),
-            chargerSerialNumber: $("input[name=chargerSerialNumber]").val(),
-            kecoRoamingYn: $("select[name=kecoRoamingYn]").val(), // 수정
-            kepcoRoamingYn: $("select[name=kepcoRoamingYn]").val(), // 수정
-            useYn: $("select[name=useYn]").val(), // 수정
-            deleteYn: $("select[name=deleteYn]").val(), // 수정
-        };
-        //  console.log("[data] : " + JSON.stringify(Load));
-        //  alert("[data] : " + JSON.stringify(PayLoad));
+var t = sessionStorage.getItem('accessToken');
 
-        var t = sessionStorage.getItem('accessToken');
-        $.ajax({
-            url: reqURL + "/charger/info/create",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(Load), //json 데이터
-            contentType: "application/json",
-            timeout: 5000, // 타임 아웃 설정
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader("Authorization", "Bearer " + t);
-                xhr.setRequestHeader("menuId", "13");
-                xhr.setRequestHeader("permit", "r");
-            },
-            success: function(data, textStatus, xhr) {
-                console.log("[data] : " + JSON.stringify(data));
-                alert('충전기 등록이 되었습니다.');
-            },
-            error: function(error) {
-                alert('실패: ' + error.responseText);
+$(document).ready(function () {
+    $.ajax({    			
+        url: reqURL + "/station/info/page/list?page=1&size=10000",
+        type: "GET",
+        dataType: "json", 
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","10");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+          var content =  data.payload.content;
+          console.log(content);
+          for(var i = 0; i < content.length; i ++) {
+              $("select[name=stationId]").append("<option value='"+ (content[i].stationId)+"'>" + (content[i].stationName) + "</option>")
             }
-        });
+              
+        },
+        error: function(error) {
+            alert('충전소 정보 호출 실패: ' + error.responseText);
+        }
+      });        
+})
 
-    }
+$(document).ready(function () {
+    $.ajax({    			
+        url: reqURL+"/charger/model/info/page/list?page=1&size=10000",
+        type: "GET",
+        dataType: "json", 
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","10");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+            
+           var content =  data.payload.content;
+           console.log(content);
+          
+           for(var i = 0; i < content.length; i ++) {
+              $("select[name=chargerModelCode]").append("<option value='"+ (content[i].chargerModelCode)+"'>" + (content[i].chargerModelName) + "</option>")
+             }
+              
+        },
+        error: function(error) {
+            alert('충전소 정보 호출 실패: ' + error.responseText);
+        }
+      });        
+})
+
+
+
+function btnStationInsert() {
+    var Load = {
+        stationId: $("select[name=stationId]").val(),
+        chargerId: $("input[name=chargerId]").val(),
+        chargerName: $("input[name=chargerName]").val(),
+        chargerModelCode: $("select[name=chargerModelCode]").val(),
+        chargerSerialNumber: $("input[name=chargerSerialNumber]").val(),
+        kecoRoamingYn: $("select[name=kecoRoamingYn]").val(), // 수정
+        kepcoRoamingYn: $("select[name=kepcoRoamingYn]").val(), // 수정
+        useYn: $("select[name=useYn]").val(), // 수정
+        deleteYn: $("select[name=deleteYn]").val(), // 수정
+    };
+    //  console.log("[data] : " + JSON.stringify(Load));
+    //  alert("[data] : " + JSON.stringify(PayLoad));
+
+    $.ajax({
+        url: reqURL + "/charger/info/create",
+        type: "POST",
+        dataType: "json",
+        data: JSON.stringify(Load), //json 데이터
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + t);
+            xhr.setRequestHeader("menuId", "13");
+            xhr.setRequestHeader("permit", "r");
+        },
+        success: function(data, textStatus, xhr) {
+            console.log("[data] : " + JSON.stringify(data));
+            if (confirm('충전기가 등록되었습니다.')) {
+                window.close();  // 현재 창을 닫음
+                window.opener.location.reload();  // 부모 창(원본 창)을 새로고침
+            }
+        },
+        error: function(error) {
+            alert('실패: ' + error.responseText);
+        }
+    });
+
+}
+
+    
+    
 </script>

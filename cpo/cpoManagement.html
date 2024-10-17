@@ -188,10 +188,9 @@
                     batch: true,
                     selectable: true,
                     pageable: true,
-                    toolbar: [{
-                            text: "select",
-                            template: '<a class="k-button" href="\\#" onclick="return btncpoIDInsert()"></span>&nbsp CPO 등록</a>'
-                        } //&nbsp;
+                    toolbar: [
+                        { text: "select", template: '<a class="k-button" href="\\#" onclick="return btncpoInsert()"></span>&nbsp CPO 등록</a>' }, //&nbsp;
+                        { text: "select", template: '<a class="k-button" href="\\#" onclick="return btncpoUpdate()"></span>&nbsp CPO 수정</a>' } //&nbsp;
                     ],
                     columns: [{
                             field: 'companyName',
@@ -203,7 +202,7 @@
                                 "class": "table-cell",
                                 style: "text-align: center;"
                             },
-                            width: 160
+                            width: 140
                         },
                         {
                             field: 'companyCode',
@@ -238,7 +237,7 @@
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 240
+                            width: 400
                         },
                         {
                             field: 'companyRepresentative',
@@ -271,7 +270,7 @@
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 110
+                            width: 120
                         },
                         {
                             field: 'companyEmail',
@@ -282,7 +281,7 @@
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 190
+                            width: 150
                         },
                         {
                             field: 'useYn',
@@ -297,15 +296,26 @@
                         },
                         {
                             field: 'paymentApiYn',
-                            title: '<strong>결제 유무',
+                            title: '<strong>결제API 사용 유무',
                             headerAttributes: {
                                 style: "text-align: center;"
                             },
                             attributes: {
                                 style: "text-align: center;"
                             },
-                            width: 140
-                        }
+                            width: 180
+                        },
+                        { //비고 추가
+                            field: 'description',
+                            headerAttributes: {
+                                style: "text-align: center;"
+                            },
+                            title: '<strong>비고',
+                            attributes: {
+                                style: "text-align: center;"
+                            },
+                            width: 850
+                        },
                     ],
                 });
 
@@ -316,9 +326,35 @@
         });
     });
 
-    function btncpoIDInsert() {
-        window.open("cpoManagementInsert.html", "CPO ID 등록", "width=600, height=850, top=150, left=200");
+    function btncpoInsert(){
+        window.open("cpoManagementInsert.html", "CPO 등록", "width=600, height=850, top=150, left=200");
     }
+
+    function btncpoUpdate(){
+        CPO_Check();
+        var data = sessionStorage.getItem('companyCode');
+        if(data == "" ||data == null){
+            alert('수정할 곳을 선택하여 주세요');
+        }
+        else{
+            window.open("cpoManagementUpdate.html", "CPO 수정", "width=600, height=850, top=150, left=200");
+        }
+    }
+
+    function CPO_Check(){
+        var grid = $("#gridDiv").data("kendoGrid");
+        var rows = grid.select();
+        var selectedIds = [];
+
+        $(rows).each(function(){
+            var dataItem = grid.dataItem(this);
+            selectedIds.push(dataItem);
+            for(var i in selectedIds) {
+            sessionStorage.setItem('companyName', selectedIds[i].companyName);
+            sessionStorage.setItem('companyCode', selectedIds[i].companyCode);
+            }
+        });
+        }
 
     function dataBound(e) {
         var _width = 1400;
