@@ -564,12 +564,14 @@
             // 사이드바 숨기기
             sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
             mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 메인 콘텐츠 넓이 늘리기
+            sidebar.style.overflowY = 'hidden'; // 사이드바가 닫힐 때 스크롤 비활성화
             
         } else {
             // 사이드바 보이기
             sidebar.style.transform = 'translate(0, 0)';
             mainContent.style.width = '88%'; // 메인 콘텐츠 넓이 원래대로
             isSidebarVisible = true;
+            sidebar.style.overflowY = 'auto'; // 사이드바가 열릴 때 스크롤 활성화
         }
 
     toggleIcon.addEventListener('click', function() {
@@ -578,11 +580,13 @@
             sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
             mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 메인 콘텐츠 넓이 늘리기
             isSidebarVisible = false;
+            sidebar.style.overflowY = 'hidden'; // 사이드바가 닫힐 때 스크롤 비활성화
         } else {
             // 사이드바 보이기
             sidebar.style.transform = 'translate(0, 0)';
             mainContent.style.width = '88%'; // 메인 콘텐츠 넓이 원래대로
             isSidebarVisible = true;
+            sidebar.style.overflowY = 'auto'; // 사이드바가 열릴 때 스크롤 활성화
         }
         localStorage.setItem('isSidebarVisible', isSidebarVisible); // 상태 저장
     });

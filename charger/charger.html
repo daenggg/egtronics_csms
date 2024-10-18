@@ -201,7 +201,10 @@
             }, ],
             columns: [{
                     field: 'stationId',
-                    title: '충전소 ID',
+                    title: '<strong>충전소 ID',
+                    headerAttributes: {
+                        style: "text-align: center;"
+                        },
                     attributes: {
                         "class": "table-cell",
                         style: "text-align: center;"
@@ -210,7 +213,10 @@
                 },
                 {
                     field: 'chargerId',
-                    title: '충전기 ID',
+                    title: '<strong>충전기 ID',
+                        headerAttributes: {
+                            style: "text-align: center;"
+                        },
                     attributes: {
                         "class": "table-cell",
                         style: "text-align: center;"
@@ -219,27 +225,63 @@
                 },
                 {
                     field: "connectorId",
-                    title: "커넥터 ID",
+                    title: "<strong>커넥터 ID",
+                        headerAttributes: {
+                            style: "text-align: center;"
+                        },
+                    attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
                     width: 110
                 },
                 {
                     field: "status",
-                    title: "상태정보",
+                    title: "<strong>상태정보",
+                        headerAttributes: {
+                            style: "text-align: center;"
+                        },
+                    attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
                     width: 130
                 },
                 {
                     field: "statusNotificationDate",
-                    title: "상태정보 날짜",
+                    title: "<strong>상태정보 날짜",
+                        headerAttributes: {
+                            style: "text-align: center;"
+                        },
+                    attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
                     width: 190
                 },
                 {
                     field: "errorCode",
-                    title: "에러코드",
+                    title: "<strong>에러코드",
+                        headerAttributes: {
+                            style: "text-align: center;"
+                        },
+                    attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
                     width: 130
                 },
                 {
                     field: "vendorErrorCode",
-                    title: "제조사 에러코드",
+                    title: "<strong>제조사 에러코드",
+                        headerAttributes: {
+                            style: "text-align: center;"
+                        },
+                    attributes: {
+                        "class": "table-cell",
+                        style: "text-align: center;"
+                    },
+                    width: 800
                 },
             ],
             noRecords: true,
@@ -473,7 +515,7 @@
                 },
                 {
                     field: "chargerGpsX",
-                    title: "<strong>GPS X",
+                    title: "<strong>경도",
                         headerAttributes: {
                                 style: "text-align: center;"
                             },
@@ -485,7 +527,7 @@
                 },
                 {
                     field: "chargerGpsY",
-                    title: "<strong>GPS Y",
+                    title: "<strong>위도",
                         headerAttributes: {
                                 style: "text-align: center;"
                             },

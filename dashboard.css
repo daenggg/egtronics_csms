@@ -28,7 +28,7 @@ body {
 
 /* 사이드바의 너비와 높이를 변수를 통해 통제 */
 :root {
-  --side-bar-width: 230px;
+  --side-bar-width: 12vw;
   --side-bar-height: 100vh;
 }
 
@@ -36,7 +36,6 @@ body {
   position: fixed;    /* 스크롤을 따라오도록 지정 */
   background-color:#B7E3E4;
   width: var(--side-bar-width);
-  height: 180vh;
   min-height: var(--side-bar-height);   /* 사이드바의 높이를 전체 화면 높이의 90%로 지정 */
   margin-top: calc((100vh - var(--side-bar-height)) / 2);    /* 사이드바 위와 아래의 마진을 동일하게 지정 */
   z-index: 1000; /* 다른 요소보다 위에 표시되도록 z-index 설정 */
@@ -160,11 +159,11 @@ body {
   transform: translate(calc(var(--side-bar-width) * -0.8), 0);
   transition: .5s;
 }
-
-
 /* 사이드바 끝 */
 
 /* 커스텀 끝 */
+
+
   .navbar-brand {
     padding-top: .75rem;
     padding-bottom: .75rem;
@@ -330,11 +329,18 @@ body {
   border-radius: 10px;
 }
 
+
 .custom-select-wrapper {
   position: relative;
   display: inline-block;
   width: 200px; /* 필요에 따라 너비 조정 */
+  height: 40px; /* input-group-prepend와 동일한 높이 */
   
+}
+
+/* select 요소 자체의 높이도 맞춰주기 위해 추가 */
+.custom-select-wrapper select {
+  height: 100%;
 }
 
 .custom-select {
@@ -364,19 +370,8 @@ body {
   pointer-events: none; /* 화살표에 클릭 이벤트가 발생하지 않도록 설정 */
 }
 
-
-
 main{
   transition: width 0.5s ease; /* 메인 콘텐츠의 너비 변경 시 부드러운 전환 효과 추가 */
-}
-.custom-select-wrapper {
-  height: 40px; /* input-group-prepend와 동일한 높이 */
-
-}
-
-/* select 요소 자체의 높이도 맞춰주기 위해 추가 */
-.custom-select-wrapper select {
-  height: 100%;
 }
 
 #input-select{
