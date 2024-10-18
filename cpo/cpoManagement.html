@@ -148,11 +148,13 @@
                 xhr.setRequestHeader("permit", "r");
             },
             success: function(data, textStatus, xhr) {
-                //console.log("data"+JSON.stringify(data));
+                console.log("data"+JSON.stringify(data));
                 //var content =  data.payload.content;
                 var content = data.payload;
                 //console.log(content.length);
                 for (var i = 0; i < content.length; i++) {
+                    var use_Yn = USEYN_JSONformat(content[i].useYn);
+                    var payment_ApiYn = USEYN_JSONformat(content[i].paymentApiYn);
                     var test = {
                         companyName: content[i].companyName,
                         companyCode: content[i].companyCode,
@@ -162,8 +164,8 @@
                         companyTel: content[i].companyTel,
                         companyFax: content[i].companyFax,
                         companyEmail: content[i].companyEmail,
-                        paymentApiYn: content[i].paymentApiYn,
-                        useYn: content[i].useYn,
+                        paymentApiYn: payment_ApiYn,
+                        useYn: use_Yn,
                         description: content[i].description,
                     }
                     contentData.push(test);
@@ -206,7 +208,7 @@
                         },
                         {
                             field: 'companyCode',
-                            title: '<strong>회사 코드',
+                            title: '<strong>CPO 코드',
                             headerAttributes: {
                                 style: "text-align: center;"
                             },

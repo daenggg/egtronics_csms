@@ -154,6 +154,7 @@
                 console.log(data);
                 var content = data.payload.content;
                 for (var i = 0; i < content.length; i++) {
+                    var use_Yn = USEYN_JSONformat(content[i].useYn);
                     var test = {
                         chargerFactoryAddress: content[i].chargerFactoryAddress,
                         chargerFactoryCode: content[i].chargerFactoryCode,
@@ -163,7 +164,7 @@
                         chargerFactoryName: content[i].chargerFactoryName,
                         chargerFactoryTel: content[i].chargerFactoryTel,
                         description: content[i].description,
-                        useYn: content[i].useYn
+                        useYn: use_Yn
                     }
                     contentData.push(test);
                 }

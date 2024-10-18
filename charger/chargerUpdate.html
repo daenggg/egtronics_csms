@@ -82,10 +82,12 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="chargerModelCode" class="form-control margin-right10 margin-left30" readonly="" value="충전기 모델 코드" >
+                    <input type="text" id="chargerModelCode" class="form-control margin-right10 margin-left30" readonly="" value="충전기 모델 명" >
                 </div>
-                <div class="input-group-prepend">
-                    <input id="input-select" name="chargerModelCode" type="text" class="form-control input-width" value="" placeholder="충전기 모델 코드를 입력하세요." />
+                <div class="custom-select-wrapper">
+                    <select id="chargerModelCode1" name="chargerModelCode" class="form-control input-width custom-select" >
+
+                    </select>
                 </div>
             </div>
             <p></p>
@@ -172,17 +174,46 @@
 
 <script src="../practice.js"></script>
 <script>
+    var t = sessionStorage.getItem('accessToken');
     var sStationId = sessionStorage.getItem('stationId');
     $('input[name=stationId]').val(sStationId);
     var sChargerId = sessionStorage.getItem('chargerId');
     $('input[name=chargerId]').val(sChargerId);
 
+    $(document).ready(function () {
+    $.ajax({    			
+        url: reqURL+"/charger/model/info/page/list?page=1&size=10000",
+        type: "GET",
+        dataType: "json", 
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","10");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+            
+           var content =  data.payload.content;
+           console.log(content);
+          
+           for(var i = 0; i < content.length; i ++) {
+              $("select[name=chargerModelCode]").append("<option value='"+ (content[i].chargerModelCode)+"'>" + (content[i].chargerModelName) + "</option>")
+             }
+              
+        },
+        error: function(error) {
+            alert('충전기 정보 호출 실패: ' + error.responseText);
+        }
+      });        
+})
+
     function btnStationUpdate() {
         var Load = {
-            stationId: StationId,
-            chargerId: ChargerId,
+            stationId: sStationId,
+            chargerId: sChargerId,
             chargerName: $("input[name=chargerName]").val(),
-            chargerModelCode: $("input[name=chargerModelCode]").val(),
+            chargerModelCode: $("select[name=chargerModelCode]").val(),
             chargerSerialNumber: $("input[name=chargerSerialNumber]").val(),
             kecoRoamingYn: $("select[name=kecoRoamingYn]").val(), // 수정
             kepcoRoamingYn: $("select[name=kepcoRoamingYn]").val(), // 수정
@@ -190,7 +221,7 @@
             deleteYn: $("select[name=deleteYn]").val(), // 수정
         };
 
-        var t = sessionStorage.getItem('accessToken');
+        
         $.ajax({
             url: reqURL + "/charger/info/update",
             type: "PUT",

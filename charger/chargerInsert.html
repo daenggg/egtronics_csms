@@ -54,8 +54,8 @@
                 <div class="input-group-prepend">
                     <input type="text" id="stationId" class="form-control margin-right10 margin-left30" readonly="" value="충전소 ID">
                 </div>
-                <div class="input-group-prepend">
-                    <select id="input-select" name="stationId" class="form-control input-width">
+                <div class="custom-select-wrapper">
+                    <select id="stationId1" name="stationId" class="form-control input-width custom-select">
                     </select>
                 </div>
             </div>
@@ -85,8 +85,8 @@
                 <div class="input-group-prepend">
                     <input type="text" id="chargerModelCode" class="form-control margin-right10 margin-left30" readonly="" value="충전기 모델 명" >
                 </div>
-                <div class="input-group-prepend">
-                    <select id="input-select" name="chargerModelCode" class="form-control input-width" placeholder="충전기 모델 코드를 입력하세요." >
+                <div class="custom-select-wrapper">
+                    <select id="chargerModelCode1" name="chargerModelCode" class="form-control input-width custom-select" >
 
                     </select>
                 </div>
@@ -225,7 +225,7 @@ $(document).ready(function () {
               
         },
         error: function(error) {
-            alert('충전소 정보 호출 실패: ' + error.responseText);
+            alert('충전기 정보 호출 실패: ' + error.responseText);
         }
       });        
 })

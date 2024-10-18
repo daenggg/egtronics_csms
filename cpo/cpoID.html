@@ -152,8 +152,10 @@
             success: function(data, textStatus, xhr) {
                 //console.log("data"+JSON.stringify(data));
                 var content = data.payload.content;
-                //console.log(content.length);
+                console.log(content);
+                
                 for (var i = 0; i < content.length; i++) {
+                    var use_Yn = USEYN_JSONformat(content[i].useYn);
                     var test = {
                         userId: content[i].userId,
                         userName: content[i].userName,
@@ -163,7 +165,7 @@
                         renewalPwDate: content[i].renewalPwDate,
                         companyCode: content[i].companyCode,
                         lastDate: content[i].lastDate,
-                        useYn: content[i].useYn,
+                        useYn: use_Yn,
                         roleId: content[i].roleId,
                         regUserId: content[i].regUserId,
                         regDate: content[i].regDate,
@@ -280,7 +282,7 @@
                         },
                         {
                             field: 'companyCode',
-                            title: '<strong>사업자 코드',
+                            title: '<strong>CPO 코드',
                             headerAttributes: {
                                 style: "text-align: center;"
                             },

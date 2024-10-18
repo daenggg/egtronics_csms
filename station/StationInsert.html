@@ -70,15 +70,16 @@
             </div>
             <p></p>
 
-            <div class="input-group">
+            <div class="input-group"> 
                 <div class="input-group-prepend">
-                    <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="사업자코드" >
+                <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="CPO 코드">
                 </div>
-                <div class="input-group-prepend">
-                    <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="" placeholder=" 사업자 코드를 입력하세요" />
+                <div class="custom-select-wrapper">
+                  <select id="companyCode1" name="companyCode" class="form-control input-width custom-select">
+                  </select>
                 </div>
-            </div>
-            <p></p>
+                </div>
+                <p></p>
 
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -158,7 +159,6 @@
                     <div class="custom-select-wrapper">
                         <select name="stationVoltageType" id="stationVoltageType1" class="form-control input-width custom-select">
                             <option value="high-voltage">고압</option>
-                            <option value="middle-voltage">중압</option>
                             <option value="low-voltage">저압</option>
                         </select>
                     </div>
@@ -206,11 +206,38 @@
 
 <script src="../practice.js"></script>
 <script>
+var t = sessionStorage.getItem('accessToken');
+
+$(document).ready(function () {
+  $.ajax({    			
+        url: reqURL+"/company/info/list?page=1&size=10000",
+        type: "GET",
+        dataType: "json", 
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","10");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+          
+          var content =  data.payload;
+          console.log(content);
+          for(var i = 0; i < content.length; i ++) {
+              $("select[name=companyCode]").append("<option value='"+ (content[i].companyCode)+"'>" + (content[i].companyName) + "</option>")
+            }
+        },
+        error: function(error) {
+            alert('CPO 정보 호출 실패: ' + error.responseText);
+        }
+      });
+})
     function btnStationInsert() {
         var Load = {
             stationId: $("input[name=stationId]").val(),
             stationName: $("input[name=stationName]").val(),
-            companyCode: $("input[name=companyCode]").val(),
+            companyCode: $("select[name=companyCode]").val(),
             stationAddrCity: $("input[name=stationAddrCity]").val(),
             stationAddrCountry: $("input[name=stationAddrCountry]").val(),
             stationAddrDetail: $("input[name=stationAddrDetail]").val(),
@@ -225,7 +252,7 @@
         //  console.log("[data] : " + JSON.stringify(Load));
         //  alert("[data] : " + JSON.stringify(PayLoad));
 
-        var t = sessionStorage.getItem('accessToken');
+
         $.ajax({
             url: reqURL + "/station/info/create",
             type: "POST",

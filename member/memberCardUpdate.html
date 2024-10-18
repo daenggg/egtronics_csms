@@ -89,12 +89,12 @@
 
       <div class="input-group"> 
         <div class="input-group-prepend">
-        <input type="text" id="userCardStop" class="form-control margin-right10 margin-left30" readonly="" value="카드 정지 여부" >
+        <input type="text" id="userCardStop" class="form-control margin-right10 margin-left30" readonly="" value="카드 정지 유무" >
         </div>
-        <div class="input-group-prepend">
-        <select id="input-select" name="userCardStop" class="form-control input-width" >
-          <option value="Y">회원 카드 정지</option>
-          <option value="N" selected>회원 카드 사용</option>
+        <div class="custom-select-wrapper">
+        <select id="userCardStop1" name="userCardStop" class="form-control input-width custom-select" >
+          <option value="Y">정지</option>
+          <option value="N" selected>사용</option>
         </select>
         </div>
         </div>
@@ -104,18 +104,25 @@
               <div class="input-group-prepend">
               <input type="text" id="IssuanceMethod" class="form-control margin-right10 margin-left30" readonly="" value="발급 방법" >
               </div>
-              <div class="input-group-prepend">
-              <input id="input-select" name="IssuanceMethod" type="text" class="form-control input-width" value="" placeholder="" />
-              </div>
+              <div class="custom-select-wrapper">
+                <select name="IssuanceMethod" id="IssuanceMethod1" class="form-control input-width custom-select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected>5</option>
+                </select>
+            </div>
               </div>
               <p></p>
+              
 
               <div class="input-group"> 
                 <div class="input-group-prepend">
-                <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="CPO 명">
+                <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="CPO 코드">
                 </div>
-                <div class="input-group-prepend">
-                  <select id="input-select" name="companyCode" class="form-control input-width">
+                <div class="custom-select-wrapper">
+                  <select id="companyCode1" name="companyCode" class="form-control input-width custom-select">
                   </select>
                 </div>
                 </div>
@@ -123,12 +130,12 @@
 
                 <div class="input-group"> 
                   <div class="input-group-prepend">
-                  <input type="text" id="authorzationStatus" class="form-control margin-right10 margin-left30" readonly="" value="충전기 인증 여부" >
+                  <input type="text" id="authorzationStatus" class="form-control margin-right10 margin-left30" readonly="" value="충전기 인증 유무" >
                   </div>
-                  <div class="input-group-prepend">
-                  <select id="input-select" name="authorzationStatus" class="form-control input-width" >
-                    <option value="Blocked"selected>미사용</option>
-                    <option value="Accepted">사용</option>
+                  <div class="custom-select-wrapper">
+                  <select id="authorzationStatus1" name="authorzationStatus" class="form-control input-width custom-select" >
+                    <option value="Blocked"selected>미인증</option>
+                    <option value="Accepted">인증됨</option>
                   </select>
                   </div>
                   </div>
@@ -184,7 +191,7 @@ function btnMemberCardUpdate(){
     memberId : $("input[name=MemberId]").val(),
     cardStatus : $("select[name=cardStatus]").val(),
     userCardStop : $("select[name=userCardStop]").val(),
-    issuanceMethod : $("input[name=IssuanceMethod]").val(),
+    issuanceMethod : $("select[name=IssuanceMethod]").val(),
     companyCode : $("select[name=companyCode]").val(),
     authorzationStatus: $("select[name=authorzationStatus]").val(),
   };

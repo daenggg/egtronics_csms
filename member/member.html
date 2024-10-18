@@ -148,6 +148,12 @@ $(document).ready(function () {
             console.log(JSON.stringify(data));
             var content =  data.payload.content;
             for(var i = 0; i < content.length; i ++) {
+              var use_Yn = USEYN_JSONformat(content[i].useYn);
+              var delete_Yn = DELETEYN_JSONformat(content[i].deleteYn);
+              var social_Yn = USEYN_JSONformat(content[i].socialYn);
+              var login_Yn = DELETEYN_JSONformat(content[i].loginYn);
+              console.log(content[i].loginYn);
+              
                 var test = 
                 {
                   id : content[i].id,
@@ -155,10 +161,10 @@ $(document).ready(function () {
                   email : content[i].email,
                   mobile : content[i].mobile,
                   companyCode : content[i].companyCode,
-                  useYn : content[i].useYn,
-                  deleteYn : content[i].deleteYn,
-                  loginYn : content[i].loginYn,
-                  socialYn : content[i].socialYn,
+                  useYn : use_Yn,
+                  deleteYn : delete_Yn,
+                  loginYn : login_Yn,
+                  socialYn : social_Yn,
                   provider : content[i].provider,
                   firstJoinDate : content[i].firstJoinDate,
                   lastAccessDate : content[i].lastAccessDate,
@@ -200,7 +206,7 @@ $(document).ready(function () {
                 { field: "companyCode", title: "<strong>회사 코드", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 130},
                 { field: 'useYn', title: '<strong>사용 유무', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120 },
                 { field: "deleteYn", title: "<strong>삭제 유무", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120},
-                { field: "loginYn", title: "<strong>로그인 가입 유무", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120 },
+                { field: "loginYn", title: "<strong>로그인 가입 유무", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 160 },
                 { field: "socialYn", title: "<strong>소셜로그인", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 120 },
                 { field: "provider", title: "<strong>소셜로그인 제공사", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 180 },
                 { field: "firstJoinDate", title: "<strong>가입 일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 200, template: "#= kendo.toString(kendo.parseDate(firstJoinDate), 'yyyy-MM-dd HH:mm') #" }, 

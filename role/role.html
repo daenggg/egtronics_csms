@@ -153,13 +153,14 @@
                 //console.log( JSON.stringify(data));
                 var content = data.payload;
                 for (var i = 0; i < content.length; i++) {
+                    var use_Yn = USEYN_JSONformat(content[i].useYn)
                     var test = {
                         roleId: content[i].roleId,
                         roleName: content[i].roleName,
                         regDate: content[i].regDate,
                         modUserId: content[i].modUserId,
                         modDate: content[i].modDate,
-                        useYn: content[i].useYn,
+                        useYn: use_Yn,
                         description: content[i].description,
                     }
                     contentData.push(test);

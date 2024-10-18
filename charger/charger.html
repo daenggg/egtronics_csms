@@ -160,6 +160,7 @@
                 console.log("data" + JSON.stringify(data));
                 var content = data.payload.content;
                 for (var i = 0; i < content.length; i++) {
+                    var use_Yn = USEYN_JSONformat(content[i].useYn);
                     var test = {
                         stationId: content[i].stationId,
                         stationName: content[i].stationName,
@@ -181,7 +182,7 @@
                         kepcoRoamingYn: content[i].kepcoRoamingYn,
                         chargerGpsX: content[i].chargerGpsX,
                         chargerGpsY: content[i].chargerGpsY,
-                        useYn: content[i].useYn,
+                        useYn: use_Yn,
                         deleteYn: content[i].deleteYn,
                     }
                     contentData.push(test);
@@ -496,7 +497,7 @@
                 },
                 {
                     field: "useYn",
-                    title: "<strong>사용여부",
+                    title: "<strong>사용 유무",
                         headerAttributes: {
                                 style: "text-align: center;"
                             },

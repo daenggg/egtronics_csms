@@ -147,13 +147,15 @@ $(document).ready(function () {
             //console.log(data);
             var content =  data.payload.content;
             for(var i = 0; i < content.length; i ++) {
+             var authorization_Status = ACCEPTED_JSONformat(content[i].authorizationStatus);
+             var userCard_Stop = STOPCARD_JSONformat(content[i].userCardStop);
                 var test = 
                 {
                     cardNumber : content[i].cardNumber,
                     memberId : content[i].memberId,
                     cardStatus : content[i].cardStatus,
                     bid : content[i].bid,
-                    userCardStop : content[i].userCardStop,
+                    userCardStop : userCard_Stop,
                     useStatusKeco : content[i].useStatusKeco,
                     useStatusKepco : content[i].useStatusKepco,
                     issuanceMethod : content[i].issuanceMethod,
@@ -161,7 +163,7 @@ $(document).ready(function () {
                     useDate : content[i].useDate,
                     regDate : content[i].regDate,
                     companyCode : content[i].companyCode,
-                    authorizationStatus : content[i].authorizationStatus,
+                    authorizationStatus : authorization_Status,
                 }
                 contentData.push(test);
             }
@@ -194,7 +196,7 @@ $(document).ready(function () {
                 { field: 'memberId', title: '<strong>회원 ID', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 130 },
                 { field: 'cardStatus', title: '<strong>카드 상태', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 110 },
                 { field: "useDate", title: "<strong>회원카드 사용 등록일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 220, template: "#= kendo.toString(kendo.parseDate(useDate), 'yyyy-MM-dd HH:mm') #" },
-                { field: "regDate", title: "<strong>카드 등록 일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" },template: "#= kendo.toString(kendo.parseDate(regDate), 'yyyy-MM-dd HH:mm') #"},
+                { field: "regDate", title: "<strong>카드 등록 일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 220, template: "#= kendo.toString(kendo.parseDate(regDate), 'yyyy-MM-dd HH:mm') #"},
                 //{ field: 'bid', title: '운영사 코드', width: 120 },
                 //{ field: "useStatusKeco", title: "환경부 로밍 사용 여부", width: 130},
                 //{ field: "useStatusKepco", title: "한전 로밍 사용 여부",width: 150 },
@@ -202,7 +204,7 @@ $(document).ready(function () {
                 { field: "statusUpdateDate", title: "<strong>상태 변경 일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 220, template: "#= kendo.toString(kendo.parseDate(statusUpdateDate), 'yyyy-MM-dd HH:mm') #" },
                 { field: "userCardStop", title: "<strong>카드 정지", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 110 }, 
                 //{ field: "companyCode", title: "CPO 코드",width: 100 },
-                { field: "authorizationStatus", title: "인증 여부", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140 },
+                { field: "authorizationStatus", title: "<strong>인증 유무", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140 },
             ],
             });
             

@@ -354,15 +354,17 @@ body {
 
 /* 화살표 추가 */
 .custom-select-wrapper::after {
-  content: '▼'; /* 아래 화살표 */
+  content: '\25BC'; /* 아래 화살표 '▼' -> 유니코드*/
   position: absolute;
   top: 50%;
-  right: 10px;
+  right: 2px;
   transform: translateY(-50%);
   font-size: 13px;
   color: #333;
   pointer-events: none; /* 화살표에 클릭 이벤트가 발생하지 않도록 설정 */
 }
+
+
 
 main{
   transition: width 0.5s ease; /* 메인 콘텐츠의 너비 변경 시 부드러운 전환 효과 추가 */

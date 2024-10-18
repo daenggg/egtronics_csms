@@ -150,7 +150,8 @@ $(document).ready(function () {
                 var Amount= won_JSONformat(content[i].chargingAmount);
                 var start_Soc= SOC_JSONformat(content[i].startSoc);
                 var end_Soc= SOC_JSONformat(content[i].endSoc);
-                
+                var remote_StartDt = NULL_JSONformat(content[i].remoteStartDt);
+                var remote_StopDt = NULL_JSONformat(content[i].remoteStopDt);
                 var test = 
                 {
                   transactionId : content[i].transactionId,
@@ -167,8 +168,8 @@ $(document).ready(function () {
                   chargingAmount : Amount,
                   startSoc : start_Soc,
                   endSoc : end_Soc,
-                  remoteStartDt : content[i].remoteStartDt,
-                  remoteStopDt : content[i].remoteStopDt,
+                  remoteStartDt : remote_StartDt,
+                  remoteStopDt : remote_StopDt,
                 }
                 contentData.push(test);
             }

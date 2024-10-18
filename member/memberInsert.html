@@ -64,7 +64,7 @@
       <input type="text" id="password" class="form-control margin-right10 margin-left30" readonly="" value="회원 PW" >
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="password" type="text" class="form-control input-width" value="" placeholder="패스워드를 입력해주세요." />
+      <input id="input-select" name="password" type="password" class="form-control input-width" value="" placeholder="패스워드를 입력해주세요." />
       </div>
       </div>
       <p></p>
@@ -100,14 +100,16 @@
         <p></p>
                
         <div class="input-group"> 
-            <div class="input-group-prepend">
-            <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="사업자코드">
-            </div>
-            <div class="input-group-prepend">
-            <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="" placeholder="사업자 코드를 입력해주세요." />
-            </div>
-            </div>
-            <p></p>
+          <div class="input-group-prepend">
+          <input type="text"  id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="CPO 코드">
+          </div>
+          <div class="custom-select-wrapper">
+          <select id="companyCode1" name="companyCode" class="form-control input-width custom-select" >
+
+          </select>
+          </div>
+          </div>
+          <p></p>
 
                 
                 <div class="input-group d-flex justify-content-center">
@@ -121,6 +123,33 @@
 
 <script src="../practice.js"></script>
 <script >
+  var t = sessionStorage.getItem('accessToken');
+
+  $(document).ready(function () {
+  $.ajax({    			
+        url: reqURL+"/company/info/list?page=1&size=10000",
+        type: "GET",
+        dataType: "json", 
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","10");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+          
+          var content =  data.payload;
+          console.log(content);
+          for(var i = 0; i < content.length; i ++) {
+              $("select[name=companyCode]").append("<option value='"+ (content[i].companyCode)+"'>" + (content[i].companyName) + "</option>")
+            }
+        },
+        error: function(error) {
+            alert('CPO 정보 호출 실패: ' + error.responseText);
+        }
+      });
+})
 function btnMemberInsert(){
   var Load = {
     id : $("input[name=id]").val(),
@@ -128,7 +157,7 @@ function btnMemberInsert(){
     name : $("input[name=name]").val(),
     email : $("input[name=email]").val(),
     mobile : $("input[name=mobile]").val(),
-    companyCode : $("input[name=companyCode]").val(),
+    companyCode : $("select[name=companyCode]").val(),
     useYn: "Y",
     deleteYn: "N",
     loginYn: "N",
@@ -137,7 +166,6 @@ function btnMemberInsert(){
 //  console.log("[data] : " + JSON.stringify(Load));
   //alert("[data] : " + JSON.stringify(Load));
    
-  var t = sessionStorage.getItem('accessToken');
   $.ajax({    			
         url: reqURL+"/member/info/create",
         type: "POST",

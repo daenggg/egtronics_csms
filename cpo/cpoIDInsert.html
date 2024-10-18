@@ -132,7 +132,9 @@
                 <input type="text" id="roleId" class="form-control margin-right10 margin-left30" readonly="" value="권한 ID" >
                 </div>
                 <div class="input-group-prepend">
-                <input id="input-select" name="roleId" type="text" class="form-control input-width" value="" placeholder="" />
+                <select id="input-select" name="roleId" class="form-control input-width"  placeholder="">
+
+                </select>
                 </div>
                 </div>
                 <p></p>
@@ -188,6 +190,32 @@
 </script>
 <script src="../practice.js"></script>
 <script>
+    var t = sessionStorage.getItem('accessToken');
+    $(document).ready(function () {
+    $.ajax({    			
+        url: reqURL+"/user/info/page/list?page=1&size=10000",
+        type: "GET",
+        dataType: "json", 
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","10");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+          
+          var content =  data.payload;
+          console.log(content);
+          for(var i = 0; i < content.length; i ++) {
+              $("select[name=roleId]").append("<option value='"+ (content[i].roleId)+"'>" + (content[i].roleId) + "</option>")
+            }
+        },
+        error: function(error) {
+            alert('CPO 정보 호출 실패: ' + error.responseText);
+        }
+      });
+})
     function btncpoIDInsert() {
         var Load = {
             userId: $("input[name=userId]").val(),
@@ -198,7 +226,7 @@
             userAddress2: $("input[name=userAddress2]").val(),
             userEmail: $("input[name=userEmail]").val(),
             renewalPwDate: $("input[name=renewalPwDate]").val(),
-            roleId: $("input[name=roleId]").val(),
+            roleId: $("select[name=roleId]").val(),
             regUserId: $("input[name=regUserId]").val(),
             companyCode : $("input[name=companyCode]").val(),
             useYn: "Y",
@@ -206,7 +234,7 @@
         //  console.log("[data] : " + JSON.stringify(Load));
         //  alert("[data] : " + JSON.stringify(PayLoad));
 
-        var t = sessionStorage.getItem('accessToken');
+        
         $.ajax({
             url: reqURL + "/user/info/create",
             type: "POST",

@@ -120,6 +120,42 @@ function USEYN_JSONformat(value_data){
   }
   return value_data;
 }
+function NULL_JSONformat(value_data){
+  if(value_data == "null"){
+    value_data = "없음"
+  }
+  return value_data;
+}
+function QUANTITY_JSONformat(value_data){
+  return value_data + '개'
+}
+function DELETEYN_JSONformat(value_data){
+  if(value_data == "Y"){
+    value_data = "예";
+  }
+  else if(value_data == "N"){
+    value_data = "아니오";
+  }
+  return value_data;
+}
+function STOPCARD_JSONformat(value_data){
+  if(value_data == "N"){
+    value_data = "정지";
+  }
+  else if(value_data == "Y"){
+    value_data = "사용중"
+  }
+  return value_data;
+}
+function ACCEPTED_JSONformat(value_data){
+  if(value_data == "Accepted"){
+    value_data = "인증됨";
+  }
+  else if(value_data == "Blocked"){
+    value_data = "미인증";
+  }
+  return value_data;
+}
 
 
 

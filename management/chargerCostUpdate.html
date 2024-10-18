@@ -51,7 +51,7 @@
             
             <div class="input-group"> 
             <div class="input-group-prepend">
-            <input type="text"  id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="회사 코드">
+            <input type="text"  id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="CPO 코드">
             </div>
             <div class="input-group-prepend">
             <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="" placeholder="" readonly="" />
@@ -300,8 +300,8 @@
             <p></p>
       
           <div class="input-group d-flex justify-content-center">
-            <button class="btn btn-primary"  onclick="btnchargerCostUpdate()">등록</button>
-            <button class="btn btn-secondary ms-2"  onclick="window.close()">취소</button>
+            <button class="btn btn-primary" id="insertButton" onclick="btnchargerCostUpdate()">등록</button>
+            <button class="btn btn-secondary ms-2" id="cancelButton" onclick="window.close()">취소</button>
         </div>
           </div>
         </div>

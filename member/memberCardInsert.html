@@ -132,18 +132,26 @@
               <div class="input-group-prepend">
               <input type="text" id="IssuanceMethod" class="form-control margin-right10 margin-left30" readonly="" value="발급 방법" >
               </div>
-              <div class="input-group-prepend">
-              <input id="input-select" name="IssuanceMethod" type="text" class="form-control input-width" value="" placeholder="" />
-              </div>
+              <div class="custom-select-wrapper">
+                <select name="IssuanceMethod" id="IssuanceMethod1" class="form-control input-width custom-select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected>5</option>
+                </select>
+            </div>
               </div>
               <p></p>
 
               <div class="input-group"> 
                 <div class="input-group-prepend">
-                <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="CPO 코드">
+                <input type="text"  id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="CPO 코드">
                 </div>
-                <div class="input-group-prepend">
-                <input id="input-select" name="companyCode" type="text" class="form-control input-width" value="" placeholder="egtn" />
+                <div class="custom-select-wrapper">
+                <select id="companyCode1" name="companyCode" class="form-control input-width custom-select" >
+      
+                </select>
                 </div>
                 </div>
                 <p></p>
@@ -175,6 +183,34 @@
 
 <script src="../practice.js"></script>
 <script >
+ var t = sessionStorage.getItem('accessToken');
+
+ $(document).ready(function () {
+  $.ajax({    			
+        url: reqURL+"/company/info/list?page=1&size=10000",
+        type: "GET",
+        dataType: "json", 
+        contentType: "application/json",
+        timeout: 5000, // 타임 아웃 설정
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization","Bearer " + t);
+            xhr.setRequestHeader("menuId","10");
+            xhr.setRequestHeader("permit","r");
+        },
+        success: function(data, textStatus, xhr) {
+          
+          var content =  data.payload;
+          console.log(content);
+          for(var i = 0; i < content.length; i ++) {
+              $("select[name=companyCode]").append("<option value='"+ (content[i].companyCode)+"'>" + (content[i].companyName) + "</option>")
+            }
+        },
+        error: function(error) {
+            alert('CPO 정보 호출 실패: ' + error.responseText);
+        }
+      });
+})
+
 function btnMemberCardInsert(){
   var Load = {
     cardNumber : $("input[name=cardNumber]").val(),
@@ -184,14 +220,14 @@ function btnMemberCardInsert(){
     userCardStop : "N",//$("input[name=userCardStop]").val(),
     userStatusKeco : "N",//$("input[name=userStatusKeco]").val(),
     userStatusKepco : "N",//$("input[name=userStatusKepco]").val(),
-    issuanceMethod : $("input[name=IssuanceMethod]").val(),
-    companyCode : $("input[name=companyCode]").val(),
+    issuanceMethod : $("select[name=IssuanceMethod]").val(),
+    companyCode : $("select[name=companyCode]").val(),
     authorzationStatus: "Blocked",
   };
 //  console.log("[data] : " + JSON.stringify(Load));
   //alert("[data] : " + JSON.stringify(Load));
    
-  var t = sessionStorage.getItem('accessToken');
+ 
   $.ajax({    			
         url: reqURL+"/member/card/info/create",
         type: "POST",

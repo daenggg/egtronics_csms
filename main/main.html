@@ -160,13 +160,14 @@
                 var content = data.payload.content;
                 for (var i = 0; i < content.length; i++) {
                     var Addr = content[i].stationAddrCity + " " + content[i].stationAddrCountry + " " + content[i].stationAddrTown + " " + content[i].stationAddrRoadname;
+                    var use_Yn = USEYN_JSONformat(content[i].useYn);
                     var test = {
                         stationId: content[i].stationId,
                         stationName: content[i].stationName,
                         companyName: content[i].companyName,
                         companyCode: content[i].companyCode,
                         stationAddr: Addr,
-                        useYn: content[i].useYn,
+                        useYn: use_Yn,
                     }
                     contentData_station.push(test);
                 }
@@ -224,7 +225,7 @@
                         //{ field: "stationContractCapacity", title: "수주 용량" },
                         {
                             field: "useYn",
-                            title: "<strong>사용여부",
+                            title: "<strong>사용 유무",
                             headerAttributes: {
                                 style: "text-align: center;"
                             },
@@ -270,13 +271,14 @@
             success: function(data, textStatus, xhr) {
                 var content = data.payload.content;
                 for (var i = 0; i < content.length; i++) {
+                    var use_Yn = USEYN_JSONformat(content[i].useYn);
                     var test = {
                         stationId: content[i].stationId,
                         stationName: content[i].stationName,
                         chargerId: content[i].chargerId,
                         chargerName: content[i].chargerName,
                         chargerModelName: content[i].chargerModelName,
-                        useYn: content[i].useYn,
+                        useYn: use_Yn,
                     }
                     contentData_charger.push(test);
                 }
@@ -347,7 +349,7 @@
                         },
                         {
                             field: "useYn",
-                            title: "<strong>사용여부",
+                            title: "<strong>사용 유무",
                             headerAttributes: {
                                 style: "text-align: center;"
                             },
@@ -396,6 +398,7 @@
 
                     var total_kWh = Wh_JSONformat(content[i].totalChargedWh);
                     var Amount = won_JSONformat(content[i].chargingAmount);
+                    
                     var test = {
                         transactionId: content[i].transactionId,
                         stationId: content[i].stationId,

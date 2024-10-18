@@ -147,17 +147,20 @@ $(document).ready(function () {
             //console.log(data);
             var content =  data.payload.content;
             for(var i = 0; i < content.length; i ++) {
+              var connector_Number = QUANTITY_JSONformat(content[i].connectorNumber);
+              var rfid_UseYn = USEYN_JSONformat(content[i].rfidUseYn);
+              var use_Yn = USEYN_JSONformat(content[i].useYn);
                 var test = 
                 {
                   chargerFactoryCode : content[i].chargerFactoryCode,
                   chargerModelCode : content[i].chargerModelCode ,
                   chargerModelKw : content[i].chargerModelKw + 'kW' ,
                   chargerModelName : content[i].chargerModelName ,
-                  connectorNumber : content[i].connectorNumber ,
+                  connectorNumber : connector_Number ,
                   deleteYn : content[i].deleteYn ,
                   description : content[i].description ,
-                  rfidUseYn : content[i].rfidUseYn ,
-                  useYn : content[i].useYn 
+                  rfidUseYn : rfid_UseYn ,
+                  useYn : use_Yn 
                 }
                 contentData.push(test);
             }
