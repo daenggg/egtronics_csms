@@ -74,7 +74,7 @@
             <input type="text" id="cardStatus" class="form-control margin-right10 margin-left30" readonly="" value="카드 상태" >
         </div>
         <div class="custom-select-wrapper">
-            <select name="cardStatus" id="cardStatus1" class="form-control input-width custom-select">
+            <select name="cardStatus" id="cardStatus1" class="form-control input-width custom-select-variable">
               <option value="A" selected>미발급</option>
               <option value="B">발급대기</option>
               <option value="C">발급</option>
@@ -87,25 +87,14 @@
     </div>
     <p></p>
 
-      <div class="input-group"> 
-        <div class="input-group-prepend">
-        <input type="text" id="userCardStop" class="form-control margin-right10 margin-left30" readonly="" value="카드 정지 유무" >
-        </div>
-        <div class="custom-select-wrapper">
-        <select id="userCardStop1" name="userCardStop" class="form-control input-width custom-select" >
-          <option value="Y">정지</option>
-          <option value="N" selected>사용</option>
-        </select>
-        </div>
-        </div>
-        <p></p>
+      
   
             <div class="input-group"> 
               <div class="input-group-prepend">
               <input type="text" id="IssuanceMethod" class="form-control margin-right10 margin-left30" readonly="" value="발급 방법" >
               </div>
               <div class="custom-select-wrapper">
-                <select name="IssuanceMethod" id="IssuanceMethod1" class="form-control input-width custom-select">
+                <select name="IssuanceMethod" id="IssuanceMethod1" class="form-control input-width custom-select-variable">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -122,11 +111,24 @@
                 <input type="text" id="companyCode" class="form-control margin-right10 margin-left30" readonly="" value="CPO 코드">
                 </div>
                 <div class="custom-select-wrapper">
-                  <select id="companyCode1" name="companyCode" class="form-control input-width custom-select">
+                  <select id="companyCode1" name="companyCode" class="form-control input-width custom-select-variable">
                   </select>
                 </div>
                 </div>
                 <p></p>
+
+                <div class="input-group"> 
+                  <div class="input-group-prepend">
+                  <input type="text" id="userCardStop" class="form-control margin-right10 margin-left30" readonly="" value="카드 정지 유무" >
+                  </div>
+                  <div class="custom-select-wrapper">
+                  <select id="userCardStop1" name="userCardStop" class="form-control input-width custom-select" >
+                    <option value="Y">정지</option>
+                    <option value="N" selected>사용</option>
+                  </select>
+                  </div>
+                  </div>
+                  <p></p>
 
                 <div class="input-group"> 
                   <div class="input-group-prepend">

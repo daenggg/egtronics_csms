@@ -188,8 +188,8 @@ $(document).ready(function () {
               selectable: true,
               pageable:true,
             toolbar: [
-              { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnMemberCardInsert()"></span>&nbsp회원 카드 추가</a>' }, //&nbsp;
-              { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnMemberCardUpdate()"></span>&nbsp회원 카드 수정</a>' } //&nbsp;
+              { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnMemberCardInsert()">등록</a>' }, //&nbsp;
+              { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnMemberCardUpdate()">수정</a>' } //&nbsp;
             ],
             columns: [
                 { field: 'cardNumber', title: '<strong>회원 카드 번호', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 150 },

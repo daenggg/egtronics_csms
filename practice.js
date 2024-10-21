@@ -111,6 +111,7 @@ function SOC_JSONformat(value_data)
 {
     return value_data + ' %';
 }
+
 function USEYN_JSONformat(value_data){
   if(value_data == "Y"){
     value_data = "사용" ;
@@ -120,15 +121,18 @@ function USEYN_JSONformat(value_data){
   }
   return value_data;
 }
+
 function NULL_JSONformat(value_data){
   if(value_data == "null"){
     value_data = "없음"
   }
   return value_data;
 }
+
 function QUANTITY_JSONformat(value_data){
   return value_data + '개'
 }
+
 function DELETEYN_JSONformat(value_data){
   if(value_data == "Y"){
     value_data = "예";
@@ -138,6 +142,7 @@ function DELETEYN_JSONformat(value_data){
   }
   return value_data;
 }
+
 function STOPCARD_JSONformat(value_data){
   if(value_data == "N"){
     value_data = "정지";
@@ -147,15 +152,87 @@ function STOPCARD_JSONformat(value_data){
   }
   return value_data;
 }
+
 function ACCEPTED_JSONformat(value_data){
   if(value_data == "Accepted"){
-    value_data = "인증됨";
+    value_data = "수락됨";
   }
   else if(value_data == "Blocked"){
-    value_data = "미인증";
+    value_data = "차단";
+  }
+  else{
+    value_data == "오류";
   }
   return value_data;
 }
+
+function validateEmail(email_address) {     
+  var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+  return email_regex.test(email_address); 
+}
+
+function validateNumber(Number){
+  var Number_regex = /^[0-9]+$/; // 하나 이상의 숫자를 허용
+  return Number_regex.test(Number);
+}
+
+
+function validateCheck(){
+  // input의 id값(email)으로 작성된 내용을 가져옴.
+  var emailAddress = document.getElementById("input-email");
+  var numbers = document.querySelectorAll(".input-number");
+  
+  var email = emailAddress.value;
+
+  var errorMessages = []; 
+
+  // 이메일 주소 유효성 검사
+  if (!validateEmail(email)) {
+    errorMessages.push("유효하지 않은 이메일 주소입니다.");
+  }
+
+  // 전화번호 유효성 검사
+  numbers.forEach((number) => {
+    let callNumber = number.value; // let으로 선언
+    if (!validateNumber(callNumber)) {
+      errorMessages.push("번호는 숫자만 입력해주세요.");
+    }
+  });
+  // 오류 메시지가 있을 경우 한 번에 표시
+  if (errorMessages.length > 0) {
+    alert(errorMessages.join("\n\n")); // 줄 바꿈으로 메시지 연결
+  }
+}
+
+function validateMemberCard(){
+  var cardNumber = document.getElementsByName("cardNumber");
+  if(!validateNumber(cardNumber)){
+    alert("카드 번호는 숫자만 입력해주세요.");
+    return false; // 유효하지 않으면 전송을 막음
+  }
+  return true; // 유효하면 전송 가능
+}
+
+function validatePassword(newPassword, newPasswordConfirm) {
+  if (newPassword !== newPasswordConfirm) {
+    alert("새로운 패스워드가 일치하지 않습니다.");
+    return false; // 일치하지 않으면 false 반환
+  }
+  return true; // 일치하면 true 반환
+}
+
+function validatePasswordCheck() {
+  var userNewPassword = document.getElementsByName("userNewPassword")[0].value;
+  var userNewPasswordConfirm = document.getElementsByName("userNewPasswordConfirm")[0].value;
+
+  if (!validatePassword(userNewPassword, userNewPasswordConfirm)) {
+    return false; // 패스워드가 일치하지 않으면 이후 동작 중단
+  }
+
+  // 패스워드가 일치하는 경우에만 다음 동작을 실행
+  // 예를 들어, AJAX 요청을 진행하거나 폼을 제출할 수 있습니다.
+}
+
 
 
 

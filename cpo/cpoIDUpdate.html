@@ -80,15 +80,6 @@
       </div>
       <p></p>
 
-      <div class="input-group"> 
-      <div class="input-group-prepend">
-      <input type="text" id="userMobilePhone" class="form-control margin-right10 margin-left30" readonly="" value="연락처">
-      </div>
-      <div class="input-group-prepend">
-      <input id="input-select" name="userMobilePhone" type="text" class="form-control input-width" value="" placeholder="숫자만 입력해주세요('-'제외)" />
-      </div>
-      </div>
-      <p></p>
 
       <div class="input-group">
         <div class="input-group-prepend">
@@ -105,12 +96,22 @@
     </div>
     <p></p>
 
+    <div class="input-group"> 
+      <div class="input-group-prepend">
+      <input type="text" id="userMobilePhone" class="form-control margin-right10 margin-left30" readonly="" value="연락처">
+      </div>
+      <div class="input-group-prepend">
+      <input id="input-select" name="userMobilePhone" type="text" pattern="[0-9]+" class="form-control input-width input-number" value="" placeholder="숫자만 입력해주세요('-'제외)" />
+      </div>
+      </div>
+      <p></p>
+
         <div class="input-group"> 
         <div class="input-group-prepend">
         <input type="text" id="userEmail" class="form-control margin-right10 margin-left30" readonly="" value="이메일">
         </div>
         <div class="input-group-prepend">
-        <input id="input-select" name="userEmail" type="text" class="form-control input-width" value="" placeholder="이메일을 입력해주세요." />
+        <input id="input-email" name="userEmail" type="email" class="form-control input-width" value="" placeholder="이메일을 입력해주세요." />
         </div>
         </div>
         <p></p>
@@ -126,7 +127,7 @@
             <p></p>
 
         <div class="input-group d-flex justify-content-center">
-            <button class="btn btn-primary" onclick="btncpoIDUpdate()" id="insertButton">수정</button>
+            <button class="btn btn-primary" onclick="btncpoIDUpdate(); validateCheck()" id="insertButton">수정</button>
             <button class="btn btn-secondary ms-2" onclick="window.close()" id="cancelButton">취소</button>
         </div>
         

@@ -52,6 +52,16 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
+                    <input type="text" id="chargerFactoryCode" class="form-control margin-right10 margin-left30" readonly="" value="공장 코드" >
+                </div>
+                <div class="input-group-prepend">
+                    <input id="input-select" name="chargerFactoryCode" type="text" class="form-control input-width" readonly value="" placeholder="예: egtronics" />
+                </div>
+            </div>
+            <p></p>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
                     <input type="text" id = "chargerFactoryName" class="form-control margin-right10 margin-left30" readonly="" value="제조 공장 이름">
                 </div>
                 <div class="input-group-prepend">
@@ -75,22 +85,14 @@
             </div>
             <p></p>
 
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <input type="text" id="chargerFactoryCode" class="form-control margin-right10 margin-left30" readonly="" value="공장 코드" >
-                </div>
-                <div class="input-group-prepend">
-                    <input id="input-select" name="chargerFactoryCode" type="text" class="form-control input-width" value="" placeholder="" />
-                </div>
-            </div>
-            <p></p>
+    
 
             <div class="input-group">
                 <div class="input-group-prepend">
                     <input type="text" id="chargerFactoryTel" class="form-control margin-right10 margin-left30" readonly="" value="공장 전화번호" >
                 </div>
                 <div class="input-group-prepend">
-                    <input id="input-select" name="chargerFactoryTel" type="text" class="form-control input-width" value="" placeholder="숫자만 입력해주세요('-'제외)" />
+                    <input id="chargerFactoryTel1" name="chargerFactoryTel" type="text" pattern="[0-9]+" class="form-control input-width input-number" value="" placeholder="숫자만 입력해주세요('-'제외)" />
                 </div>
             </div>
             <p></p>
@@ -110,7 +112,7 @@
                     <input type="text" id="chargerFactoryManagerTel" class="form-control margin-right10 margin-left30" readonly="" value="담당자 전화번호" >
                 </div>
                 <div class="input-group-prepend">
-                    <input id="input-select" name="chargerFactoryManagerTel" type="text" class="form-control input-width" value="" placeholder="숫자만 입력해주세요('-'제외)" />
+                    <input id="chargerFactoryManagerTel1" name="chargerFactoryManagerTel" type="text" pattern="[0-9]+" class="form-control input-width input-number" value="" placeholder="숫자만 입력해주세요('-'제외)" />
                 </div>
             </div>
             <p></p>
@@ -120,7 +122,7 @@
                     <input type="text" id="chargerFactoryManagerEmail" class="form-control margin-right10 margin-left30" readonly="" value="담당자 메일" >
                 </div>
                 <div class="input-group-prepend">
-                    <input id="input-select" name="chargerFactoryManagerEmail" type="text" class="form-control input-width" value="" placeholder="이메일을 입력해주세요." />
+                    <input id="input-email" name="chargerFactoryManagerEmail" type = "email" class="form-control input-width" value="" placeholder="이메일을 입력해주세요." />
                 </div>
             </div>
             <p></p>
@@ -137,7 +139,7 @@
 
 
             <div class="input-group d-flex justify-content-center">
-                <button class="btn btn-primary" onclick="btnchargerFactoryUpdate()" id="insertButton">수정</button>
+                <button class="btn btn-primary" onclick="btnchargerFactoryUpdate(); validateCheck()" id="insertButton">수정</button>
                 <button class="btn btn-secondary ms-2" onclick="window.close()" id="cancelButton">취소</button>
             </div>
         </div>
@@ -165,7 +167,7 @@
             useYn: "Y"
         };
         //  console.log("[data] : " + JSON.stringify(Load));
-        //  alert("[data] : " + JSON.stringify(PayLoad));
+          alert("[data] : " + JSON.stringify(Load));
 
         var t = sessionStorage.getItem('accessToken');
         $.ajax({

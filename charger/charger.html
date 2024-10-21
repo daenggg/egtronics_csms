@@ -157,7 +157,7 @@
                 xhr.setRequestHeader("permit", "r");
             },
             success: function(data, textStatus, xhr) {
-                console.log("data" + JSON.stringify(data));
+                // console.log("data" + JSON.stringify(data));
                 var content = data.payload.content;
                 for (var i = 0; i < content.length; i++) {
                     var use_Yn = USEYN_JSONformat(content[i].useYn);
@@ -257,7 +257,8 @@
                         "class": "table-cell",
                         style: "text-align: center;"
                     },
-                    width: 190
+                    width: 190,
+                    template: "#= kendo.toString(kendo.parseDate(statusNotificationDate), 'yyyy-MM-dd HH:mm') #" 
                 },
                 {
                     field: "errorCode",
@@ -322,11 +323,11 @@
             pageable: true,
             toolbar: [{
                     text: "select",
-                    template: '<a class="k-button" href="\\#" onclick="return btnChargerInsert()"></span>&nbsp충전기 추가</a>'
+                    template: '<a class="k-button" href="\\#" onclick="return btnChargerInsert()">추가</a>'
                 }, //&nbsp;
                 {
                     text: "select",
-                    template: '<a class="k-button" href="\\#" onclick="return btnChargerUpdate()"></span>&nbsp충전기 수정</a>'
+                    template: '<a class="k-button" href="\\#" onclick="return btnChargerUpdate()">수정</a>'
                 },
             ],
             columns: [{
@@ -436,7 +437,7 @@
                         "class": "table-cell",
                         style: "text-align: center;"
                     },
-                    width: 200
+                    width: 300
                 },
                 {
                     field: "vendorId",

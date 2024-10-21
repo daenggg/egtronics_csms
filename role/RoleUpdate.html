@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="generator" content="">
-    <title>권한 변경</title>
+    <title>권한 수정</title>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
     <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
@@ -137,7 +137,7 @@
             },
             success: function(data, textStatus, xhr) {
                 console.log("[data] : " + JSON.stringify(data));
-                if (confirm('권한이 등록되었습니다.')) {
+                if (confirm('권한이 수정되었습니다.')) {
                     window.close();  // 현재 창을 닫음
                     window.opener.location.reload();  // 부모 창(원본 창)을 새로고침
                 }

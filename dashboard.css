@@ -333,42 +333,65 @@ body {
 .custom-select-wrapper {
   position: relative;
   display: inline-block;
-  width: 200px; /* 필요에 따라 너비 조정 */
+  width: 100px; /* 필요에 따라 너비 조정 */
   height: 40px; /* input-group-prepend와 동일한 높이 */
-  
+  text-align: center;
 }
 
-/* select 요소 자체의 높이도 맞춰주기 위해 추가 */
-.custom-select-wrapper select {
-  height: 100%;
-}
+
 
 .custom-select {
   appearance: none; /* 기본 드롭다운 화살표 제거 */
+  position: relative;
   width: 100%;
   padding: 10px;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 4px;
-  text-align: left;
   font-size: 15px;
   color: #333;
-  text-align: center;
-  text-align-last: center; /* 드롭다운 목록이 열렸을 때 항목도 중앙 정렬 */
+  text-align: center; /*왼쪽 정렬 */
+  text-align-last: center; /* 드롭다운 목록이 열렸을 때 항목도 왼쪽 정렬 */
   margin-left: 10px;
+  background-image: url('https://www.pngarts.com/files/2/Down-Arrow-PNG-Photo.png'); /* 화살표 이미지 경로 */
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* 화살표 위치 조정 */
+  background-size: 12px; /* 이미지 크기 조정 */
 }
 
-/* 화살표 추가 */
+/* 화살표 추가 
 .custom-select-wrapper::after {
-  content: '\25BC'; /* 아래 화살표 '▼' -> 유니코드*/
+  content: '\25BC'; /* 아래 화살표 '▼' -> 유니코드
   position: absolute;
-  top: 50%;
-  right: 2px;
+  top: 55%;
+  right: 0px;
   transform: translateY(-50%);
   font-size: 13px;
   color: #333;
-  pointer-events: none; /* 화살표에 클릭 이벤트가 발생하지 않도록 설정 */
+  pointer-events: none; /* 화살표에 클릭 이벤트가 발생하지 않도록 설정 
 }
+*/
+
+.custom-select-variable{
+  appearance: none; /* 기본 드롭다운 화살표 제거 */
+  position: relative;
+  width: 370%;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  color: #333;
+  text-align: left; /*왼쪽 정렬 */
+  text-align-last: left; /* 드롭다운 목록이 열렸을 때 항목도 왼쪽 정렬 */
+  margin-left: 10px;
+  background-image: url('https://www.pngarts.com/files/2/Down-Arrow-PNG-Photo.png'); /* 화살표 이미지 경로 */
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* 화살표 위치 조정 */
+  background-size: 12px; /* 이미지 크기 조정 */
+}
+
+
 
 main{
   transition: width 0.5s ease; /* 메인 콘텐츠의 너비 변경 시 부드러운 전환 효과 추가 */
@@ -377,6 +400,21 @@ main{
 #input-select{
   margin-left: 10px;
   width: 370px;
+  height: 40px;
+  font-size: 12px;
+}
+
+#input-email{
+  margin-left: 10px;
+  width: 370px;
+  height: 40px;
+  font-size: 12px;
+}
+.input-number{
+  margin-left: 10px;
+  width: 370px;
+  height: 40px;
+  font-size: 12px;
 }
 
 #inputHeader{/*입력 헤더 선택자*/
@@ -478,4 +516,15 @@ main{
   text-align:center; 
   color:black;
   font-weight: bold;
+}
+input:invalid {
+  border-color: red;    /* 값이 유효하지 않다면, border색을 red로 지정한다 */
+}
+
+input:valid {
+  border-color: #b8d8d8; /* 값이 유효하다면, border색을 #b8d8d8로 지정한다 */
+}
+.number{
+  margin-left: 10px; 
+  text-align: center;
 }

@@ -74,7 +74,7 @@
       <input type="text" id="userPassword" class="form-control margin-right10 margin-left30" readonly="" value="현재 비밀번호" >
       </div>
       <div class="input-group-prepend">
-      <input id="input-select" name="userPassword" type="text" class="form-control input-width" value="" placeholder="사용하고 있는 현재 비밀번호를 입력해주세요." />
+      <input id="input-select" name="userPassword" type="password" class="form-control input-width" value="" placeholder="사용하고 있는 현재 비밀번호를 입력해주세요." />
       </div>
       </div>
       <p></p>
@@ -84,7 +84,7 @@
         <input type="text" id="userNewPassword" class="form-control margin-right10 margin-left30" readonly="" value="새 비밀번호" >
         </div>
         <div class="input-group-prepend">
-        <input id="input-select" name="userNewPassword" type="text" class="form-control input-width" value="" placeholder="새로운 비밀번호를 입력해주세요." />
+        <input id="input-select" name="userNewPassword" type="password" class="form-control input-width" value="" placeholder="새로운 비밀번호를 입력해주세요." />
         </div>
         </div>
         <p></p>
@@ -94,13 +94,13 @@
         <input type="text" id="userNewPasswordConfirm" class="form-control margin-right10 margin-left30" readonly="" value="새 비밀번호 확인" >
         </div>
         <div class="input-group-prepend">
-        <input id="input-select" name="userNewPasswordConfirm" type="text" class="form-control input-width" value="" placeholder="새로운 비밀번호를 다시 입력해주세요." />
+        <input id="input-select" name="userNewPasswordConfirm" type="password" class="form-control input-width" value="" placeholder="새로운 비밀번호를 다시 입력해주세요." />
         </div>
         </div>
         <p></p>
 
         <div class="input-group d-flex justify-content-center">
-          <button class="btn btn-primary" onclick="btncpoID_PWUpdate()" id="insertButton">수정</button>
+          <button class="btn btn-primary" onclick="btncpoID_PWUpdate(); validatePasswordCheck()" id="insertButton">수정</button>
           <button class="btn btn-secondary ms-2" onclick="window.close()" id="cancelButton">취소</button>
       </div>
           </div>

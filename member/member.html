@@ -194,9 +194,9 @@ $(document).ready(function () {
               selectable: true,
               pageable:true,
             toolbar: [
-                { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnMemberInsert()"></span>&nbsp회원 추가</a>' }, //&nbsp;
-                { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnMemberUpdate()"></span>&nbsp회원 수정</a>' }, //&nbsp;
-                { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnMember_PWUpdate()"></span>&nbsp회원 비밀번호 변경</a>' } //&nbsp;
+                { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnMemberInsert()">등록</a>' }, //&nbsp;
+                { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnMemberUpdate()">수정</a>' }, //&nbsp;
+                { text: "select", template: '<a class="k-button" href="\\#" onclick="return btnMember_PWUpdate()">비밀번호 수정</a>' } //&nbsp;
             ],
             columns: [
                 { field: 'id', title: '<strong>회원 ID', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 200 },
