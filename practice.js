@@ -28,21 +28,24 @@ var menuData = [];
               sessionStorage.setItem('accessToken', access);
               sessionStorage.setItem('refreshtokentoken', refresh);
               var menuRole =  data.payload.menuRole;
-            for(var i = 0; i < menuRole.length; i ++) {
-                var test = 
-                {
-                  menuName : menuRole[i].menuName ,
-                  menuId : menuRole[i].menuId ,
-                  useYn : menuRole[i].useYn ,
-                  permit_c : menuRole[i].permit.c ,
-                  permit_r : menuRole[i].permit.r ,
-                  permit_u : menuRole[i].permit.u ,
-                  permit_d : menuRole[i].permit.d ,
-                  parentMenuId : menuRole[i].parentMenuId,
-                  sort : menuRole[i].sort
+            
+              for (var i = 0; i < menuRole.length; i++) {
+                var menuIdString = menuRole[i].menuId.toString(); // menuId를 문자열로 변환
+            
+                if (!menuIdString.startsWith('6')) { // menuId가 6 또는 6.x로 시작하지 않는 경우에만 추가
+                    var test = {
+                        menuName: menuRole[i].menuName,
+                        menuId: menuRole[i].menuId,
+                        useYn: menuRole[i].useYn,
+                        permit_c: menuRole[i].permit.c,
+                        permit_r: menuRole[i].permit.r,
+                        permit_u: menuRole[i].permit.u,
+                        permit_d: menuRole[i].permit.d,
+                        parentMenuId: menuRole[i].parentMenuId,
+                        sort: menuRole[i].sort
+                    };
+                    menuData.push(test); // 조건을 만족하는 항목만 menuData에 추가
                 }
-                console.log(test);
-                menuData.push(test);
             }
             sessionStorage.setItem('menuData', JSON.stringify(menuData));
             location.href="../main/main.html";
@@ -164,6 +167,28 @@ function ACCEPTED_JSONformat(value_data){
   }
   else{
     value_data == "오류";
+  }
+  return value_data;
+}
+
+function CARDSTATUS_JSONformat(value_data){
+  if(value_data == "A"){
+    value_data = "미발급";
+  }
+  else if(value_data == "B"){
+    value_data = "발급대기";
+  }
+  else if(value_data == "C"){
+    value_data = "발급";
+  }
+  else if(value_data == "D"){
+    value_data = "사용";
+  }
+  else if(value_data == "E"){
+    value_data = "미사용";
+  }
+  else if(value_data == "F"){
+    value_data = "분실/파손/고장";
   }
   return value_data;
 }
@@ -432,51 +457,53 @@ function href_link(item) {
    }
  return href;
  }
-//메뉴 항목 표시 함수
- function createNavMenu(navItems) {
+ function createNavMenu(navItems, subNavItems) {
   const navMenu = document.getElementById('navMenu');
 
-  navItems.forEach((item, index) => {
-      if (index === 6 || index === 7) return;  // 특정 항목 건너뛰기
-      if (index >= 16 && index <= 22) return;  // 특정 항목 건너뛰기
-
+  navItems.forEach((item) => {
       const ul = document.createElement('ul');
       const li = document.createElement('li');
       const a = document.createElement('a');
-      a.textContent = item;
-      a.href = href_link(item);  // 링크 설정
+      a.textContent = item.menuName;
+      a.href = href_link(item.menuName);  // 링크 설정
       li.appendChild(a);
 
-      if (index === 5) {
+      const filteredSubMenu = subNavItems.filter(subItem => subItem.parentMenuId === item.menuId);
+
+      if (filteredSubMenu.length !== 0) {
+          const arrowImg = document.createElement('img');
+          arrowImg.src = 'assets/brand/rightArrow.png'; // 오른쪽 화살표 이미지
+          arrowImg.classList.add('arrow-icon');
+          li.appendChild(arrowImg);
+
           const nestedUl = document.createElement('ul');
-          [6, 7].forEach(subIndex => {
-              const nestedLi = document.createElement('li');
-              const nestedA = document.createElement('a');
-              nestedA.textContent = navItems[subIndex];
-              nestedA.href = href_link(navItems[subIndex]);
+          nestedUl.style.display = 'none';  // 초기에는 하위 메뉴를 숨김
+
+          filteredSubMenu.forEach(subItem => {
+              let nestedLi = document.createElement('li');
+              let nestedA = document.createElement('a');
+              nestedA.textContent = subItem.menuName;
+              nestedA.href = href_link(subItem.menuName);  // 링크 설정
               nestedLi.appendChild(nestedA);
               nestedUl.appendChild(nestedLi);
           });
-          li.appendChild(nestedUl);
-      }
 
-      if (index === 15) {
-          const nestedUl = document.createElement('ul');
-          for (let i = 16; i <= 22; i++) {
-              const nestedLi = document.createElement('li');
-              const nestedA = document.createElement('a');
-              nestedA.textContent = navItems[i];
-              nestedA.href = href_link(navItems[i]);
-              nestedLi.appendChild(nestedA);
-              nestedUl.appendChild(nestedLi);
-          }
           li.appendChild(nestedUl);
+
+          // 화살표 이미지를 클릭하면 하위 메뉴 표시/숨김 처리
+          arrowImg.addEventListener('click', () => {
+              const isExpanded = nestedUl.style.display === 'block';
+              nestedUl.style.display = isExpanded ? 'none' : 'block';
+              arrowImg.src = isExpanded ? 'assets/brand/rightArrow.png' : 'assets/brand/downArrow.png'; // 이미지 변경
+          });
       }
 
       ul.appendChild(li);
       navMenu.appendChild(ul);
   });
 }
+
+
 //사이드바 열고 닫기 함수
 function initializeSidebar() {
   const sidebar = document.querySelector('.side-bar');

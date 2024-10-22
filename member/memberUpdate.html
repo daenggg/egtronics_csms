@@ -84,7 +84,7 @@
         <input type="text" id="mobile" class="form-control margin-right10 margin-left30" readonly="" value="전화번호" >
         </div>
         <div class="input-group-prepend">
-        <input id="input-select" name="mobile" type="text" pattern="[0-9]+" class="form-control input-width input-number" value="" placeholder="숫자만 입력해주세요('-'제외)" />
+        <input id="input-select" name="mobile" type="text" pattern="[0-9]+" class="form-control input-width input-number" value="" placeholder="숫자만 입력해주세요('-'제외)" maxlength="15" />
         </div>
         </div>
         <p></p>
@@ -123,8 +123,8 @@
             </div>
             <div class="custom-select-wrapper">
                 <select name="useYn" id="useYn1" class="form-control input-width custom-select">
-                    <option value="answer-use">사용</option>
-                    <option value="answer-not-use">미사용</option>
+                    <option value="Y">사용</option>
+                    <option value="N">미사용</option>
                 </select>
             </div>
         </div>

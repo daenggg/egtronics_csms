@@ -38,16 +38,16 @@
   </header>
         
   <div class="container-fluid">
-    <nav id="navMenu" class = "side-bar">
-        <section class="side-bar__icon-box">
-            <section class="side-bar__icon-1" id="toggle-sidebar">
+    <div class="side-bar">
+      <div class="side-bar__icon-box">
+          <div class="side-bar__icon-1" id="toggle-sidebar">
               <div></div>
               <div></div>
               <div></div>
-            </section>
-          </section>
-        <p>
-    </nav>
+          </div>
+      </div>
+      <div id="navMenu"></div> <!-- 네비게이션 메뉴를 추가하는 부분 -->
+  </div>
       
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -68,19 +68,26 @@ $(document).ready(function () {
   let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
         console.log(retrievedArray);
 
-        // 필터링된 네비게이션 항목을 저장할 빈 배열 선언
-        var navItems = [];
+       // 필터링된 네비게이션 항목을 저장할 빈 배열 선언
+       var navItems = [];
+        var subNavItems = []; // 2차 메뉴를 저장할 배열
+
         // retrievedArray의 각 항목을 순회
         for (var i = 0; i < retrievedArray.length; i++) {
-        // 항목의 permit_r가 true이고 useYn이 "Y"인지 확인
-        if (retrievedArray[i].permit_r === true && retrievedArray[i].useYn === "Y") {
-            // 조건을 만족하는 항목의 menuName을 navItems 배열에 추가
-            navItems.push(retrievedArray[i].menuName);
-        }
-        }
-        console.log(navItems);
+            // 항목의 permit_r가 true이고 useYn이 "Y"인지 확인
+            if (retrievedArray[i].permit_r === true && retrievedArray[i].useYn === "Y") {
+                // parentMenuId가 0이면 1차 메뉴에 추가
+                if (retrievedArray[i].parentMenuId == 0) {
+                    navItems.push(retrievedArray[i]);
+                } 
+                // parentMenuId가 0이 아니면 2차 메뉴에 추가
+                else {
+                    subNavItems.push(retrievedArray[i]);
+                }
+            }
+    }
 
-        createNavMenu(navItems);
+        createNavMenu(navItems, subNavItems);;
   
        $.ajax({    			
         url: reqURL+"/member/card/info/page/list?page=1&size=100010",
@@ -99,11 +106,12 @@ $(document).ready(function () {
             for(var i = 0; i < content.length; i ++) {
              var authorization_Status = ACCEPTED_JSONformat(content[i].authorizationStatus);
              var userCard_Stop = STOPCARD_JSONformat(content[i].userCardStop);
+             var card_Status = CARDSTATUS_JSONformat(content[i].cardStatus);
                 var test = 
                 {
                     cardNumber : content[i].cardNumber,
                     memberId : content[i].memberId,
-                    cardStatus : content[i].cardStatus,
+                    cardStatus : card_Status,
                     bid : content[i].bid,
                     userCardStop : userCard_Stop,
                     useStatusKeco : content[i].useStatusKeco,
@@ -166,7 +174,7 @@ $(document).ready(function () {
 });
 
 function btnMemberCardInsert(){
-  window.open("memberCardInsert.html", "회원 카드 등록", "width=600, height=850, top=150, left=200");
+  window.open("memberCardInsert.html", "회원 카드 등록", "width=700, height=442, top=150, left=200");
 }
 
 function btnMemberCardUpdate(){
@@ -176,7 +184,7 @@ function btnMemberCardUpdate(){
     alert('수정할 곳을 선택하여 주세요');
   }
   else{
-    window.open("memberCardUpdate.html", "회원 카드 수정", "width=600, height=850, top=150, left=200");
+    window.open("memberCardUpdate.html", "회원 카드 수정", "width=700, height=565, top=150, left=200");
   }
 }
 

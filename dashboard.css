@@ -22,9 +22,6 @@ body {
   
   /* 사이드바 시작 */
   /* 커스텀 시작 */
-  .side-bar > ul ul {
-    display: none;
-  }
 
 /* 사이드바의 너비와 높이를 변수를 통해 통제 */
 :root {
@@ -33,14 +30,20 @@ body {
 }
 
 .side-bar {
-  position: fixed;    /* 스크롤을 따라오도록 지정 */
-  background-color:#B7E3E4;
+  position: fixed;    
+  background-color: #B7E3E4;
   width: var(--side-bar-width);
-  min-height: var(--side-bar-height);   /* 사이드바의 높이를 전체 화면 높이의 90%로 지정 */
-  margin-top: calc((100vh - var(--side-bar-height)) / 2);    /* 사이드바 위와 아래의 마진을 동일하게 지정 */
-  z-index: 1000; /* 다른 요소보다 위에 표시되도록 z-index 설정 */
-  transition: background-color 0.3s, transform 0.3s; /* 부드러운 전환 효과 */
-  transform: translate(calc(var(--side-bar-width) * -0.8), 0); /* 기본 숨김 상태 */
+  max-height: 93vh; /* 최대 높이를 전체 화면 높이로 설정 */
+  height: auto; /* 높이는 자동 조정 */
+  overflow-y: scroll; /* 세로 스크롤 활성화 */
+  margin-top: calc((100vh - var(--side-bar-height)) / 2);     
+  padding: 10px; /* 사이드바 내부 여백 추가 */
+  transform: translate(calc(var(--side-bar-width) * -0.8), 0);
+  transition: .5s;
+  list-style: none;
+}
+.side-bar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
 
 
@@ -54,7 +57,7 @@ body {
   position: relative;
   width: 23px;
   height: 17px;
-  margin: 15px;
+  margin: 5px;
   margin-top: 20px;
   transition: .5s;
 }
@@ -98,64 +101,70 @@ body {
 
 /* 아이콘 끝 */
 
-/* 모든 메뉴의 a에 속성값 부여 */
-.side-bar ul > li > a {
-  display: block;
-  color: black;
-  font-size: 1.0rem;
-  font-weight: bold;
-  padding-top: 2px;
-  padding-bottom: 0px;
-  padding-left: 50px;
-  transition: .5s;
-}
-.side-bar > ul{
-  padding-left: 0px;
-}
-/* 자식의 position이 absolute일 때 자식을 영역 안에 가두어 준다 */
-.side-bar > ul > li {
-  position: relative;
+/* 사이드바 메뉴 스타일 */
+.side-bar ul {
   list-style-type: none;
-  padding-left: 0;
-  transition: transform 0.3s box-shadow 0.2s;
+  padding: 0;
+  margin: 0;
 }
 
-/* 모든 메뉴가 마우스 인식 시 반응 */
-.side-bar ul > li:hover > a {
-  background-color: #B7E3E4;
-  border-bottom: 1px solid #B7E3E4;
-  transform: translateY(-2px);
+.side-bar ul li {
+  position: relative;
+  padding: 10px 20px;
+}
+
+/* 링크 및 화살표 이미지를 감싸는 div 스타일 */
+.side-bar ul li > div {
+  display: flex; /* Flexbox 사용 */
+  align-items: center; /* 수직 정렬 */
+}
+
+/* 1차 메뉴 스타일 */
+.side-bar ul li a {
+  font-size: 1rem;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  flex-grow: 1; /* 링크가 가능한 공간을 채우도록 설정 */
+  transition: scale(1.05);
+  
+}
+
+/* 화살표 이미지 스타일 */
+.arrow-icon {
+  margin-left: 10px;
+  width: 30px; /* 이미지 크기 조정 */
+  height: 15px;
+  cursor: pointer;
+  z-index: 1000; /* z-index 추가 */
+  
+}
+
+/* 하위 메뉴 숨김 및 스타일 */
+.side-bar ul ul {
+  display: none;
+  padding-left: 10px;
+  background-color: #A6D8D9;
+  
+}
+
+.side-bar ul ul li a {
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: bold;
+}
+
+/* 하위 메뉴 호버 스타일 */
+.side-bar ul li a:hover {
+  background-color: #A6D8D9;
+  transform: translateY(-2px) scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 1차 메뉴의 항목이 마우스 인식 시에 2차 메뉴 등장 */
-.side-bar > ul > li:hover > ul {
-  display: block;
-  position: absolute;
-  background-color: #B7E3E4;
-  top: 0;         /* 2차 메뉴의 상단을 1차 메뉴의 상단에 고정 */
-  left: 100%;     /* 2차 메뉴를 1차 메뉴의 너비만큼 이동 */
-  width: 90%;    /* 1차 메뉴의 너비를 상속 */
-  margin: 0;  /* 바깥쪽 여백을 없앰 */
-  padding: 0; /* 안쪽 여백을 없앰 */
-  list-style: none; /* 리스트 마커(불릿, 숫자)를 없앰 */
-  transition: background-color 0.3s, transform 0.2s /* 부드러운 전환 효과 */
- 
-}
-.side-bar > ul > li:hover > ul > li{
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-left: 0;
-  padding-left: 0;
-  transition: transform 0.3s box-shadow 0.2s;
-}
-.side-bar > ul > li:hover > ul > li:hover{
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
-}
 
 /* 사이드바 너비의 80%만큼 왼쪽으로 이동 */
 .side-bar {
+  padding: 10px; /* 사이드바 내부 여백 추가 */
   transform: translate(calc(var(--side-bar-width) * -0.8), 0);
   transition: .5s;
 }
@@ -338,12 +347,10 @@ body {
   text-align: center;
 }
 
-
-
 .custom-select {
   appearance: none; /* 기본 드롭다운 화살표 제거 */
   position: relative;
-  width: 100%;
+  width: 110%;
   padding: 10px;
   background-color: white;
   border: 1px solid #ccc;

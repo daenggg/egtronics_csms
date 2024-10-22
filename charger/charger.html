@@ -41,16 +41,16 @@
     </header>
 
     <div class="container-fluid">
-        <nav id="navMenu" class="side-bar">
-            <section class="side-bar__icon-box">
-                <section class="side-bar__icon-1" id="toggle-sidebar">
+        <div class="side-bar">
+            <div class="side-bar__icon-box">
+                <div class="side-bar__icon-1" id="toggle-sidebar">
                     <div></div>
                     <div></div>
                     <div></div>
-                </section>
-            </section>
-            <p>
-        </nav>
+                </div>
+            </div>
+            <div id="navMenu"></div> <!-- 네비게이션 메뉴를 추가하는 부분 -->
+        </div>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -81,19 +81,26 @@
         let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
         console.log(retrievedArray);
 
-        // 필터링된 네비게이션 항목을 저장할 빈 배열 선언
-        var navItems = [];
+       // 필터링된 네비게이션 항목을 저장할 빈 배열 선언
+       var navItems = [];
+        var subNavItems = []; // 2차 메뉴를 저장할 배열
+
         // retrievedArray의 각 항목을 순회
         for (var i = 0; i < retrievedArray.length; i++) {
             // 항목의 permit_r가 true이고 useYn이 "Y"인지 확인
             if (retrievedArray[i].permit_r === true && retrievedArray[i].useYn === "Y") {
-                // 조건을 만족하는 항목의 menuName을 navItems 배열에 추가
-                navItems.push(retrievedArray[i].menuName);
+                // parentMenuId가 0이면 1차 메뉴에 추가
+                if (retrievedArray[i].parentMenuId == 0) {
+                    navItems.push(retrievedArray[i]);
+                } 
+                // parentMenuId가 0이 아니면 2차 메뉴에 추가
+                else {
+                    subNavItems.push(retrievedArray[i]);
+                }
             }
-        }
-        console.log(navItems);
+    }
 
-        createNavMenu(navItems);
+        createNavMenu(navItems, subNavItems);
 
         $.ajax({
             url: reqURL + "/charger/info/page/list?page=1&size=1000",
@@ -232,7 +239,7 @@
                         "class": "table-cell",
                         style: "text-align: center;"
                     },
-                    width: 800
+                    width: 400
                 },
             ],
             noRecords: true,
@@ -580,7 +587,7 @@
     }
 
     function btnChargerInsert() {
-        window.open("chargerInsert.html", "충전기 등록", "width=600, height=650, top=150, left=200");
+        window.open("chargerInsert.html", "충전기 등록", "width=700, height=687, top=150, left=200");
     }
 
     function btnChargerUpdate() {
@@ -589,7 +596,7 @@
         if (data == "" || data == null) {
             alert('수정할 곳을 선택하여 주세요');
         } else {
-            window.open("chargerUpdate.html", "충전기 수정", "width=600, height=650, top=150, left=200");
+            window.open("chargerUpdate.html", "충전기 수정", "width=700, height=688, top=150, left=200");
         }
     }
 

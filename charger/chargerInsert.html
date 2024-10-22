@@ -66,7 +66,7 @@
                     <input type="text" id="chargerId" class="form-control margin-right10 margin-left30" readonly="" value="충전기 ID" >
                 </div>
                 <div class="input-group-prepend">
-                    <input id="input-select" name="chargerId" type="text" class="form-control input-width" value="" placeholder=" 충전기 ID를 입력하세요" />
+                    <input id="input-select" name="chargerId" type="text" class="form-control input-width" value="" placeholder=" 충전기 ID를 입력하세요" maxlength="3" />
                 </div>
             </div>
             <p></p>
@@ -105,12 +105,12 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="kecoRoamingYn" class="form-control margin-right10 margin-left30" readonly="" value="환경부 로밍 여부" >
+                    <input type="text" id="kecoRoamingYn" class="form-control margin-right10 margin-left30" readonly="" value="환경부 로밍 유무" >
                 </div>
                 <div class="custom-select-wrapper">
                     <select name="kecoRoamingYn" id="kecoRoamingYn1" class="form-control input-width custom-select">
-                        <option value="answer-use1">사용</option>
-                        <option value="answer-not-use1">미사용</option>
+                        <option value="Y">사용</option>
+                        <option value="N" selected>미사용</option>
                     </select>
                 </div>
 
@@ -119,12 +119,12 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <input type="text" id="kepcoRoamingYn" class="form-control margin-right10 margin-left30" readonly="" value="한전 로밍 여부" >
+                    <input type="text" id="kepcoRoamingYn" class="form-control margin-right10 margin-left30" readonly="" value="한전 로밍 유무" >
                 </div>
                 <div class="custom-select-wrapper">
                     <select name="kepcoRoamingYn" id="kepcoRoamingYn1" class="form-control input-width custom-select">
-                        <option value="answer-use1">사용</option>
-                        <option value="answer-not-use1">미사용</option>
+                        <option value="Y">사용</option>
+                        <option value="N" selected>미사용</option>
                     </select>
                 </div>
 
@@ -137,8 +137,8 @@
                 </div>
                 <div class="custom-select-wrapper">
                     <select name="useYn" id="useYn1" class="form-control input-width custom-select">
-                        <option value="answer-use">사용</option>
-                        <option value="answer-not-use">미사용</option>
+                        <option value="Y">사용</option>
+                        <option value="N">미사용</option>
                     </select>
                 </div>
 
@@ -151,8 +151,8 @@
                 </div>
                 <div class="custom-select-wrapper">
                     <select name="deleteYn" id="deleteYn1" class="form-control input-width custom-select">
-                        <option value="answer-yes">예</option>
-                        <option value="answer-no">아니오</option>
+                        <option value="Y">예</option>
+                        <option value="N" selected>아니오</option>
                     </select>
                 </div>
 
