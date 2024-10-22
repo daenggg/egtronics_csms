@@ -38,6 +38,8 @@ var menuData = [];
                   permit_r : menuRole[i].permit.r ,
                   permit_u : menuRole[i].permit.u ,
                   permit_d : menuRole[i].permit.d ,
+                  parentMenuId : menuRole[i].parentMenuId,
+                  sort : menuRole[i].sort
                 }
                 console.log(test);
                 menuData.push(test);
@@ -430,4 +432,86 @@ function href_link(item) {
    }
  return href;
  }
+//메뉴 항목 표시 함수
+ function createNavMenu(navItems) {
+  const navMenu = document.getElementById('navMenu');
+
+  navItems.forEach((item, index) => {
+      if (index === 6 || index === 7) return;  // 특정 항목 건너뛰기
+      if (index >= 16 && index <= 22) return;  // 특정 항목 건너뛰기
+
+      const ul = document.createElement('ul');
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.textContent = item;
+      a.href = href_link(item);  // 링크 설정
+      li.appendChild(a);
+
+      if (index === 5) {
+          const nestedUl = document.createElement('ul');
+          [6, 7].forEach(subIndex => {
+              const nestedLi = document.createElement('li');
+              const nestedA = document.createElement('a');
+              nestedA.textContent = navItems[subIndex];
+              nestedA.href = href_link(navItems[subIndex]);
+              nestedLi.appendChild(nestedA);
+              nestedUl.appendChild(nestedLi);
+          });
+          li.appendChild(nestedUl);
+      }
+
+      if (index === 15) {
+          const nestedUl = document.createElement('ul');
+          for (let i = 16; i <= 22; i++) {
+              const nestedLi = document.createElement('li');
+              const nestedA = document.createElement('a');
+              nestedA.textContent = navItems[i];
+              nestedA.href = href_link(navItems[i]);
+              nestedLi.appendChild(nestedA);
+              nestedUl.appendChild(nestedLi);
+          }
+          li.appendChild(nestedUl);
+      }
+
+      ul.appendChild(li);
+      navMenu.appendChild(ul);
+  });
+}
+//사이드바 열고 닫기 함수
+function initializeSidebar() {
+  const sidebar = document.querySelector('.side-bar');
+  const toggleIcon = document.getElementById('toggle-sidebar');
+  const mainContent = document.querySelector('main'); // 메인 콘텐츠 선택
+  let isSidebarVisible = JSON.parse(localStorage.getItem('isSidebarVisible')) || false; // 로컬스토리지에서 상태 가져오기
+  mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 초기 상태에서 메인 콘텐츠 너비 조정
+
+  // 초기 사이드바 상태 설정
+  if (isSidebarVisible) {
+      sidebar.style.transform = 'translate(0, 0)';
+      mainContent.style.width = '88%'; // 메인 콘텐츠 너비 원래대로
+      sidebar.style.overflowY = 'auto'; // 사이드바가 열릴 때 스크롤 활성화
+  } else {
+      sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
+      mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 메인 콘텐츠 너비 늘리기
+      sidebar.style.overflowY = 'hidden'; // 사이드바가 닫힐 때 스크롤 비활성화
+  }
+
+  // 토글 아이콘 클릭 이벤트
+  toggleIcon.addEventListener('click', function() {
+      if (isSidebarVisible) {
+          // 사이드바 숨기기
+          sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
+          mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 메인 콘텐츠 넓이 늘리기
+          isSidebarVisible = false;
+          sidebar.style.overflowY = 'hidden'; // 사이드바가 닫힐 때 스크롤 비활성화
+      } else {
+          // 사이드바 보이기
+          sidebar.style.transform = 'translate(0, 0)';
+          mainContent.style.width = '88%'; // 메인 콘텐츠 넓이 원래대로
+          isSidebarVisible = true;
+          sidebar.style.overflowY = 'auto'; // 사이드바가 열릴 때 스크롤 활성화
+      }
+      localStorage.setItem('isSidebarVisible', isSidebarVisible); // 상태 저장
+  });
+}
  

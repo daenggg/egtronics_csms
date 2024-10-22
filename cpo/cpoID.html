@@ -86,57 +86,7 @@
         }
         console.log(navItems);
 
-        // navItems 배열의 각 항목에 대해 반복
-        navItems.forEach((item, index) => {
-            // navItems[6], [7]을 건너뛰기 위해 체크
-            if (index === 6 || index === 7) return;
-
-            // navItems[16]~[24]를 건너뛰기 위해 체크
-            if (index >= 16 && index <= 22) return;
-
-            const ul = document.createElement('ul');
-            const li1 = document.createElement('li');
-            const a1 = document.createElement('a');
-            a1.textContent = item; // 링크 텍스트 설정
-            a1.href = href_link(item); // href 속성 설정
-            li1.appendChild(a1);
-
-            // navItems[5]에 대해 2차 메뉴 생성
-            if (index === 5) {
-                const nestedUl1 = document.createElement('ul');
-
-                // 2차 메뉴 항목 추가
-                [6, 7].forEach(subIndex => {
-                    const nestedLi = document.createElement('li');
-                    const nestedA = document.createElement('a');
-                    nestedA.textContent = navItems[subIndex]; // 링크 텍스트 설정
-                    nestedA.href = href_link(navItems[subIndex]); // href 속성 설정
-                    nestedLi.appendChild(nestedA);
-                    nestedUl1.appendChild(nestedLi);
-                });
-
-                li1.appendChild(nestedUl1);
-            }
-
-            // navItems[15]에 대해 2차 메뉴 생성
-            if (index === 15) {
-                const nestedUl1 = document.createElement('ul');
-
-                for (let i = 16; i <= 22; i++) {
-                    const nestedLi = document.createElement('li');
-                    const nestedA = document.createElement('a');
-                    nestedA.textContent = navItems[i]; // 링크 텍스트 설정
-                    nestedA.href = href_link(navItems[i]); // href 속성 설정
-                    nestedLi.appendChild(nestedA);
-                    nestedUl1.appendChild(nestedLi);
-                }
-
-                li1.appendChild(nestedUl1);
-            }
-
-            ul.appendChild(li1);
-            navMenu.appendChild(ul);
-        });
+        createNavMenu(navItems);
 
         $.ajax({
             url: reqURL + "/user/info/page/list?page=1&size=10000",
@@ -430,37 +380,6 @@
         grid_data.tbody.closest('table').width(_width);
     }
     document.addEventListener('DOMContentLoaded', function() {
-    const sidebar = document.querySelector('.side-bar');
-    const toggleIcon = document.getElementById('toggle-sidebar');
-    const mainContent = document.querySelector('main'); // 메인 콘텐츠 선택
-    let isSidebarVisible = false; // 사이드바 상태를 저장할 변수
-    mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 초기 상태에서 메인 콘텐츠 너비 조정
-
-    if (isSidebarVisible) {
-            // 사이드바 숨기기
-            sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
-            mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 메인 콘텐츠 넓이 늘리기
-            
-        } else {
-            // 사이드바 보이기
-            sidebar.style.transform = 'translate(0, 0)';
-            mainContent.style.width = '88%'; // 메인 콘텐츠 넓이 원래대로
-            isSidebarVisible = true;
-        }
-
-    toggleIcon.addEventListener('click', function() {
-        if (isSidebarVisible) {
-            // 사이드바 숨기기
-            sidebar.style.transform = `translate(calc(var(--side-bar-width) * -0.8), 0)`;
-            mainContent.style.width = 'calc(100% - var(--side-bar-width) * 0.2)'; // 메인 콘텐츠 넓이 늘리기
-            isSidebarVisible = false;
-        } else {
-            // 사이드바 보이기
-            sidebar.style.transform = 'translate(0, 0)';
-            mainContent.style.width = '88%'; // 메인 콘텐츠 넓이 원래대로
-            isSidebarVisible = true;
-        }
-        localStorage.setItem('isSidebarVisible', isSidebarVisible); // 상태 저장
+        initializeSidebar(); // practice.js에서 정의한 함수 호출
     });
-});
 </script>
