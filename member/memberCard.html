@@ -63,6 +63,8 @@
 <script >
 $(document).ready(function () {
   var t = sessionStorage.getItem('accessToken');
+  sessionStorage.setItem('MemberId', "");
+  sessionStorage.setItem('cardNumber', "");
   var contentData = [];
   // sessionStorage에서 'menuData' 키로 저장된 데이터를 가져와 JSON 객체로 파싱
   let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
@@ -90,7 +92,7 @@ $(document).ready(function () {
         createNavMenu(navItems, subNavItems);;
   
        $.ajax({    			
-        url: reqURL+"/member/card/info/page/list?page=1&size=100010",
+        url: reqURL+"/member/card/info/page/list?page=1&size=10000",
         type: "GET",
         dataType: "json", 
         contentType: "application/json",

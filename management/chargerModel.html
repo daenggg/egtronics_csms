@@ -63,6 +63,8 @@
 <script >
 $(document).ready(function () {
   var t = sessionStorage.getItem('accessToken');
+  sessionStorage.setItem('chargerModelCode', "");
+  sessionStorage.setItem('chargerModelName', "");
   var contentData = [];
   // sessionStorage에서 'menuData' 키로 저장된 데이터를 가져와 JSON 객체로 파싱
   let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));

@@ -464,20 +464,19 @@ function href_link(item) {
       const ul = document.createElement('ul');
       const li = document.createElement('li');
       const a = document.createElement('a');
+      
       a.textContent = item.menuName;
       a.href = href_link(item.menuName);  // 링크 설정
-      li.appendChild(a);
 
       const filteredSubMenu = subNavItems.filter(subItem => subItem.parentMenuId === item.menuId);
 
       if (filteredSubMenu.length !== 0) {
-          const arrowImg = document.createElement('img');
-          arrowImg.src = 'assets/brand/rightArrow.png'; // 오른쪽 화살표 이미지
-          arrowImg.classList.add('arrow-icon');
-          li.appendChild(arrowImg);
+          const arrowSpan = document.createElement('span');
+          arrowSpan.textContent = ' ▶';  // 기본 화살표: ▶
+          a.appendChild(arrowSpan);
 
           const nestedUl = document.createElement('ul');
-          nestedUl.style.display = 'none';  // 초기에는 하위 메뉴를 숨김
+          nestedUl.style.display = 'none';  // 초기에는 하위 메뉴 숨김
 
           filteredSubMenu.forEach(subItem => {
               let nestedLi = document.createElement('li');
@@ -490,14 +489,26 @@ function href_link(item) {
 
           li.appendChild(nestedUl);
 
-          // 화살표 이미지를 클릭하면 하위 메뉴 표시/숨김 처리
-          arrowImg.addEventListener('click', () => {
-              const isExpanded = nestedUl.style.display === 'block';
-              nestedUl.style.display = isExpanded ? 'none' : 'block';
-              arrowImg.src = isExpanded ? 'assets/brand/rightArrow.png' : 'assets/brand/downArrow.png'; // 이미지 변경
+          // 메뉴 이름을 클릭하면 하위 메뉴 표시/숨김 처리
+          a.addEventListener('click', (event) => {
+            event.preventDefault(); // 링크 이동 방지
+            const isExpanded = nestedUl.style.display === 'block';
+            
+            // 1차 메뉴에 expanded 클래스 추가/제거
+            if (isExpanded) {
+                li.classList.remove('expanded'); // 접을 때 클래스 제거
+                nestedUl.style.display = 'none';
+            } else {
+                li.classList.add('expanded'); // 펼칠 때 클래스 추가
+                nestedUl.style.display = 'block';
+            }
+
+            arrowSpan.textContent = isExpanded ? ' ▶' : ' ▼';  // 화살표 변경
           });
+
       }
 
+      li.appendChild(a);
       ul.appendChild(li);
       navMenu.appendChild(ul);
   });
