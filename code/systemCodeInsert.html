@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="">
+    <title>상위코드 등록</title>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2020.3.915/styles/kendo.default.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="../kendo/kendo.all.min.js"></script>
+    <script src="../kendo/jszip.min.js"></script>
+    <script src="../kendo/cultures/kendo.culture.ko-KR.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        #input-select {
+            width: 400px;
+            height: 40px;
+            font-size: 12px;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <link href="../dashboard.css" rel="stylesheet">
+</head>
+
+<body style="background-color: rgb(255, 255, 255)">
+    <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 shadow">
+        <img src="../assets/brand/eglogo.png" class="img-fluid logo-img" alt="이지트로닉스 로고">
+    </header>
+    <div class="card">
+        <div class="card-body">
+
+            <div class="input-group"> 
+                <div class="input-group-prepend">
+                <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="상위코드" id = 'inputHeader' >
+                </div>
+                <div class="input-group-prepend">
+                <input id="input-select" name="roleId" type="text" class="form-control input-width" value="" placeholder="코드를 입력해주세요." />
+                </div>
+                </div>
+                <p></p>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="상위코드명" id = 'inputHeader'>
+
+                </div>
+                <div class="input-group-prepend">
+                    <input id="input-select" name="roleName" type="text" class="form-control input-width" value="" placeholder="코드명을 입력해주세요." />
+                </div>
+            </div>
+            <p></p>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <input type="text" class="form-control margin-right10 margin-left30" readonly="" value="설명" id="inputHeader">
+                </div>
+                <div class="input-group-prepend">
+                    
+                    <textarea rows = "4" cols ="30" id="input-select" name="description" class="form-control" value="" placeholder="" style="height: 100px;"></textarea>
+                </div>
+            </div>
+            <p></p>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <input type="text" id="useYnHeader" class="form-control margin-right10 margin-left30" readonly="" value="사용 유무">
+                </div>
+                <div class="custom-select-wrapper">
+                    <select name="useYn" id="useYn1" class="form-control input-width custom-select">
+                        <option value="Y">사용</option>
+                        <option value="N">미사용</option>
+                    </select>
+                </div>
+
+            </div>
+            <p></p>
+
+        
+            <div class="input-group d-flex justify-content-center">
+                <button class="btn btn-primary" id = 'insertButton'  onclick="btnRoleInsert()">등록</button>
+                <button class="btn btn-secondary ms-2" id = 'cancelButton' onclick="window.close()">취소</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script src="../practice.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function btnRoleInsert() {
+        var Load = {
+            roleId : $("input[name=roleId]").val(),
+            roleName: $("input[name=roleName]").val(),
+            useYn: $("input[name=useYn]").val(),
+            description: $("input[name=description]").val(),
+        };
+        //  console.log("[data] : " + JSON.stringify(Load));
+        //  alert("[data] : " + JSON.stringify(PayLoad));
+
+        var t = sessionStorage.getItem('accessToken');
+        $.ajax({
+            url: reqURL + "/role/info/create",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(Load), //json 데이터
+            contentType: "application/json",
+            timeout: 5000, // 타임 아웃 설정
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer " + t);
+                xhr.setRequestHeader("menuId", "2");
+                xhr.setRequestHeader("permit", "r");
+            },
+            success: function(data, textStatus, xhr) {
+                console.log("[data] : " + JSON.stringify(data));
+                if (confirm('권한이 등록되었습니다.')) {
+                    window.close();  // 현재 창을 닫음
+                    window.opener.location.reload();  // 부모 창(원본 창)을 새로고침
+                    }
+            },
+            error: function(error) {
+                alert('실패: ' + error.responseText);
+            }
+        });
+    }
+</script>

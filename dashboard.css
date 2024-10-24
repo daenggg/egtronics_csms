@@ -1,537 +1,537 @@
 body {
-    color: #333333;
-    font-family: Century Gothic, sans-serif;
-    font-size: .875rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  a{
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  .feather {
-    width: 16px;
-    height: 16px;
-    vertical-align: text-bottom;
-  }
-  .container-fluid{
-    padding-left: 0%;
-  }
-  
-  /* 사이드바 시작 */
-  /* 커스텀 시작 */
+  color: #333333;
+  font-family: Century Gothic, sans-serif;
+  font-size: .875rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+.container-fluid{
+  padding-left: 0%;
+}
+
+/* 사이드바 시작 */
+/* 커스텀 시작 */
 
 /* 사이드바의 너비와 높이를 변수를 통해 통제 */
 :root {
-  --side-bar-width: 12vw;
-  --side-bar-height: 100vh;
+--side-bar-width: 12vw;
+--side-bar-height: 100vh;
 }
 
 .side-bar {
-  position: fixed;    
-  background-color: #B7E3E4;
-  width: var(--side-bar-width);
-  max-height: 93vh; /* 최대 높이를 전체 화면 높이로 설정 */
-  height: 93vh; /* 높이는 자동 조정 */
-  overflow-y: scroll; /* 세로 스크롤 활성화 */
-  margin-top: calc((100vh - var(--side-bar-height)) / 2);     
-  padding: 10px; /* 사이드바 내부 여백 추가 */
-  transform: translate(calc(var(--side-bar-width) * -0.8), 0);
-  transition: .5s;
-  list-style: none;
+position: fixed;    
+background-color: #B7E3E4;
+width: var(--side-bar-width);
+max-height: 93vh; /* 최대 높이를 전체 화면 높이로 설정 */
+height: 93vh; /* 높이는 자동 조정 */
+overflow-y: scroll; /* 세로 스크롤 활성화 */
+margin-top: calc((100vh - var(--side-bar-height)) / 2);     
+padding: 10px; /* 사이드바 내부 여백 추가 */
+transform: translate(calc(var(--side-bar-width) * -0.8), 0);
+transition: .5s;
+list-style: none;
 }
 .side-bar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera*/
+display: none; /* Chrome, Safari, Opera*/
 }
 
 
 /* 아이콘 시작 */
 .side-bar__icon-box {
-  display: flex;
-  justify-content: flex-end;
+display: flex;
+justify-content: flex-end;
 }
 
 .side-bar__icon-1 {
-  position: relative;
-  width: 23px;
-  height: 17px;
-  margin: 2px;
-  margin-top: 20px;
-  transition: .5s;
+position: relative;
+width: 23px;
+height: 17px;
+margin: 5px;
+margin-top: 20px;
+transition: .5s;
 }
 
 :root {
-  --side-bar__icon: .5s;
+--side-bar__icon: .5s;
 }
 
 .side-bar__icon-1 > div {
-  position: absolute;
-  width: 100%;
-  height: 20%;
-  background-color: black;
-  transition: all var(--side-bar__icon);
+position: absolute;
+width: 100%;
+height: 20%;
+background-color: black;
+transition: all var(--side-bar__icon);
 }
 
 .side-bar__icon-1 > div:nth-of-type(1) {
-  top: 0;
-  width: auto;
-  left: 0;
-  right: 0;
-  transition: all var(--side-bar__icon), left calc(var(--side-bar__icon) / 2) calc(var(--side-bar__icon) / 2), right calc(var(--side-bar__icon) / 2) calc(var(--side-bar__icon) / 2), height calc(var(--side-bar__icon) / 2) 0s;
+top: 0;
+width: auto;
+left: 0;
+right: 0;
+transition: all var(--side-bar__icon), left calc(var(--side-bar__icon) / 2) calc(var(--side-bar__icon) / 2), right calc(var(--side-bar__icon) / 2) calc(var(--side-bar__icon) / 2), height calc(var(--side-bar__icon) / 2) 0s;
 }
 
 .side-bar__icon-1 > div:nth-of-type(2) {
-  top: 40%;
-  transform-origin:bottom left;
+top: 40%;
+transform-origin:bottom left;
 }
 
 .side-bar__icon-1 > div:nth-of-type(3) {
-  top: 80%;
-  left: auto;
-  right: 0;
-  transform-origin:bottom right;
+top: 80%;
+left: auto;
+right: 0;
+transform-origin:bottom right;
 }
 .side-bar__icon-1:hover{
-  background-color: #f0f0f0; /* 호버 시 회색으로 변경 */
-  transform: scale(1.05); /* 호버 시 버튼 약간 커짐 */
-  cursor: pointer;
+background-color: #f0f0f0; /* 호버 시 회색으로 변경 */
+transform: scale(1.05); /* 호버 시 버튼 약간 커짐 */
+cursor: pointer;
 }
 
 /* 아이콘 끝 */
 
 /* 사이드바 메뉴 스타일 */
 .side-bar ul {
-  list-style-type: none; /* 기본 리스트 스타일 없애기 */
-  padding: 0;
-  margin: 0;
+list-style-type: none; /* 기본 리스트 스타일 없애기 */
+padding: 0;
+margin: 0;
 }
 
 /* 1차 메뉴 스타일 */
 .side-bar ul li {
-  position: relative; /* 상대 위치 */
-  padding: 10px 20px;
-  transition: padding-bottom 0.3s; /* 부드러운 변화 추가 */
+position: relative; /* 상대 위치 */
+padding: 10px 20px;
+transition: padding-bottom 0.3s; /* 부드러운 변화 추가 */
 }
 
 /* 1차 메뉴 링크 스타일 */
 .side-bar ul li a {
-  font-size: 1rem;
-  font-weight: bold;
-  color: black;
-  text-decoration: none;
-  display: block; /* 전체 블록 영역 클릭 가능하도록 설정 */
+font-size: 1rem;
+font-weight: bold;
+color: black;
+text-decoration: none;
+display: block; /* 전체 블록 영역 클릭 가능하도록 설정 */
 }
 
 /* 하위 메뉴 숨김 및 스타일 */
 .side-bar ul ul {
-  display: none; /* 기본적으로 숨김 */
-  padding-left: 10; 
-  background-color: #A6D8D9; 
-  position: absolute; /* 절대 위치로 설정 */
-  top: 70%; /* 부모 메뉴의 아래에 위치하도록 설정 */
-  left: 0%; /* 왼쪽 정렬 */
-  z-index: 1; /* 다른 요소 위로 표시되도록 설정 */
-  background-color: #A6D8D9; 
-  margin-bottom: 5;
-  width: 200px; /* 원하는 고정 너비로 설정 */
+display: none; /* 기본적으로 숨김 */
+padding-left: 10; 
+background-color: #A6D8D9; 
+position: absolute; /* 절대 위치로 설정 */
+top: 70%; /* 부모 메뉴의 아래에 위치하도록 설정 */
+left: 0%; /* 왼쪽 정렬 */
+z-index: 1; /* 다른 요소 위로 표시되도록 설정 */
+background-color: #A6D8D9; 
+margin-bottom: 5;
+width: 200px; /* 원하는 고정 너비로 설정 */
 }
 
 /* 하위 메뉴 링크 스타일 */
 .side-bar ul ul li {
-  padding: 5px 25px; /* 하위 메뉴의 패딩 */
+padding: 5px 25px; /* 하위 메뉴의 패딩 */
 }
 
 /* 하위 메뉴 링크 스타일 */
 .side-bar ul ul li a {
-  font-size: 0.9rem;
-  color: #333;
-  font-weight: bold;
+font-size: 0.9rem;
+color: #333;
+font-weight: bold;
 }
 
 /* 하위 메뉴가 열릴 때 1차 메뉴의 패딩을 조정 */
 .side-bar ul li.expanded {
-  margin-bottom:30px;
+margin-bottom:30px;
 }
 
 /* 하위 메뉴 호버 스타일 */
 .side-bar ul li a:hover {
-  background-color: #A6D8D9;
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+background-color: #A6D8D9;
+transform: translateY(-2px) scale(1.05);
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 
 /* 사이드바 너비의 80%만큼 왼쪽으로 이동 */
 .side-bar {
-  padding: 10px; /* 사이드바 내부 여백 추가 */
-  transform: translate(calc(var(--side-bar-width) * -0.8), 0);
-  transition: .5s;
+padding: 10px; /* 사이드바 내부 여백 추가 */
+transform: translate(calc(var(--side-bar-width) * -0.8), 0);
+transition: .5s;
 }
 
 /* 커스텀 끝 */
 
 
-  .navbar-brand {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    font-size: 1rem;
-    background-color: white;
-  }
-  
-  .navbar .navbar-toggler {
-    top: .25rem;
-    right: 1rem;
-  }
-  
-  .navbar .form-control {
-    padding: .75rem 1rem;
-    border-width: 0;
-    border-radius: 0;
-  }
-  .navbar .form-control-addr {
-    padding: .100rem 1rem;
-    border-width: 10;
-    border-radius: 0;
-  }
-  
-  .form-control-dark {
-    color: #fff;
-    background-color: rgba(255, 255, 255, .1);
-    border-color: rgba(255, 255, 255, .1);
-  }
-  
-  .form-control-dark:focus {
-    border-color: transparent;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-  }
-  
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: 1rem;
+  background-color: white;
+}
 
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
-  }
+.navbar .navbar-toggler {
+  top: .25rem;
+  right: 1rem;
+}
 
-  .stationGrid  {
-    font-size: 5rem;
+.navbar .form-control {
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+.navbar .form-control-addr {
+  padding: .100rem 1rem;
+  border-width: 10;
+  border-radius: 0;
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.stationGrid  {
+  font-size: 5rem;
 }
 
 /* 로고 이미지 크기를 상자 크기에 맞추기 */
 .logo-img {
-  max-height: 50px; /* 헤더 높이에 맞게 이미지 크기를 제한 */
-  width: 120px;
-  object-fit: contain; /* 이미지를 왜곡 없이 상자에 맞춤 */
+max-height: 50px; /* 헤더 높이에 맞게 이미지 크기를 제한 */
+width: 120px;
+object-fit: contain; /* 이미지를 왜곡 없이 상자에 맞춤 */
 }
 /* 기본 그리드 스타일 */
 .k-grid {
-  width: 100%;
-  overflow-x: auto; /* 화면 크기보다 넓을 경우 스크롤 가능하게 */
+width: 100%;
+overflow-x: auto; /* 화면 크기보다 넓을 경우 스크롤 가능하게 */
 }
 
 /* 각 열의 기본 너비 설정 */
 .k-grid .k-grid-header th,
 .k-grid .k-grid-content td {
-  white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
+white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
 }
 
 /* 작은 화면(모바일) */
 @media (max-width: 768px) {
-  .k-grid .k-grid-header th,
-  .k-grid .k-grid-content td {
-      width: 100%; /* 열 너비를 100%로 설정하여 세로로 쌓이도록 함 */
-      display: block; /* 블록 요소로 변환 */
-      box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 계산 */
-  }
+.k-grid .k-grid-header th,
+.k-grid .k-grid-content td {
+    width: 100%; /* 열 너비를 100%로 설정하여 세로로 쌓이도록 함 */
+    display: block; /* 블록 요소로 변환 */
+    box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 계산 */
+}
 }
 
 /* 중간 화면 */
 @media (min-width: 769px) and (max-width: 992px) {
-  .k-grid .k-grid-header th:nth-child(1),
-  .k-grid .k-grid-content td:nth-child(1) {
-      width: 40%; /* 첫 번째 열 너비를 40%로 설정 */
-  }
-  .k-grid .k-grid-header th:nth-child(2),
-  .k-grid .k-grid-content td:nth-child(2) {
-      width: 30%; /* 두 번째 열 너비를 30%로 설정 */
-  }
-  .k-grid .k-grid-header th:nth-child(3),
-  .k-grid .k-grid-content td:nth-child(3) {
-      width: 30%; /* 세 번째 열 너비를 30%로 설정 */
-  }
+.k-grid .k-grid-header th:nth-child(1),
+.k-grid .k-grid-content td:nth-child(1) {
+    width: 40%; /* 첫 번째 열 너비를 40%로 설정 */
+}
+.k-grid .k-grid-header th:nth-child(2),
+.k-grid .k-grid-content td:nth-child(2) {
+    width: 30%; /* 두 번째 열 너비를 30%로 설정 */
+}
+.k-grid .k-grid-header th:nth-child(3),
+.k-grid .k-grid-content td:nth-child(3) {
+    width: 30%; /* 세 번째 열 너비를 30%로 설정 */
+}
 }
 
 /* 큰 화면 */
 @media (min-width: 993px) {
-  .k-grid .k-grid-header th:nth-child(1),
-  .k-grid .k-grid-content td:nth-child(1) {
-      width: 25%; /* 첫 번째 열 너비를 25%로 설정 */
-  }
-  .k-grid .k-grid-header th:nth-child(2),
-  .k-grid .k-grid-content td:nth-child(2) {
-      width: 25%; /* 두 번째 열 너비를 25%로 설정 */
-  }
-  .k-grid .k-grid-header th:nth-child(3),
-  .k-grid .k-grid-content td:nth-child(3) {
-      width: 25%; /* 세 번째 열 너비를 25%로 설정 */
-  }
-  .k-grid .k-grid-header th:nth-child(4),
-  .k-grid .k-grid-content td:nth-child(4) {
-      width: 25%; /* 네 번째 열 너비를 25%로 설정 */
-  }
+.k-grid .k-grid-header th:nth-child(1),
+.k-grid .k-grid-content td:nth-child(1) {
+    width: 25%; /* 첫 번째 열 너비를 25%로 설정 */
+}
+.k-grid .k-grid-header th:nth-child(2),
+.k-grid .k-grid-content td:nth-child(2) {
+    width: 25%; /* 두 번째 열 너비를 25%로 설정 */
+}
+.k-grid .k-grid-header th:nth-child(3),
+.k-grid .k-grid-content td:nth-child(3) {
+    width: 25%; /* 세 번째 열 너비를 25%로 설정 */
+}
+.k-grid .k-grid-header th:nth-child(4),
+.k-grid .k-grid-content td:nth-child(4) {
+    width: 25%; /* 네 번째 열 너비를 25%로 설정 */
+}
 }
 .btn-logout {
-  width: 100px; /* 버튼 너비 */
-  height: 40px; /* 버튼 높이 */
-  border-radius: 20px; /* 둥근 모서리 */
-  background-color: #B7E3E4;
-  border: 2px solid #B7E3E4; /* 초록색 테두리 */
-  color: black; /* 검정색 텍스트 */
-  font-weight: bold; /* 굵은 글씨 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s; /* 부드러운 전환 효과 */
-  margin-right: 30px;
+width: 100px; /* 버튼 너비 */
+height: 40px; /* 버튼 높이 */
+border-radius: 20px; /* 둥근 모서리 */
+background-color: #B7E3E4;
+border: 2px solid #B7E3E4; /* 초록색 테두리 */
+color: black; /* 검정색 텍스트 */
+font-weight: bold; /* 굵은 글씨 */
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+transition: background-color 0.3s, transform 0.3s; /* 부드러운 전환 효과 */
+margin-right: 30px;
 }
 
 .btn-logout:hover {
-  background-color: #f0f0f0; /* 호버 시 회색으로 변경 */
-  transform: scale(1.05); /* 호버 시 버튼 약간 커짐 */
+background-color: #f0f0f0; /* 호버 시 회색으로 변경 */
+transform: scale(1.05); /* 호버 시 버튼 약간 커짐 */
 }
 
 .nav-link {
-  color: black; /* 검정색 텍스트 */
-  text-decoration: none; /* 밑줄 제거 */
+color: black; /* 검정색 텍스트 */
+text-decoration: none; /* 밑줄 제거 */
 }
 
 .nav-link:hover {
-  text-decoration: underline; /* 호버 시 밑줄 추가 */
+text-decoration: underline; /* 호버 시 밑줄 추가 */
 }
 
 .nav-link i {
-  margin-right: 5px; /* 아이콘과 텍스트 사이의 간격 */
+margin-right: 5px; /* 아이콘과 텍스트 사이의 간격 */
 }
 
 .k-pager-wrap .k-link.k-state-selected{
-  background-color: #B7E3E4;
-  color: #333333;
-  font-weight: bold;
+background-color: #B7E3E4;
+color: #333333;
+font-weight: bold;
 }
 .k-pager-info, .k-label{
-  width: 200px;
+width: 200px;
 }
 .k-button{
-  background-color: #F9F7E8;
-  font-weight: bold;
+background-color: #F9F7E8;
+font-weight: bold;
 }
 #gridDiv{
-  border-radius: 10px;
+border-radius: 10px;
 }
 
 
 .custom-select-wrapper {
-  position: relative;
-  display: inline-block;
-  width: 100px; /* 필요에 따라 너비 조정 */
-  height: 40px; /* input-group-prepend와 동일한 높이 */
-  text-align: center;
+position: relative;
+display: inline-block;
+width: 100px; /* 필요에 따라 너비 조정 */
+height: 40px; /* input-group-prepend와 동일한 높이 */
+text-align: center;
 }
 
 .custom-select {
-  appearance: none; /* 기본 드롭다운 화살표 제거 */
-  position: relative;
-  width: 110%;
-  padding: 10px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 15px;
-  color: #333;
-  text-align: center; /*왼쪽 정렬 */
-  text-align-last: center; /* 드롭다운 목록이 열렸을 때 항목도 왼쪽 정렬 */
-  margin-left: 10px;
-  background-image: url('https://www.pngarts.com/files/2/Down-Arrow-PNG-Photo.png'); /* 화살표 이미지 경로 */
-  background-repeat: no-repeat;
-  background-position: right 10px center; /* 화살표 위치 조정 */
-  background-size: 12px; /* 이미지 크기 조정 */
+appearance: none; /* 기본 드롭다운 화살표 제거 */
+position: relative;
+width: 110%;
+padding: 10px;
+background-color: white;
+border: 1px solid #ccc;
+border-radius: 4px;
+font-size: 15px;
+color: #333;
+text-align: center; /*왼쪽 정렬 */
+text-align-last: center; /* 드롭다운 목록이 열렸을 때 항목도 왼쪽 정렬 */
+margin-left: 10px;
+background-image: url('https://www.pngarts.com/files/2/Down-Arrow-PNG-Photo.png'); /* 화살표 이미지 경로 */
+background-repeat: no-repeat;
+background-position: right 10px center; /* 화살표 위치 조정 */
+background-size: 12px; /* 이미지 크기 조정 */
 }
 
 /* 화살표 추가 
 .custom-select-wrapper::after {
-  content: '\25BC'; /* 아래 화살표 '▼' -> 유니코드
-  position: absolute;
-  top: 55%;
-  right: 0px;
-  transform: translateY(-50%);
-  font-size: 13px;
-  color: #333;
-  pointer-events: none; /* 화살표에 클릭 이벤트가 발생하지 않도록 설정 
+content: '\25BC'; /* 아래 화살표 '▼' -> 유니코드
+position: absolute;
+top: 55%;
+right: 0px;
+transform: translateY(-50%);
+font-size: 13px;
+color: #333;
+pointer-events: none; /* 화살표에 클릭 이벤트가 발생하지 않도록 설정 
 }
 */
 
 .custom-select-variable{
-  appearance: none; /* 기본 드롭다운 화살표 제거 */
-  position: relative;
-  width: 370%;
-  padding: 10px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 15px;
-  color: #333;
-  text-align: left; /*왼쪽 정렬 */
-  text-align-last: left; /* 드롭다운 목록이 열렸을 때 항목도 왼쪽 정렬 */
-  margin-left: 10px;
-  background-image: url('https://www.pngarts.com/files/2/Down-Arrow-PNG-Photo.png'); /* 화살표 이미지 경로 */
-  background-repeat: no-repeat;
-  background-position: right 10px center; /* 화살표 위치 조정 */
-  background-size: 12px; /* 이미지 크기 조정 */
+appearance: none; /* 기본 드롭다운 화살표 제거 */
+position: relative;
+width: 370%;
+padding: 10px;
+background-color: white;
+border: 1px solid #ccc;
+border-radius: 4px;
+font-size: 15px;
+color: #333;
+text-align: left; /*왼쪽 정렬 */
+text-align-last: left; /* 드롭다운 목록이 열렸을 때 항목도 왼쪽 정렬 */
+margin-left: 10px;
+background-image: url('https://www.pngarts.com/files/2/Down-Arrow-PNG-Photo.png'); /* 화살표 이미지 경로 */
+background-repeat: no-repeat;
+background-position: right 10px center; /* 화살표 위치 조정 */
+background-size: 12px; /* 이미지 크기 조정 */
 }
 
 
 
 main{
-  transition: width 0.5s ease; /* 메인 콘텐츠의 너비 변경 시 부드러운 전환 효과 추가 */
+transition: width 0.5s ease; /* 메인 콘텐츠의 너비 변경 시 부드러운 전환 효과 추가 */
 }
 
 #input-select{
-  margin-left: 10px;
-  width: 370px;
-  height: 40px;
-  font-size: 12px;
+margin-left: 10px;
+width: 370px;
+height: 40px;
+font-size: 12px;
 }
 
 #input-email{
-  margin-left: 10px;
-  width: 370px;
-  height: 40px;
-  font-size: 12px;
+margin-left: 10px;
+width: 370px;
+height: 40px;
+font-size: 12px;
 }
 .input-number{
-  margin-left: 10px;
-  width: 370px;
-  height: 40px;
-  font-size: 12px;
+margin-left: 10px;
+width: 370px;
+height: 40px;
+font-size: 12px;
 }
 
 #inputHeader{/*입력 헤더 선택자*/
-  width:100px; 
-  height:40px; 
-  background-color:#B7E3E4; 
-  text-align:center; 
-  color:black;
-  font-weight: bold;
+width:110px; 
+height:40px; 
+background-color:#B7E3E4; 
+text-align:center; 
+color:black;
+font-weight: bold;
 
 }
 #insertButton{/*등록, 수정 버튼 스타일 선택자*/
-  color: black;
-  background-color: #B7E3E4;
-  font-weight: bold;
-  border: none;
-  transition: box-shadow 0.2s;
+color: black;
+background-color: #B7E3E4;
+font-weight: bold;
+border: none;
+transition: box-shadow 0.2s;
 }
 #insertButton:hover{
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #cancelButton{/*취소 버튼 스타일 선택자*/
-  color: black;
-  background-color: #B7E3E4;
-  font-weight: bold;
-  border: none;
-  transition: box-shadow 0.2s;
-  margin-left: 0.5rem;
+color: black;
+background-color: #B7E3E4;
+font-weight: bold;
+border: none;
+transition: box-shadow 0.2s;
+margin-left: 0.5rem;
 }
 #cancelButton:hover{
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #useYnHeader{ /*사용유무 헤더 스타일 선택자*/
-  width:100px; 
-  height:40px; 
-  background-color:#B7E3E4; 
-  text-align:center; 
-  color:black;
-  font-weight: bold;
+width:110px; 
+height:40px; 
+background-color:#B7E3E4; 
+text-align:center; 
+color:black;
+font-weight: bold;
 }
 
 .k-state-selected { /*row 선택되면 배경색 변경*/
-  background-color: #B7E3E4;
-  color:black;
+background-color: #B7E3E4;
+color:black;
 }
 
 .k-state-selected:hover {
-  background-color: #B7E3E4 !important; /* 선택된 상태 유지 */
-  color: black !important; /* 텍스트 색상 유지 */
+background-color: #B7E3E4 !important; /* 선택된 상태 유지 */
+color: black !important; /* 텍스트 색상 유지 */
 }
 
 #userId, #userPassword, #userName, #userMobilePhone, #userAddress1, #userEmail, #companyCode, #roleId, #regUserId{
-  width:160px; 
-  height:40px; 
-  background-color:#B7E3E4; 
-  text-align:center; 
-  color:black;
-  font-weight: bold;
+width:160px; 
+height:40px; 
+background-color:#B7E3E4; 
+text-align:center; 
+color:black;
+font-weight: bold;
 }
 #userNewPassword, #userNewPasswordConfirm, #userPassword, #companyName, #companyNumber, #companyRepresentative, #companyTel, #companyFax, #companyEmail, #description, #companyAddress, #paymentApiYn, #useYn{
-  width:160px; 
-  height:40px; 
-  background-color:#B7E3E4; 
-  text-align:center; 
-  color:black;
-  font-weight: bold;
+width:160px; 
+height:40px; 
+background-color:#B7E3E4; 
+text-align:center; 
+color:black;
+font-weight: bold;
 }
 #chargerFactoryName, #chargerFactoryAddress, #chargerFactoryCode, #chargerFactoryTel, #chargerFactoryManager, #chargerFactoryManagerTel, #chargerFactoryManagerEmail, #chargerModelName, #chargerModelCode, #connectorNumber, #chargerModelKw, #rfidUseYn{
-  width:160px; 
-  height:40px; 
-  background-color:#B7E3E4; 
-  text-align:center; 
-  color:black;
-  font-weight: bold;
+width:160px; 
+height:40px; 
+background-color:#B7E3E4; 
+text-align:center; 
+color:black;
+font-weight: bold;
 }
 
 .k-button:focus, /*등록, 수정, CPO ID 비밀번호 변경 클릭시 스타일*/
 .k-button:active {
-  background-color: #B7E3E4; /* 클릭 시 배경색 지정 */
-  border: none !important; /* 클릭 시 테두리 제거 */
-  outline: none !important; /* 포커스 시 생기는 테두리 제거 */
-  box-shadow: 0 0 2px black !important; /* 검정색 box-shadow 추가 */
-  color: black;
+background-color: #B7E3E4; /* 클릭 시 배경색 지정 */
+border: none !important; /* 클릭 시 테두리 제거 */
+outline: none !important; /* 포커스 시 생기는 테두리 제거 */
+box-shadow: 0 0 2px black !important; /* 검정색 box-shadow 추가 */
+color: black;
 }
 #hour0, #hour1, #hour2, #hour3, #hour4, #hour5, #hour6, #hour7,  #hour8, #hour9, #hour10, #hour11, #hour12, #hour13, #hour14, #hour15, #hour16, #hour17, #hour18, #hour19, #hour20, #hour21, #hour22, #hour23{
-  width:160px; 
-  height:40px; 
-  background-color:#B7E3E4; 
-  text-align:center; 
-  color:black;
-  font-weight: bold;
+width:160px; 
+height:40px; 
+background-color:#B7E3E4; 
+text-align:center; 
+color:black;
+font-weight: bold;
 }
 #stationName, #stationId, #stationAddrCity, #stationAddrCountry, #stationAddrTown, #stationAddrRoadname, #stationAddrDetail, #stationGpsX, #stationGpsY, #stationVoltage, #deleteYn, #chargerId, #chargerName, #chargerSerialNumber, #kecoRoamingYn, #kepcoRoamingYn, #id, #password, #name, #email, #mobile, #grade, #cardNumber, #MemberId, #cardStatus, #IssuanceMethod, #userCardStop, #authorzationStatus{
-  width:160px; 
-  height:40px; 
-  background-color:#B7E3E4; 
-  text-align:center; 
-  color:black;
-  font-weight: bold;
+width:160px; 
+height:40px; 
+background-color:#B7E3E4; 
+text-align:center; 
+color:black;
+font-weight: bold;
 }
 input:invalid {
-  border-color: red;    /* 값이 유효하지 않다면, border색을 red로 지정한다 */
+border-color: red;    /* 값이 유효하지 않다면, border색을 red로 지정한다 */
 }
 
 input:valid {
-  border-color: #b8d8d8; /* 값이 유효하다면, border색을 #b8d8d8로 지정한다 */
+border-color: #b8d8d8; /* 값이 유효하다면, border색을 #b8d8d8로 지정한다 */
 }
 .number{
-  margin-left: 10px; 
-  text-align: center;
+margin-left: 10px; 
+text-align: center;
 }

@@ -377,7 +377,7 @@ function href_link(item) {
      href = "../role/role.html";
      break;
      case "시스템 코드 관리" :
-     href = "";
+     href = "../code/systemCode.html";
      break;
      case "시스템 변수 설정" :
      href = "";
@@ -413,10 +413,10 @@ function href_link(item) {
      href = "../station/station.html";
      break;
      case "충전기 관리" :
-     href = "../charger/charger.html";
+     href = "";
      break;
      case "충전기 정보" :
-     href = "";
+     href = "../charger/charger.html";
      break;
      case "충전기 설정" :
      href = "";

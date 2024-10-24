@@ -76,6 +76,7 @@
     $(document).ready(function() {
         var t = sessionStorage.getItem('accessToken');
         sessionStorage.setItem('chargerId', "");
+        sessionStorage.setItem('stationId', "");
         //  console.log("[accessToken] : " + JSON.stringify(t));
         // sessionStorage에서 'menuData' 키로 저장된 데이터를 가져와 JSON 객체로 파싱
         let retrievedArray = JSON.parse(sessionStorage.getItem('menuData'));
@@ -280,7 +281,7 @@
             pageable: true,
             toolbar: [{
                     text: "select",
-                    template: '<a class="k-button" href="\\#" onclick="return btnChargerInsert()">추가</a>'
+                    template: '<a class="k-button" href="\\#" onclick="return btnChargerInsert()">등록</a>'
                 }, //&nbsp;
                 {
                     text: "select",
@@ -587,7 +588,7 @@
     }
 
     function btnChargerInsert() {
-        window.open("chargerInsert.html", "충전기 등록", "width=700, height=687, top=150, left=200");
+        window.open("chargerInsert.html", "충전기 등록", "width=750, height=787, top=150, left=200");
     }
 
     function btnChargerUpdate() {
@@ -596,7 +597,7 @@
         if (data == "" || data == null) {
             alert('수정할 곳을 선택하여 주세요');
         } else {
-            window.open("chargerUpdate.html", "충전기 수정", "width=700, height=688, top=150, left=200");
+            window.open("chargerUpdate.html", "충전기 수정", "width=750, height=788, top=150, left=200");
         }
     }
 
@@ -610,6 +611,7 @@
             selectedIds.push(dataItem);
             for (var i in selectedIds) {
                 sessionStorage.setItem('chargerId', selectedIds[i].chargerId);
+                sessionStorage.setItem('stationId', selectedIds[i].stationId);
             }
         });
     }
