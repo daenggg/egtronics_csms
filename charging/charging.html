@@ -128,6 +128,8 @@ $(document).ready(function () {
                   remoteStartDt : remote_StartDt,
                   remoteStopDt : remote_StopDt,
                 }
+               // console.log("Remote Start Date:", content[i].remoteStartDt);
+                console.log("Formatted Remote Start Date:", remote_StartDt);
                 contentData.push(test);
             }
             $("#gridDiv").kendoGrid({
@@ -159,17 +161,17 @@ $(document).ready(function () {
                 { field: 'chargerId', title: '<strong>충전기 ID', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 110},
                 { field: 'connectorId', title: '<strong>커넥터 ID', headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 110 },
                 { field: "rfCardNo", title: "<strong>회원 정보", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 150},
-                { field: "updateDt", title: "<strong>마지막 전송 일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 180, template: "#= kendo.toString(kendo.parseDate(updateDt), 'yyyy-MM-dd HH:mm') #"  },
-                { field: "startDt", title: "<strong>충전 시작 일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 180, template: "#= kendo.toString(kendo.parseDate(startDt), 'yyyy-MM-dd HH:mm') #" },
-                { field: "stopDt", title: "<strong>충전 종료 일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 180, template: "#= kendo.toString(kendo.parseDate(stopDt), 'yyyy-MM-dd HH:mm') #"  },
+                { field: "updateDt", title: "<strong>마지막 전송 일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 180, template: "#= updateDt ? kendo.toString(kendo.parseDate(updateDt), 'yyyy-MM-dd HH:mm') : '' #"  },
+                { field: "startDt", title: "<strong>충전 시작 일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 180, template: "#= startDt ? kendo.toString(kendo.parseDate(startDt), 'yyyy-MM-dd HH:mm') : '' #" },
+                { field: "stopDt", title: "<strong>충전 종료 일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 180, template: "#= stopDt ? kendo.toString(kendo.parseDate(stopDt), 'yyyy-MM-dd HH:mm') : '' #"  },
                 { field: "startChargingWh", title: "<strong>시작 전력량", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140  },
                 { field: "stopChargingWh", title: "<strong>종료 전력량", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140  },
                 { field: "totalChargedWh", title: "<strong>충전 전력량", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 130  },
                 { field: "chargingAmount", title: "<strong>충전 금액", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 110},
                 { field: "startSoc", title: "<strong>충전시작 SOC", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140 },
-                { field: "endSoc", title: "<strong>충전종료 SOC", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140 },
-                { field: "remoteStartDt", title: "<strong>원격 충전 시작 일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 180, template: "#= kendo.toString(kendo.parseDate(remoteStartDt), 'yyyy-MM-dd HH:mm') #"  },
-                { field: "remoteStopDt", title: "<strong>원격 충전 종료 일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 180, template: "#= kendo.toString(kendo.parseDate(remoteStopDt), 'yyyy-MM-dd HH:mm') #"  },
+                { field: "endSoc", title: "<strong>충전종료 SOC", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 140, },
+                { field: "remoteStartDt", title: "<strong>원격 충전 시작 일시", width: 140, template: "#= remoteStopDt ? kendo.toString(kendo.parseDate(remoteStartDt), 'yyyy-MM-dd HH:mm') : '' #" },
+                { field: "remoteStopDt", title: "<strong>원격 충전 종료 일시", headerAttributes: {style: "text-align: center;"}, attributes: { "class": "table-cell", style: "text-align: center;" }, width: 180, template: "#= remoteStopDt ? kendo.toString(kendo.parseDate(remoteStopDt), 'yyyy-MM-dd HH:mm') : '' #"  },
             ],
             
         });

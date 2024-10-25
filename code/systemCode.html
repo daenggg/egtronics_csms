@@ -206,7 +206,7 @@
                         "class": "table-cell",
                         style: "text-align: center;"
                     },
-                    width: 10
+                    width:100
                 },
                 {
                     field: 'chargerName',
@@ -218,7 +218,7 @@
                         "class": "table-cell",
                         style: "text-align: center;"
                     },
-                    width: 10
+                    width:100
                 },
                 {
                     field: 'stationId',
@@ -230,7 +230,7 @@
                         "class": "table-cell",
                         style: "text-align: center;"
                     },
-                    width: 30
+                    width:200
                 },
                 {
                     field: 'chargerId',
@@ -242,24 +242,16 @@
                         "class": "table-cell",
                         style: "text-align: center;"
                     },
-                    width: 10
+                    width:100
                 },
                 
             ],
-
-            change: function(e) {
-                var grid = $("#gridDiv1").data("kendoGrid");
-                var DataItem = grid.dataItem(grid.select());
-                station_Id = DataItem.stationId;
-                charger_Id = DataItem.chargerId;
-                callconnector(station_Id, charger_Id);
-            }
         });
     }
 
     function Subgrid() {
         $("#gridDiv2").kendoGrid({
-            dataBound: dataBound,
+            dataBound: dataBound2,
             height: 500,
             columnMenu: {
                 filterable: false
@@ -304,7 +296,7 @@
                         "class": "table-cell",
                         style: "text-align: center;"
                     },
-                    width: 190
+                    width: 100
                 },
                 {
                     field: 'chargerName',
@@ -316,7 +308,7 @@
                         "class": "table-cell",
                         style: "text-align: center;"
                     },
-                    width: 220
+                    width: 100
                 },
                 {
                     field: 'stationId',
@@ -328,7 +320,7 @@
                         "class": "table-cell",
                         style: "text-align: center;"
                     },
-                    width: 120
+                    width: 200
                 },
                 {
                     field: 'chargerId',
@@ -340,23 +332,15 @@
                         "class": "table-cell",
                         style: "text-align: center;"
                     },
-                    width: 110
+                    width: 100
                 },
                 
             ],
-
-            change: function(e) {
-                var grid = $("#gridDiv2").data("kendoGrid");
-                var DataItem = grid.dataItem(grid.select());
-                station_Id = DataItem.stationId;
-                charger_Id = DataItem.chargerId;
-                callconnector(station_Id, charger_Id);
-            }
         });
     }
 
     function dataBound(e) {
-        var _width = 2000;
+        var _width = 625;
         var grid_data = $("#gridDiv1").data("kendoGrid");
 
         grid_data.thead.closest('table').width(_width);
@@ -364,7 +348,7 @@
     }
 
     function dataBound2(e) {
-        var _width = 1000;
+        var _width = 650;
         var grid_data = $("gridDiv2").data("kendoGrid");
 
         grid_data.thead.closest('table').width(_width);
@@ -403,41 +387,44 @@
 
     function Charger_Check() {
     var grid1 = $("#gridDiv1").data("kendoGrid");
+    console.log(grid1.dataSource.pageSize()); // 현재 페이지당 행 수 확인
+    console.log(grid1.dataSource.total()); // 총 데이터 수 확인
     var grid2 = $("#gridDiv2").data("kendoGrid");
 
-    var rows1 = grid1.select();
-    var rows2 = grid2.select();
+    // grid1이 선택될 때 grid2 선택 해제
+    grid1.bind("change", function () {
+        var rows1 = grid1.select();
+        if (rows1.length != 0) {
+            grid2.clearSelection(); // grid2 선택 초기화
+        }
 
-    // grid1이 선택되면 grid2 선택 초기화
-    if (rows1.length > 0) {
-        grid2.clearSelection(); // grid2 선택 초기화
-    }
-
-    // grid2가 선택되면 grid1 선택 초기화
-    if (rows2.length > 0) {
-        grid1.clearSelection(); // grid1 선택 초기화
-    }
-
-    // 선택된 ID 저장
-    var selectedIds = [];
-
-    // grid1에서 선택된 항목 처리
-    $(rows1).each(function() {
-        var dataItem = grid1.dataItem(this);
-        selectedIds.push(dataItem);
-        sessionStorage.setItem('chargerId', dataItem.chargerId);
-        sessionStorage.setItem('stationId', dataItem.stationId);
+        // grid1에서 선택된 항목 처리
+        var selectedIds = [];
+        $(rows1).each(function () {
+            var dataItem = grid1.dataItem(this);
+            selectedIds.push(dataItem);
+            sessionStorage.setItem('chargerId', dataItem.chargerId);
+            sessionStorage.setItem('stationId', dataItem.stationId);
+        });
     });
 
-    // grid2에서 선택된 항목 처리
-    $(rows2).each(function() {
-        var dataItem = grid2.dataItem(this);
-        selectedIds.push(dataItem);
-        sessionStorage.setItem('chargerId', dataItem.chargerId);
-        sessionStorage.setItem('stationId', dataItem.stationId);
+    // grid2가 선택될 때 grid1 선택 해제
+    grid2.bind("change", function () {
+        var rows2 = grid2.select();
+        if (rows2.length != 0) {
+            grid1.clearSelection(); // grid1 선택 초기화
+        }
+
+        // grid2에서 선택된 항목 처리
+        var selectedIds = [];
+        $(rows2).each(function () {
+            var dataItem = grid2.dataItem(this);
+            selectedIds.push(dataItem);
+            sessionStorage.setItem('chargerId', dataItem.chargerId);
+            sessionStorage.setItem('stationId', dataItem.stationId);
+        });
     });
 }
-
 
     document.addEventListener('DOMContentLoaded', function() {
         initializeSidebar(); // practice.js에서 정의한 함수 호출

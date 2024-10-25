@@ -127,13 +127,6 @@ function USEYN_JSONformat(value_data){
   return value_data;
 }
 
-function NULL_JSONformat(value_data){
-  if(value_data == "null"){
-    value_data = "없음"
-  }
-  return value_data;
-}
-
 function QUANTITY_JSONformat(value_data){
   return value_data + '개'
 }
@@ -189,6 +182,13 @@ function CARDSTATUS_JSONformat(value_data){
   }
   else if(value_data == "F"){
     value_data = "분실/파손/고장";
+  }
+  return value_data;
+}
+
+function NULL_JSONformat(value_data){
+  if(value_data == null){
+    value_data = "";
   }
   return value_data;
 }
