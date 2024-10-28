@@ -10,6 +10,7 @@ body {
   padding-bottom: 40px;
   background-color: #f5f5f5;
 }
+/* 임시 이미지 */
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -35,6 +36,7 @@ body {
   font-weight: 400;
 }
 
+/*폼 필드 중 포커스된 요소의 z-index를 2로 설정*/
 .form-signin .form-floating:focus-within {
   z-index: 2;
 }

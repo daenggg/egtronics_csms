@@ -20,12 +20,15 @@ var menuData = [];
         timeout: 5000, // 타임 아웃 설정
                         
       success: function(data, textStatus, xhr) {
-          var access = xhr.getResponseHeader('accesstoken');
-          var refresh = xhr.getAllResponseHeaders('refreshtoken');
+          var access = xhr.getResponseHeader('accesstoken'); //서버에서 반환된 헤더 중 accesstoken이라는 헤더 값을 가져옵니다.
+          var refresh = xhr.getAllResponseHeaders('refreshtoken'); //모든 응답 헤더를 문자열 형태로 반환하는 메서드
           
           console.log('data: ' + JSON.stringify(data));
           if (access && refresh) {
               sessionStorage.setItem('accessToken', access);
+              /**sessionStorage는 브라우저 세션 동안 데이터를 유지하는 저장소입니다. 
+              여기서 setItem을 사용해 키-값 쌍을 저장하는데, accessToken 키로 access 값을 저장합니다. 
+              이는 페이지를 새로고침해도 해당 세션 동안 accessToken을 계속 사용할 수 있게 합니다.*/
               sessionStorage.setItem('refreshtokentoken', refresh);
               var menuRole =  data.payload.menuRole;
             
@@ -48,7 +51,7 @@ var menuData = [];
                 }
             }
             sessionStorage.setItem('menuData', JSON.stringify(menuData));
-            location.href="../main/main.html";
+            location.href="../main/main.html"; //이동
           } else {
               alert('로그인 성공했으나 accessToken을 받지 못했습니다.');
           }
