@@ -16,22 +16,22 @@ export type TableProps<T> = {
 
 export function Table<T>({ columns, data, className }: TableProps<T>) {
   return (
-    <div className={cn("w-full overflow-x-auto rounded-md", className)} style={{ border: "1px solid var(--border)", background: "#fff" }}>
+    <div className={cn("w-full overflow-x-auto rounded-md border", className)}>
       <table className="w-full text-sm">
         <thead>
-          <tr style={{ background: "#EEF6FF" }}>
+          <tr className="bg-muted/50">
             {columns.map((c) => (
-              <th key={String(c.key)} className={cn("text-left font-semibold px-4 py-2", c.className)} style={{ color: "var(--foreground)", borderBottom: "1px solid var(--border)" }}>
+              <th key={String(c.key)} className={cn("text-left font-semibold px-4 py-3 border-b", c.className)}>
                 {c.header}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="divide-y divide-border">
           {data.map((row, i) => (
-            <tr key={i} className={i % 2 === 1 ? "bg-[#F8FAFC]" : undefined}>
+            <tr key={i} className="hover:bg-muted/50 transition-colors">
               {columns.map((c) => (
-                <td key={String(c.key)} className={cn("px-4 py-2", c.className)} style={{ color: "var(--foreground)", borderBottom: "1px solid var(--border)" }}>
+                <td key={String(c.key)} className={cn("px-4 py-3 text-muted-foreground", c.className)}>
                   {c.render ? c.render(row) : (row as any)[c.key]}
                 </td>
               ))}
@@ -44,5 +44,3 @@ export function Table<T>({ columns, data, className }: TableProps<T>) {
 }
 
 export default Table;
-
-
