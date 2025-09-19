@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "@/contexts/auth-context";
+import { AuthProvider } from "@/contexts/AuthContext";
 import { Header } from "@/components/header";
 import { Sidebar } from "@/components/sidebar";
 import { usePathname } from "next/navigation";

@@ -1,14 +1,28 @@
 "use client";
 
+import * as React from "react";
 import {
+  CardAction,
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/components/card";
 import { Table } from "@/components/table";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  SheetFooter,
+} from "@/components/sheet";
+import { Button } from "@/components/button";
+import { Label } from "@/components/label";
+import { Input } from "@/components/input";
 
-const stationsData = [
+const initialStationsData = [
   {
     businessCode: "EGTN",
     siteName: "이지트로닉스 동탄본사",
@@ -33,7 +47,15 @@ const stationsData = [
   // 다른 데이터 예시...
 ];
 
+// 수정할 충전소 데이터를 관리하기 위한 타입 정의
+type Station = typeof initialStationsData[0];
+
 export default function SitesPage() {
+  // 테이블에 표시될 데이터와 수정할 데이터를 상태로 관리
+  const [stationsData, setStationsData] = React.useState(initialStationsData);
+  const [editingStation, setEditingStation] = React.useState<Station | null>(null);
+
+
   return (
     <div className="p-6 space-y-8">
       <h1 className="text-2xl font-bold" style={{ color: "var(--foreground)" }}>
@@ -42,11 +64,54 @@ export default function SitesPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>충전소 목록</CardTitle>
+          <div className="flex justify-between items-center">
+            <CardTitle>충전소 목록</CardTitle>
+            <CardAction>
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button>신규 등록</Button>
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle>충전소 등록</SheetTitle>
+                    <SheetDescription>새로운 충전소 정보를 입력하세요.</SheetDescription>
+                  </SheetHeader>
+                  {/* 여기에 폼 필드들을 추가합니다. */}
+                </SheetContent>
+              </Sheet>
+            </CardAction>
+          </div>
         </CardHeader>
         <CardContent>
           <Table
             columns={[
+              {
+                key: "actions",
+                header: "수정",
+                render: (station: Station) => (
+                  <Sheet>
+                    <SheetTrigger asChild>
+                      <Button variant="outline" size="sm">
+                        수정
+                      </Button>
+                    </SheetTrigger>
+                    <SheetContent>
+                      <SheetHeader>
+                        <SheetTitle>충전소 수정</SheetTitle>
+                        <SheetDescription>
+                          충전소 정보를 수정합니다.
+                        </SheetDescription>
+                      </SheetHeader>
+                      <div className="grid gap-4 py-4">
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="siteName" className="text-right">충전소명</Label>
+                          <Input id="siteName" defaultValue={station.siteName} className="col-span-3" />
+                        </div>
+                      </div>
+                    </SheetContent>
+                  </Sheet>
+                ),
+              },
               { key: "businessCode", header: "사업자코드" },
               { key: "siteName", header: "충전소명" },
               { key: "contractDate", header: "계약일" },

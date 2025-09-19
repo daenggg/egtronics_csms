@@ -4,11 +4,11 @@ import * as React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
-import { useAuth } from "@/contexts/auth-context";
+import { useAuth } from "@/contexts/AuthContext";
 
 export function Header() {
   const router = useRouter();
-  const { signOut } = useAuth();
+  const { logout: signOut } = useAuth();
 
   function toggleSidebar() {
     if (typeof document !== "undefined") {
