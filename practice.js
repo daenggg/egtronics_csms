@@ -1,6 +1,8 @@
 //var reqURL = 'http://52.79.186.236:8443/api';
-var reqURL = 'https://egtn.iptime.org:8443/api';
+// var reqURL = 'https://egtn.iptime.org:8443/api';
+// var reqURL = 'https://localhost:8443/api';
 //var reqURL = 'http://192.168.0.101:8443/api';
+var reqURL = 'https://test.egtronics-ev.com:8443/api';
 var KAKAO_URL = 'http://52.79.186.236:8443/oauth/kakao';
 var menuData = [];
 
@@ -29,7 +31,7 @@ var menuData = [];
               /**sessionStorage는 브라우저 세션 동안 데이터를 유지하는 저장소입니다. 
               여기서 setItem을 사용해 키-값 쌍을 저장하는데, accessToken 키로 access 값을 저장합니다. 
               이는 페이지를 새로고침해도 해당 세션 동안 accessToken을 계속 사용할 수 있게 합니다.*/
-              sessionStorage.setItem('refreshtokentoken', refresh);
+              sessionStorage.setItem('refreshtoken', refresh);
               var menuRole =  data.payload.menuRole;
             
               for (var i = 0; i < menuRole.length; i++) {
