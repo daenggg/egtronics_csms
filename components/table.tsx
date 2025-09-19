@@ -16,6 +16,7 @@ export type TableProps<T> = {
 
 export function Table<T>({ columns, data, className }: TableProps<T>) {
   const [columnWidths, setColumnWidths] = React.useState<Record<string, number>>({});
+  const [isResizing, setIsResizing] = React.useState(false);
   const resizingColumnRef = React.useRef<string | null>(null);
   const startXRef = React.useRef(0);
   const startWidthRef = React.useRef(0);
@@ -23,6 +24,7 @@ export function Table<T>({ columns, data, className }: TableProps<T>) {
 
   const handleMouseDown = (e: React.MouseEvent, key: string) => {
     e.preventDefault();
+    setIsResizing(true);
     resizingColumnRef.current = key;
     startXRef.current = e.clientX;
     const th = tableRef.current?.querySelector(`th[data-key='${key}']`);
@@ -42,6 +44,7 @@ export function Table<T>({ columns, data, className }: TableProps<T>) {
 
     const handleMouseUp = () => {
       resizingColumnRef.current = null;
+      setIsResizing(false);
       document.body.style.cursor = 'default';
       document.body.style.userSelect = 'auto';
     };
@@ -57,13 +60,13 @@ export function Table<T>({ columns, data, className }: TableProps<T>) {
 
   return (
     <div className={cn("w-full overflow-x-auto rounded-md border", className)}>
-      <table ref={tableRef} className="w-full text-sm" style={{ tableLayout: 'fixed' }}>
+      <table ref={tableRef} className="min-w-full text-sm" style={{ tableLayout: isResizing || Object.keys(columnWidths).length > 0 ? 'fixed' : 'auto' }}>
         <thead>
           <tr className="bg-muted/50">
             {columns.map((c, colIndex) => {
               const key = String(c.key);
               return (
-                <th key={key} data-key={key} style={{ width: columnWidths[key] ? `${columnWidths[key]}px` : undefined }} className={cn("relative text-center font-semibold px-4 py-3 border-b border-border border-r last:border-r-0", c.className)}>
+                <th key={key} data-key={key} style={{ width: columnWidths[key] ? `${columnWidths[key]}px` : undefined }} className={cn("relative text-center font-semibold px-4 py-3 border-b border-border border-r last:border-r-0 whitespace-nowrap", c.className)}>
                   {c.header}
                   <div onMouseDown={(e) => handleMouseDown(e, key)} className="absolute top-0 right-0 h-full w-2 cursor-col-resize" />
                 </th>
@@ -73,8 +76,8 @@ export function Table<T>({ columns, data, className }: TableProps<T>) {
         </thead>
         <tbody className="divide-y divide-border">
           {data.map((row, i) => (
-            <tr key={i} className={cn("transition-colors hover:bg-muted/50", i % 2 !== 0 && "bg-muted/10")}>
-              {columns.map((c) => (
+            <tr key={i} className={cn("transition-colors hover:bg-muted/50", i % 2 !== 0 && "bg-muted/25")}>
+              {columns.map((c, colIndex) => (
                 <td key={String(c.key)} className={cn("px-4 py-3 text-center text-muted-foreground border-r border-border last:border-r-0 overflow-hidden text-ellipsis whitespace-nowrap", c.className)}>
                   {c.render ? c.render(row) : (row as any)[c.key]}
                 </td>

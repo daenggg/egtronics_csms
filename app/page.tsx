@@ -1,7 +1,5 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { Sidebar } from "@/components/sidebar";
 import {
   Card,
   CardContent,
@@ -39,51 +37,10 @@ const sessionsData = [
 ];
 
 export default function Home() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [sidebarWidth, setSidebarWidth] = useState(240);
-  const isResizing = useRef(false);
-
-  const handleMouseDown = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    isResizing.current = true;
-    document.body.style.cursor = 'col-resize';
-    document.body.style.userSelect = 'none';
-  }, []);
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (!isResizing.current) return;
-    setSidebarWidth(prevWidth => {
-      const newWidth = e.clientX;
-      const minWidth = 200;
-      const maxWidth = 400;
-      if (newWidth < minWidth) return minWidth;
-      if (newWidth > maxWidth) return maxWidth;
-      return newWidth;
-    });
-  }, []);
-
-  const handleMouseUp = useCallback(() => {
-    isResizing.current = false;
-    document.body.style.cursor = 'default';
-    document.body.style.userSelect = 'auto';
-  }, []);
-
-  useEffect(() => {
-    function onToggle() {
-      setSidebarOpen((v) => !v);
-    }
-    document.addEventListener("toggle-sidebar", onToggle);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-    return () => document.removeEventListener("toggle-sidebar", onToggle);
-  }, [handleMouseMove, handleMouseUp]);
-
   return (
-    <div className="min-h-screen w-full flex bg-background">
-      <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} width={sidebarWidth} onMouseDown={handleMouseDown} />
-      <main
-        className="flex-1 p-6 transition-all duration-300 ease-in-out space-y-8"
-        style={{ marginLeft: sidebarOpen ? `${sidebarWidth}px` : "0" }}
+    <div className="bg-background">
+      <div
+        className="p-6 space-y-8"
       >
         <h1 className="text-2xl font-bold mb-4" style={{ color: "var(--foreground)" }}>
           대시보드
@@ -150,7 +107,7 @@ export default function Home() {
             />
           </CardContent>
         </Card>
-      </main>
+      </div>
     </div>
   );
 }
