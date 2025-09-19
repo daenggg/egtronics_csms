@@ -62,7 +62,7 @@ export function Table<T>({ columns, data, className }: TableProps<T>) {
     <div className={cn("w-full overflow-x-auto rounded-md border", className)}>
       <table ref={tableRef} className="min-w-full text-sm" style={{ tableLayout: isResizing || Object.keys(columnWidths).length > 0 ? 'fixed' : 'auto' }}>
         <thead>
-          <tr className="bg-muted/50">
+          <tr className="bg-muted">
             {columns.map((c, colIndex) => {
               const key = String(c.key);
               return (
@@ -76,7 +76,7 @@ export function Table<T>({ columns, data, className }: TableProps<T>) {
         </thead>
         <tbody className="divide-y divide-border">
           {data.map((row, i) => (
-            <tr key={i} className={cn("transition-colors hover:bg-muted/50", i % 2 !== 0 && "bg-muted/25")}>
+            <tr key={i} className={cn("transition-colors hover:bg-muted/50", i % 2 !== 0 && "bg-muted/50")}>
               {columns.map((c, colIndex) => (
                 <td key={String(c.key)} className={cn("px-4 py-3 text-center text-muted-foreground border-r border-border last:border-r-0 overflow-hidden text-ellipsis whitespace-nowrap", c.className)}>
                   {c.render ? c.render(row) : (row as any)[c.key]}

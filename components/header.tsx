@@ -28,9 +28,9 @@ export function Header() {
     >
       <div className="flex items-center gap-3">
         <button aria-label="Toggle sidebar" onClick={toggleSidebar} className="p-2 rounded-md">
-          <span className="block h-[3px] w-6 mb-1" style={{ background: "var(--foreground)" }} />
-          <span className="block h-[3px] w-6 mb-1" style={{ background: "var(--foreground)" }} />
-          <span className="block h-[3px] w-6" style={{ background: "var(--foreground)" }} />
+          <span className="block h-[3px] w-6 mb-1 bg-gray-600" />
+          <span className="block h-[3px] w-6 mb-1 bg-gray-600" />
+          <span className="block h-[3px] w-6 bg-gray-600" />
         </button>
         <div className="relative" style={{ width: 160, height: 36 }}>
           <Image src="/egtronics_logo.png" alt="Logo" fill className="object-contain dark:invert" />
